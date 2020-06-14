@@ -1,0 +1,7 @@
+deepecho.dataset module
+=======================
+
+.. automodule:: deepecho.dataset
+   :members:
+   :undoc-members:
+   :show-inheritance:

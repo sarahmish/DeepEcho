@@ -1,0 +1,22 @@
+deepecho package
+================
+
+.. automodule:: deepecho
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+   deepecho.benchmark
+   deepecho.model
+
+Submodules
+----------
+
+.. toctree::
+
+   deepecho.dataset
