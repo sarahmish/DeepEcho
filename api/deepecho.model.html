@@ -212,7 +212,7 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.model.Model" title="deepecho.model.Model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model</span></code></a></p></td>
 <td><p>Base class for DeepEcho models.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.model.AlphaModel" title="deepecho.model.AlphaModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlphaModel</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.model.AlphaModel" title="deepecho.model.AlphaModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlphaModel</span></code></a>([nb_epochs, use_sampling])</p></td>
 <td><p>No time index, multiple entities, fixed length.</p></td>
 </tr>
 </tbody>
@@ -280,7 +280,7 @@
 
 <dl class="class">
 <dt id="deepecho.model.AlphaModel">
-<em class="property">class </em><code class="sig-prename descclassname">deepecho.model.</code><code class="sig-name descname">AlphaModel</code><a class="reference internal" href="../_modules/deepecho/model/alpha.html#AlphaModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.model.AlphaModel" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">deepecho.model.</code><code class="sig-name descname">AlphaModel</code><span class="sig-paren">(</span><em class="sig-param">nb_epochs=128</em>, <em class="sig-param">use_sampling=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/model/alpha.html#AlphaModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.model.AlphaModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="deepecho.model.base.html#deepecho.model.base.Model" title="deepecho.model.base.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">deepecho.model.base.Model</span></code></a></p>
 <p>No time index, multiple entities, fixed length.</p>
 <p><strong>Methods</strong></p>
@@ -293,7 +293,7 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.model.AlphaModel.check" title="deepecho.model.AlphaModel.check"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check</span></code></a>(dataset)</p></td>
 <td><p>Check whether the dataset can be modeled.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.model.AlphaModel.fit" title="deepecho.model.AlphaModel.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(dataset[, nb_epochs])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.model.AlphaModel.fit" title="deepecho.model.AlphaModel.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(dataset)</p></td>
 <td><p>Fit the model to the dataset.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.model.AlphaModel.sample" title="deepecho.model.AlphaModel.sample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample</span></code></a>()</p></td>
@@ -317,7 +317,7 @@
 
 <dl class="method">
 <dt id="deepecho.model.AlphaModel.fit">
-<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">dataset</em>, <em class="sig-param">nb_epochs=64</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/model/alpha.html#AlphaModel.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.model.AlphaModel.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">dataset</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/model/alpha.html#AlphaModel.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.model.AlphaModel.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit the model to the dataset.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
