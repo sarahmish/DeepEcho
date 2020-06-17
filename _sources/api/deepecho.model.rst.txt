@@ -13,3 +13,5 @@ Submodules
 
    deepecho.model.alpha
    deepecho.model.base
+   deepecho.model.beta
+   deepecho.model.gamma
