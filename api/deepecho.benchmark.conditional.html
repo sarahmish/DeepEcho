@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho.benchmark.base module &mdash; DeepEcho 0.1.0.dev0 documentation</title>
+  <title>deepecho.benchmark.conditional module &mdash; DeepEcho 0.1.0.dev0 documentation</title>
   
 
   
@@ -38,8 +38,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="deepecho.benchmark.conditional module" href="deepecho.benchmark.conditional.html" />
-    <link rel="prev" title="deepecho.benchmark package" href="deepecho.benchmark.html" /> 
+    <link rel="next" title="deepecho.benchmark.simple module" href="deepecho.benchmark.simple.html" />
+    <link rel="prev" title="deepecho.benchmark.base module" href="deepecho.benchmark.base.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -188,14 +188,14 @@
         
           <li><a href="deepecho.benchmark.html">deepecho.benchmark package</a> &raquo;</li>
         
-      <li>deepecho.benchmark.base module</li>
+      <li>deepecho.benchmark.conditional module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/k15z/DeepEcho/blob/master/docs/api/deepecho.benchmark.base.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/k15z/DeepEcho/blob/master/docs/api/deepecho.benchmark.conditional.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -233,8 +233,8 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="module-deepecho.benchmark.base">
-<span id="deepecho-benchmark-base-module"></span><h1>deepecho.benchmark.base module<a class="headerlink" href="#module-deepecho.benchmark.base" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-deepecho.benchmark.conditional">
+<span id="deepecho-benchmark-conditional-module"></span><h1>deepecho.benchmark.conditional module<a class="headerlink" href="#module-deepecho.benchmark.conditional" title="Permalink to this headline">¶</a></h1>
 <p><strong>Classes</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -242,21 +242,16 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.base.Benchmark" title="deepecho.benchmark.base.Benchmark"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Benchmark</span></code></a></p></td>
-<td><p>This represents a “template” for a benchmark dataset.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.conditional.Conditional1" title="deepecho.benchmark.conditional.Conditional1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Conditional1</span></code></a>([nb_entities])</p></td>
+<td><p>Variable-length conditional time-series.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="class">
-<dt id="deepecho.benchmark.base.Benchmark">
-<em class="property">class </em><code class="sig-prename descclassname">deepecho.benchmark.base.</code><code class="sig-name descname">Benchmark</code><a class="reference internal" href="../_modules/deepecho/benchmark/base.html#Benchmark"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.base.Benchmark" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>This represents a “template” for a benchmark dataset.</p>
-<p>Each <cite>Benchmark</cite> is a template for a dataset. To train a model, a concrete
-instance of the dataset can be retrieved using the <cite>sample</cite> method. Once
-the model is trained, it can be used to generate a synthetic dataset. This
-can then be passed to the <cite>evaluate</cite> method which evaluates how well the
-synthetically generated dataset conforms to the template.</p>
+<dt id="deepecho.benchmark.conditional.Conditional1">
+<em class="property">class </em><code class="sig-prename descclassname">deepecho.benchmark.conditional.</code><code class="sig-name descname">Conditional1</code><span class="sig-paren">(</span><em class="sig-param">nb_entities=10</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/conditional.html#Conditional1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.conditional.Conditional1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="deepecho.benchmark.base.html#deepecho.benchmark.base.Benchmark" title="deepecho.benchmark.base.Benchmark"><code class="xref py py-class docutils literal notranslate"><span class="pre">deepecho.benchmark.base.Benchmark</span></code></a></p>
+<p>Variable-length conditional time-series.</p>
 <p><strong>Methods</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -264,17 +259,17 @@ synthetically generated dataset conforms to the template.</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.base.Benchmark.evaluate" title="deepecho.benchmark.base.Benchmark.evaluate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">evaluate</span></code></a>(model)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.conditional.Conditional1.evaluate" title="deepecho.benchmark.conditional.Conditional1.evaluate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">evaluate</span></code></a>(model)</p></td>
 <td><p>Evaluate the model on this benchmark.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.benchmark.base.Benchmark.visualize" title="deepecho.benchmark.base.Benchmark.visualize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">visualize</span></code></a>()</p></td>
-<td><p>Visualize the benchmark dataset.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.benchmark.conditional.Conditional1.sample" title="deepecho.benchmark.conditional.Conditional1.sample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample</span></code></a>()</p></td>
+<td><p>Create an instance of the Conditional1 dataset.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="method">
-<dt id="deepecho.benchmark.base.Benchmark.evaluate">
-<code class="sig-name descname">evaluate</code><span class="sig-paren">(</span><em class="sig-param">model</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/base.html#Benchmark.evaluate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.base.Benchmark.evaluate" title="Permalink to this definition">¶</a></dt>
+<dt id="deepecho.benchmark.conditional.Conditional1.evaluate">
+<code class="sig-name descname">evaluate</code><span class="sig-paren">(</span><em class="sig-param">model</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/conditional.html#Conditional1.evaluate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.conditional.Conditional1.evaluate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluate the model on this benchmark.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -287,17 +282,12 @@ synthetically generated dataset conforms to the template.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="deepecho.benchmark.base.Benchmark.visualize">
-<code class="sig-name descname">visualize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/base.html#Benchmark.visualize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.base.Benchmark.visualize" title="Permalink to this definition">¶</a></dt>
-<dd><p>Visualize the benchmark dataset.</p>
-<p>This function generates an instance of the dataset and plots it using
-matplotlib. It returns a Figure which can be shown and/or saved.</p>
+<dt id="deepecho.benchmark.conditional.Conditional1.sample">
+<code class="sig-name descname">sample</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/conditional.html#Conditional1.sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.conditional.Conditional1.sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of the Conditional1 dataset.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A Figure object.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>(plt.Figure)</p>
+<dd class="field-odd"><p>A <cite>Dataset</cite> object containing a time-series dataset.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -314,10 +304,10 @@ matplotlib. It returns a Figure which can be shown and/or saved.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="deepecho.benchmark.conditional.html" class="btn btn-neutral float-right" title="deepecho.benchmark.conditional module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="deepecho.benchmark.simple.html" class="btn btn-neutral float-right" title="deepecho.benchmark.simple module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="deepecho.benchmark.html" class="btn btn-neutral float-left" title="deepecho.benchmark package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="deepecho.benchmark.base.html" class="btn btn-neutral float-left" title="deepecho.benchmark.base module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

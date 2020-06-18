@@ -12,5 +12,6 @@ Submodules
 .. toctree::
 
    deepecho.benchmark.base
+   deepecho.benchmark.conditional
    deepecho.benchmark.simple
    deepecho.benchmark.tsfile

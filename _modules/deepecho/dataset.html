@@ -255,18 +255,25 @@
 <span class="sd">    each group of rows belonging to a particular entity should have the</span>
 <span class="sd">    given number of rows.</span>
 
+<span class="sd">    If `entity_df` is set, then `entity_idx` must be set. The `entity_idx`</span>
+<span class="sd">    column of the `entity_df` table serves as a primary key; the remaining</span>
+<span class="sd">    columns of the `entity_df` table can be used to model a conditional</span>
+<span class="sd">    distribution for the corresponding entity in the `df` table.</span>
+
 <span class="sd">    Attributes:</span>
 <span class="sd">        df: A pandas.DataFrame object containing the raw data.</span>
 <span class="sd">        time_idx: A string (or None) indicating a column in the dataframe.</span>
 <span class="sd">        entity_idx: A string (or None) indicating a column in the dataframe.</span>
 <span class="sd">        fixed_length: An integer (or None) indicating the number of time steps.</span>
+<span class="sd">        entity_df: A pandas.DataFrame object representing the parent table.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">time_idx</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">entity_idx</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fixed_length</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">time_idx</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">entity_idx</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fixed_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">entity_df</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">time_idx</span> <span class="o">=</span> <span class="n">time_idx</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">entity_idx</span> <span class="o">=</span> <span class="n">entity_idx</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fixed_length</span> <span class="o">=</span> <span class="n">fixed_length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entity_df</span> <span class="o">=</span> <span class="n">entity_df</span>
 
 <div class="viewcode-block" id="Dataset.visualize"><a class="viewcode-back" href="../../api/deepecho.dataset.html#deepecho.Dataset.visualize">[docs]</a>    <span class="k">def</span> <span class="nf">visualize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Visualize the dataset.</span>

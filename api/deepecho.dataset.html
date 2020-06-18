@@ -240,7 +240,7 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.dataset.Dataset" title="deepecho.dataset.Dataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Dataset</span></code></a>(df[, time_idx, entity_idx, fixed_length])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.dataset.Dataset" title="deepecho.dataset.Dataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Dataset</span></code></a>(df[, time_idx, entity_idx, …])</p></td>
 <td><p>This represents a time-series dataset.</p></td>
 </tr>
 </tbody>
@@ -259,7 +259,7 @@
 </table>
 <dl class="class">
 <dt id="deepecho.dataset.Dataset">
-<em class="property">class </em><code class="sig-prename descclassname">deepecho.dataset.</code><code class="sig-name descname">Dataset</code><span class="sig-paren">(</span><em class="sig-param">df</em>, <em class="sig-param">time_idx=None</em>, <em class="sig-param">entity_idx=None</em>, <em class="sig-param">fixed_length=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/dataset.html#Dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.dataset.Dataset" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">deepecho.dataset.</code><code class="sig-name descname">Dataset</code><span class="sig-paren">(</span><em class="sig-param">df</em>, <em class="sig-param">time_idx=None</em>, <em class="sig-param">entity_idx=None</em>, <em class="sig-param">fixed_length=None</em>, <em class="sig-param">entity_df=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/dataset.html#Dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.dataset.Dataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>This represents a time-series dataset.</p>
 <p>By default, the DataFrame is expected to contain a single time series
@@ -280,6 +280,10 @@ given length. If <cite>entity_idx</cite> is not set, then this is equal to the
 number of rows in the dataframe; however, if <cite>entity_idx</cite> is set, then
 each group of rows belonging to a particular entity should have the
 given number of rows.</p>
+<p>If <cite>entity_df</cite> is set, then <cite>entity_idx</cite> must be set. The <cite>entity_idx</cite>
+column of the <cite>entity_df</cite> table serves as a primary key; the remaining
+columns of the <cite>entity_df</cite> table can be used to model a conditional
+distribution for the corresponding entity in the <cite>df</cite> table.</p>
 <p><strong>Methods</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -314,6 +318,12 @@ given number of rows.</p>
 <dt id="deepecho.dataset.Dataset.fixed_length">
 <code class="sig-name descname">fixed_length</code><a class="headerlink" href="#deepecho.dataset.Dataset.fixed_length" title="Permalink to this definition">¶</a></dt>
 <dd><p>An integer (or None) indicating the number of time steps.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="deepecho.dataset.Dataset.entity_df">
+<code class="sig-name descname">entity_df</code><a class="headerlink" href="#deepecho.dataset.Dataset.entity_df" title="Permalink to this definition">¶</a></dt>
+<dd><p>A pandas.DataFrame object representing the parent table.</p>
 </dd></dl>
 
 <dl class="method">
