@@ -27,6 +27,7 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -84,6 +85,13 @@
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="readme.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="readme.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/01_Getting_Started.html">Getting Started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/02_Seasonal_Trends.html">Seasonal Trends</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/03_Event_Data.html">Event-based Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/04_Conditional_Models.html">Conditional Modeling</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Resources</span></p>
 <ul>
@@ -196,7 +204,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <a class="reference external image-reference" href="https://github.com/sdv-dev/DeepEcho/actions"><img alt="Github Actions Shield" src="https://img.shields.io/github/workflow/status/sdv-dev/DeepEcho/Run%20Tests" /></a>
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<a class="reference external image-reference" href="https://github.com/sdv-dev/DeepEcho/actions"><img alt="Github Actions Shield" src="https://img.shields.io/github/workflow/status/sdv-dev/DeepEcho/Run%20Tests" /></a>
 <a class="reference external image-reference" href="https://codecov.io/gh/sdv-dev/DeepEcho"><img alt="Coverage Status" src="https://codecov.io/gh/sdv-dev/DeepEcho/branch/master/graph/badge.svg" /></a>
 <p><span class="raw-html-m2r"><br/></span></p>
 <div class="section" id="overview">
@@ -219,6 +251,14 @@ make install-develop
 </pre></div>
 </div>
 <div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/02_Seasonal_Trends.html">Seasonal Trends</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/03_Event_Data.html">Event-based Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/04_Conditional_Models.html">Conditional Modeling</a></li>
+</ul>
 </div>
 <div class="toctree-wrapper compound">
 </div>

@@ -27,6 +27,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -38,7 +39,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="deepecho.benchmark package" href="deepecho.benchmark.html" />
-    <link rel="prev" title="Overview" href="../readme.html" /> 
+    <link rel="prev" title="Conditional Modeling" href="../tutorials/04_Conditional_Models.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -85,6 +86,13 @@
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../readme.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../readme.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/01_Getting_Started.html">Getting Started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/02_Seasonal_Trends.html">Seasonal Trends</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/03_Event_Data.html">Event-based Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/04_Conditional_Models.html">Conditional Modeling</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Resources</span></p>
 <ul class="current">
@@ -197,7 +205,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-deepecho">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="module-deepecho">
 <span id="deepecho-package"></span><h1>deepecho package<a class="headerlink" href="#module-deepecho" title="Permalink to this headline">¶</a></h1>
 <p>Top-level package for DeepEcho.</p>
 <p><strong>Classes</strong></p>
@@ -336,7 +368,7 @@ the time series for the first entity.</p>
         <a href="deepecho.benchmark.html" class="btn btn-neutral float-right" title="deepecho.benchmark package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../readme.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../tutorials/04_Conditional_Models.html" class="btn btn-neutral float-left" title="Conditional Modeling" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
