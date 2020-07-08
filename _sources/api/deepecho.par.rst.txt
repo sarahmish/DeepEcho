@@ -1,0 +1,7 @@
+deepecho.par module
+===================
+
+.. automodule:: deepecho.par
+   :members:
+   :undoc-members:
+   :show-inheritance:

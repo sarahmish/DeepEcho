@@ -1,7 +1,0 @@
-deepecho.model.gamma module
-===========================
-
-.. automodule:: deepecho.model.gamma
-   :members:
-   :undoc-members:
-   :show-inheritance:

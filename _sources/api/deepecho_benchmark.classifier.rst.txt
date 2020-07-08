@@ -1,0 +1,7 @@
+deepecho\_benchmark.classifier module
+=====================================
+
+.. automodule:: deepecho_benchmark.classifier
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,16 @@
+deepecho\_benchmark.tasks package
+=================================
+
+.. automodule:: deepecho_benchmark.tasks
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+
+   deepecho_benchmark.tasks.base
+   deepecho_benchmark.tasks.classification
+   deepecho_benchmark.tasks.simple

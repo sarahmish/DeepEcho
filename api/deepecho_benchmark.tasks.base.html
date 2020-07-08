@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Overview: module code &mdash; DeepEcho 0.1.0.dev0 documentation</title>
+  <title>deepecho_benchmark.tasks.base module &mdash; DeepEcho 0.1.0.dev0 documentation</title>
   
 
   
@@ -37,7 +37,9 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="deepecho_benchmark.tasks.classification module" href="deepecho_benchmark.tasks.classification.html" />
+    <link rel="prev" title="deepecho_benchmark.tasks package" href="deepecho_benchmark.tasks.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -97,27 +99,27 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/04_Event_Data.html">Event-based Data</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Resources</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../api/deepecho.html">DeepEcho API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../api/deepecho.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api/deepecho.base.html">deepecho.base module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/deepecho.par.html">deepecho.par module</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="deepecho.html">DeepEcho API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="deepecho.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="deepecho.base.html">deepecho.base module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deepecho.par.html">deepecho.par module</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../api/deepecho_benchmark.html">Benchmark API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../api/deepecho_benchmark.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api/deepecho_benchmark.tasks.html">deepecho_benchmark.tasks package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../api/deepecho_benchmark.tasks.html#submodules">Submodules</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="deepecho_benchmark.html">Benchmark API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="deepecho_benchmark.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="deepecho_benchmark.tasks.html">deepecho_benchmark.tasks package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="deepecho_benchmark.tasks.html#submodules">Submodules</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../api/deepecho_benchmark.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api/deepecho_benchmark.benchmark.html">deepecho_benchmark.benchmark module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/deepecho_benchmark.classifier.html">deepecho_benchmark.classifier module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/deepecho_benchmark.download.html">deepecho_benchmark.download module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deepecho_benchmark.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="deepecho_benchmark.benchmark.html">deepecho_benchmark.benchmark module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deepecho_benchmark.classifier.html">deepecho_benchmark.classifier module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deepecho_benchmark.download.html">deepecho_benchmark.download module</a></li>
 </ul>
 </li>
 </ul>
@@ -192,10 +194,20 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Overview: module code</li>
+          <li><a href="deepecho_benchmark.html">deepecho_benchmark package</a> &raquo;</li>
+        
+          <li><a href="deepecho_benchmark.tasks.html">deepecho_benchmark.tasks package</a> &raquo;</li>
+        
+      <li>deepecho_benchmark.tasks.base module</li>
     
     
       <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/k15z/DeepEcho/blob/master/docs/api/deepecho_benchmark.tasks.base.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
         
       </li>
     
@@ -207,15 +219,48 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>All modules for which code is available</h1>
-<ul><li><a href="deepecho/base.html">deepecho.base</a></li>
-<li><a href="deepecho/par.html">deepecho.par</a></li>
-</ul>
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="deepecho-benchmark-tasks-base-module">
+<h1>deepecho_benchmark.tasks.base module<a class="headerlink" href="#deepecho-benchmark-tasks-base-module" title="Permalink to this headline">¶</a></h1>
+</div>
+
 
            </div>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="deepecho_benchmark.tasks.classification.html" class="btn btn-neutral float-right" title="deepecho_benchmark.tasks.classification module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="deepecho_benchmark.tasks.html" class="btn btn-neutral float-left" title="deepecho_benchmark.tasks package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

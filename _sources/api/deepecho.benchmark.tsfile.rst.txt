@@ -1,7 +1,0 @@
-deepecho.benchmark.tsfile module
-================================
-
-.. automodule:: deepecho.benchmark.tsfile
-   :members:
-   :undoc-members:
-   :show-inheritance:

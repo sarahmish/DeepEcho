@@ -1,7 +1,0 @@
-deepecho.model.beta module
-==========================
-
-.. automodule:: deepecho.model.beta
-   :members:
-   :undoc-members:
-   :show-inheritance:

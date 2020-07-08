@@ -1,0 +1,23 @@
+deepecho\_benchmark package
+===========================
+
+.. automodule:: deepecho_benchmark
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+   deepecho_benchmark.tasks
+
+Submodules
+----------
+
+.. toctree::
+
+   deepecho_benchmark.benchmark
+   deepecho_benchmark.classifier
+   deepecho_benchmark.download

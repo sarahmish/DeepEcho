@@ -90,26 +90,36 @@
 </ul>
 <p class="caption"><span class="caption-text">User Guides</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/02_Seasonal_Trends.html">Seasonal Trends</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/03_Event_Data.html">Event-based Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/04_Conditional_Models.html">Conditional Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/02_Model_API.html">Model API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/02_Model_API.html#Fit">Fit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/02_Model_API.html#Sample">Sample</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/03_Seasonal_Trends.html">Seasonal Trends</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/04_Event_Data.html">Event-based Data</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Resources</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="api/deepecho.html">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/deepecho.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/deepecho.benchmark.html">deepecho.benchmark package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/deepecho.benchmark.html#submodules">Submodules</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/deepecho.model.html">deepecho.model package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/deepecho.model.html#submodules">Submodules</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="api/deepecho.html">DeepEcho API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api/deepecho.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/deepecho.dataset.html">deepecho.dataset module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/deepecho.base.html">deepecho.base module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/deepecho.par.html">deepecho.par module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/deepecho_benchmark.html">Benchmark API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/deepecho_benchmark.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/deepecho_benchmark.tasks.html">deepecho_benchmark.tasks package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/deepecho_benchmark.tasks.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/deepecho_benchmark.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/deepecho_benchmark.benchmark.html">deepecho_benchmark.benchmark module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/deepecho_benchmark.classifier.html">deepecho_benchmark.classifier module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/deepecho_benchmark.download.html">deepecho_benchmark.download module</a></li>
 </ul>
 </li>
 </ul>
@@ -234,18 +244,13 @@
 <p><span class="raw-html-m2r"><br/></span></p>
 <div class="section" id="overview">
 <h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
-<p>The <strong>DeepEcho</strong> library implements generative adversarial networks for modeling
-mixed-type (continuous + categorical) multivariate time series. It implements
-a variety of different models (<a class="reference internal" href="api/deepecho.model.html#module-deepecho.model" title="deepecho.model"><code class="xref py py-mod docutils literal notranslate"><span class="pre">deepecho.model</span></code></a>) and benchmarks
-(<a class="reference internal" href="api/deepecho.benchmark.html#module-deepecho.benchmark" title="deepecho.benchmark"><code class="xref py py-mod docutils literal notranslate"><span class="pre">deepecho.benchmark</span></code></a>) to enable rapid experimentation and development.</p>
-<p>Each model supports a different set of features - i.e. timestamps, multiple
-entities, fixed length sequences, etc. - so you can select the model(s) that
-best fit your particular use case. Similarly, the complexity of the benchmarks
-range from simple simulated datasets to complex real world signals.</p>
+<p>The <strong>DeepEcho</strong> library implements methods for modeling mixed-type
+multivariate time series. It provides multiple models and benchmarks to enable
+rapid research and development.</p>
 </div>
 <div class="section" id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<p>To install the <code class="docutils literal notranslate"><span class="pre">deepecho</span></code> library from source, run the following:</p>
+<p>To install the <code class="docutils literal notranslate"><span class="pre">DeepEcho</span></code> library from source, run the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/sdv-dev/DeepEcho
 <span class="nb">cd</span> DeepEcho
 make install-develop
