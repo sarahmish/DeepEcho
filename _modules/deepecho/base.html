@@ -221,6 +221,23 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="DeepEcho.fit"><a class="viewcode-back" href="../../api/deepecho.base.html#deepecho.DeepEcho.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">entity_columns</span><span class="p">,</span> <span class="n">context_columns</span><span class="o">=</span><span class="p">[],</span> <span class="n">context_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data_types</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fit the model to a dataframe containing time series data.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            df: The number of entities.</span>
+
+<span class="sd">            entity_columns: The columns in the dataframe to group by in order</span>
+<span class="sd">                to obtain separate training examples.</span>
+
+<span class="sd">            context_columns: The columns in the dataframe which are constant</span>
+<span class="sd">                within each group/entity. These columns will be provided at</span>
+<span class="sd">                sampling time (i.e. the samples will be conditioned on the</span>
+<span class="sd">                context variables).</span>
+
+<span class="sd">            context_types: Data types for the context columns; see `fit_sequences`.</span>
+
+<span class="sd">            data_types: Data types for the data columns; see `fit_sequences`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">entity_columns</span> <span class="o">=</span> <span class="n">entity_columns</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">context_columns</span> <span class="o">=</span> <span class="n">context_columns</span>
 
@@ -239,6 +256,18 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_context</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">context_columns</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="DeepEcho.sample"><a class="viewcode-back" href="../../api/deepecho.base.html#deepecho.DeepEcho.sample">[docs]</a>    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nb_entities</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sample a dataframe containing time series data.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            nb_entities: The number of entities.</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            A DataFrame which resembles the original dataframe where (1) the</span>
+<span class="sd">            entity column(s) are arbitrarily generated, (2) the context</span>
+<span class="sd">            column(s) are resampled from the original data, and (3) the data</span>
+<span class="sd">            columns containing the time series comes from the conditional</span>
+<span class="sd">            time series model.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="k">for</span> <span class="n">entity_id</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nb_entities</span><span class="p">):</span>

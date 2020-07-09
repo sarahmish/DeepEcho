@@ -268,13 +268,13 @@
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.base.DeepEcho.fit" title="deepecho.base.DeepEcho.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(df, entity_columns[, context_columns, …])</p></td>
-<td><p></p></td>
+<td><p>Fit the model to a dataframe containing time series data.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#deepecho.base.DeepEcho.fit_sequences" title="deepecho.base.DeepEcho.fit_sequences"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_sequences</span></code></a>(sequences, context_types, …)</p></td>
 <td><p>Fit a model to the specified sequences.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.base.DeepEcho.sample" title="deepecho.base.DeepEcho.sample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample</span></code></a>(nb_entities)</p></td>
-<td><p></p></td>
+<td><p>Sample a dataframe containing time series data.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#deepecho.base.DeepEcho.sample_sequence" title="deepecho.base.DeepEcho.sample_sequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample_sequence</span></code></a>(context)</p></td>
 <td><p>Sample a single sequence conditioned on context.</p></td>
@@ -287,7 +287,23 @@
 <dl class="method">
 <dt id="deepecho.base.DeepEcho.fit">
 <code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">df</em>, <em class="sig-param">entity_columns</em>, <em class="sig-param">context_columns=[]</em>, <em class="sig-param">context_types=None</em>, <em class="sig-param">data_types=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/base.html#DeepEcho.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.base.DeepEcho.fit" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Fit the model to a dataframe containing time series data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> – The number of entities.</p></li>
+<li><p><strong>entity_columns</strong> – The columns in the dataframe to group by in order
+to obtain separate training examples.</p></li>
+<li><p><strong>context_columns</strong> – The columns in the dataframe which are constant
+within each group/entity. These columns will be provided at
+sampling time (i.e. the samples will be conditioned on the
+context variables).</p></li>
+<li><p><strong>context_types</strong> – Data types for the context columns; see <cite>fit_sequences</cite>.</p></li>
+<li><p><strong>data_types</strong> – Data types for the data columns; see <cite>fit_sequences</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="method">
 <dt id="deepecho.base.DeepEcho.fit_sequences">
@@ -335,7 +351,20 @@ types are the same as for <cite>context_types</cite>.</p></li>
 <dl class="method">
 <dt id="deepecho.base.DeepEcho.sample">
 <code class="sig-name descname">sample</code><span class="sig-paren">(</span><em class="sig-param">nb_entities</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/base.html#DeepEcho.sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.base.DeepEcho.sample" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Sample a dataframe containing time series data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>nb_entities</strong> – The number of entities.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A DataFrame which resembles the original dataframe where (1) the
+entity column(s) are arbitrarily generated, (2) the context
+column(s) are resampled from the original data, and (3) the data
+columns containing the time series comes from the conditional
+time series model.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="method">
 <dt id="deepecho.base.DeepEcho.sample_sequence">
