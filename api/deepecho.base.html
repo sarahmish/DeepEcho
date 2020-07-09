@@ -86,7 +86,12 @@
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../readme.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../readme.html#installation">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/01_Getting_Started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/01_Getting_Started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Load-the-dataset">Load the dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Explore-the-dataset">Explore the dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption"><span class="caption-text">User Guides</span></p>
 <ul>
@@ -286,7 +291,7 @@
 </table>
 <dl class="method">
 <dt id="deepecho.base.DeepEcho.fit">
-<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">df</em>, <em class="sig-param">entity_columns</em>, <em class="sig-param">context_columns=[]</em>, <em class="sig-param">context_types=None</em>, <em class="sig-param">data_types=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/base.html#DeepEcho.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.base.DeepEcho.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">df</em>, <em class="sig-param">entity_columns</em>, <em class="sig-param">context_columns=[]</em>, <em class="sig-param">dtypes=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/base.html#DeepEcho.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.base.DeepEcho.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit the model to a dataframe containing time series data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>

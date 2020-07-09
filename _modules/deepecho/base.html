@@ -84,7 +84,12 @@
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../readme.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../readme.html#installation">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../tutorials/01_Getting_Started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/01_Getting_Started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Load-the-dataset">Load the dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Explore-the-dataset">Explore the dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption"><span class="caption-text">User Guides</span></p>
 <ul>
@@ -220,7 +225,7 @@
     <span class="sd">&quot;&quot;&quot;The base class for DeepEcho models.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="DeepEcho.fit"><a class="viewcode-back" href="../../api/deepecho.base.html#deepecho.DeepEcho.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">entity_columns</span><span class="p">,</span> <span class="n">context_columns</span><span class="o">=</span><span class="p">[],</span> <span class="n">context_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data_types</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="DeepEcho.fit"><a class="viewcode-back" href="../../api/deepecho.base.html#deepecho.DeepEcho.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">entity_columns</span><span class="p">,</span> <span class="n">context_columns</span><span class="o">=</span><span class="p">[],</span> <span class="n">dtypes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fit the model to a dataframe containing time series data.</span>
 
 <span class="sd">        Args:</span>
@@ -243,9 +248,11 @@
 
         <span class="c1"># Convert to sequences</span>
         <span class="n">sequences</span><span class="p">,</span> <span class="n">_ctypes</span><span class="p">,</span> <span class="n">_dtypes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_assemble</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">entity_columns</span><span class="p">,</span> <span class="n">context_columns</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">context_types</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">dtypes</span><span class="p">:</span>
+            <span class="n">context_types</span> <span class="o">=</span> <span class="p">[</span><span class="n">dtypes</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">context_columns</span><span class="p">]</span>
+            <span class="n">data_types</span> <span class="o">=</span> <span class="p">[</span><span class="n">dtypes</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_columns</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
             <span class="n">context_types</span> <span class="o">=</span> <span class="n">_ctypes</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">data_types</span><span class="p">:</span>
             <span class="n">data_types</span> <span class="o">=</span> <span class="n">_dtypes</span>
 
         <span class="c1"># Validate and fit</span>
@@ -308,10 +315,12 @@
 
             <span class="n">data_types</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">sub_df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">sub_df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">sub_df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">kind</span> <span class="ow">in</span> <span class="s1">&#39;fiu&#39;</span><span class="p">:</span>
                     <span class="n">data_types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;continuous&quot;</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">sub_df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">kind</span> <span class="ow">in</span> <span class="s1">&#39;OSU&#39;</span><span class="p">:</span>
+                    <span class="n">data_types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;categorical&quot;</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;idk&quot;</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Unknown type: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">sub_df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
 
             <span class="n">sequences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
 
