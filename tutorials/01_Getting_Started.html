@@ -28,6 +28,8 @@
         <script src="../_static/doctools.js"></script>
         <script src="../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -102,6 +104,33 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="03_Seasonal_Trends.html">Seasonal Trends</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_Event_Data.html">Event-based Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_Echo_Time.html">Handling DateTime Values</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="05_Echo_Time.html#What-is-1594536602?">What is 1594536602?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_Echo_Time.html#Generating-Timestamps">Generating Timestamps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="05_Echo_Time.html#Modeling-Distributions">Modeling Distributions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="05_Echo_Time.html#Continuous-Values">Continuous Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="05_Echo_Time.html#Timestamps-as-Continuous-Values">Timestamps as Continuous Values</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="05_Echo_Time.html#Modeling-Timestamps">Modeling Timestamps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="05_Echo_Time.html#Motivating-Example">Motivating Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="05_Echo_Time.html#As-Input">As Input</a></li>
+<li class="toctree-l4"><a class="reference internal" href="05_Echo_Time.html#As-Output">As Output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="05_Echo_Time.html#Implementation">Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_Echo_Time.html#Demo">Demo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="05_Echo_Time.html#Direct-Modeling">Direct Modeling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="05_Echo_Time.html#Using-EchoTime">Using EchoTime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_Echo_Time.html#Takeaways">Takeaways</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption"><span class="caption-text">Resources</span></p>
 <ul>
@@ -469,7 +498,7 @@ div.rendered_html tbody tr:hover {
 <h1>Getting Started<a class="headerlink" href="#Getting-Started" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="Load-the-dataset">
 <h2>Load the dataset<a class="headerlink" href="#Load-the-dataset" title="Permalink to this headline">¶</a></h2>
-<p>Let’s start by reading the dataset. It’s stored in a CSV file with 4 columns.</p>
+<p>Let’s start by reading the dataset. It’s stored in a CSV file with 5 columns.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -507,6 +536,7 @@ div.rendered_html tbody tr:hover {
       <th>id</th>
       <th>season</th>
       <th>day_of_week</th>
+      <th>total_sales</th>
       <th>nb_customers</th>
     </tr>
   </thead>
@@ -516,70 +546,80 @@ div.rendered_html tbody tr:hover {
       <td>0</td>
       <td>winter</td>
       <td>0</td>
-      <td>-1.370776</td>
+      <td>736.192546</td>
+      <td>43</td>
     </tr>
     <tr>
       <th>1</th>
       <td>0</td>
       <td>winter</td>
       <td>1</td>
-      <td>-1.335633</td>
+      <td>777.309789</td>
+      <td>45</td>
     </tr>
     <tr>
       <th>2</th>
       <td>0</td>
       <td>winter</td>
       <td>2</td>
-      <td>-1.212632</td>
+      <td>921.220142</td>
+      <td>54</td>
     </tr>
     <tr>
       <th>3</th>
       <td>0</td>
       <td>winter</td>
       <td>3</td>
-      <td>-1.072061</td>
+      <td>1085.689116</td>
+      <td>63</td>
     </tr>
     <tr>
       <th>4</th>
       <td>0</td>
       <td>winter</td>
       <td>4</td>
-      <td>-0.738203</td>
+      <td>1476.302930</td>
+      <td>86</td>
     </tr>
     <tr>
       <th>5</th>
       <td>0</td>
       <td>winter</td>
       <td>5</td>
-      <td>0.105228</td>
+      <td>2463.116775</td>
+      <td>144</td>
     </tr>
     <tr>
       <th>6</th>
       <td>0</td>
       <td>winter</td>
       <td>6</td>
-      <td>-0.650345</td>
+      <td>1579.096039</td>
+      <td>92</td>
     </tr>
     <tr>
       <th>7</th>
       <td>1</td>
       <td>summer</td>
       <td>0</td>
-      <td>0.351229</td>
+      <td>2750.937480</td>
+      <td>161</td>
     </tr>
     <tr>
       <th>8</th>
       <td>1</td>
       <td>summer</td>
       <td>1</td>
-      <td>0.439086</td>
+      <td>2853.730589</td>
+      <td>167</td>
     </tr>
     <tr>
       <th>9</th>
       <td>1</td>
       <td>summer</td>
       <td>2</td>
-      <td>0.491800</td>
+      <td>2915.406454</td>
+      <td>171</td>
     </tr>
   </tbody>
 </table>
@@ -626,6 +666,7 @@ div.rendered_html tbody tr:hover {
       <th>id</th>
       <th>season</th>
       <th>day_of_week</th>
+      <th>total_sales</th>
       <th>nb_customers</th>
     </tr>
   </thead>
@@ -635,49 +676,56 @@ div.rendered_html tbody tr:hover {
       <td>0</td>
       <td>winter</td>
       <td>0</td>
-      <td>-1.370776</td>
+      <td>736.192546</td>
+      <td>43</td>
     </tr>
     <tr>
       <th>1</th>
       <td>0</td>
       <td>winter</td>
       <td>1</td>
-      <td>-1.335633</td>
+      <td>777.309789</td>
+      <td>45</td>
     </tr>
     <tr>
       <th>2</th>
       <td>0</td>
       <td>winter</td>
       <td>2</td>
-      <td>-1.212632</td>
+      <td>921.220142</td>
+      <td>54</td>
     </tr>
     <tr>
       <th>3</th>
       <td>0</td>
       <td>winter</td>
       <td>3</td>
-      <td>-1.072061</td>
+      <td>1085.689116</td>
+      <td>63</td>
     </tr>
     <tr>
       <th>4</th>
       <td>0</td>
       <td>winter</td>
       <td>4</td>
-      <td>-0.738203</td>
+      <td>1476.302930</td>
+      <td>86</td>
     </tr>
     <tr>
       <th>5</th>
       <td>0</td>
       <td>winter</td>
       <td>5</td>
-      <td>0.105228</td>
+      <td>2463.116775</td>
+      <td>144</td>
     </tr>
     <tr>
       <th>6</th>
       <td>0</td>
       <td>winter</td>
       <td>6</td>
-      <td>-0.650345</td>
+      <td>1579.096039</td>
+      <td>92</td>
     </tr>
   </tbody>
 </table>
@@ -708,6 +756,7 @@ div.rendered_html tbody tr:hover {
       <th>id</th>
       <th>season</th>
       <th>day_of_week</th>
+      <th>total_sales</th>
       <th>nb_customers</th>
     </tr>
   </thead>
@@ -717,56 +766,64 @@ div.rendered_html tbody tr:hover {
       <td>1</td>
       <td>summer</td>
       <td>0</td>
-      <td>0.351229</td>
+      <td>2750.937480</td>
+      <td>161</td>
     </tr>
     <tr>
       <th>8</th>
       <td>1</td>
       <td>summer</td>
       <td>1</td>
-      <td>0.439086</td>
+      <td>2853.730589</td>
+      <td>167</td>
     </tr>
     <tr>
       <th>9</th>
       <td>1</td>
       <td>summer</td>
       <td>2</td>
-      <td>0.491800</td>
+      <td>2915.406454</td>
+      <td>171</td>
     </tr>
     <tr>
       <th>10</th>
       <td>1</td>
       <td>summer</td>
       <td>3</td>
-      <td>0.667515</td>
+      <td>3120.992672</td>
+      <td>183</td>
     </tr>
     <tr>
       <th>11</th>
       <td>1</td>
       <td>summer</td>
       <td>4</td>
-      <td>0.931087</td>
+      <td>3429.371998</td>
+      <td>201</td>
     </tr>
     <tr>
       <th>12</th>
       <td>1</td>
       <td>summer</td>
       <td>5</td>
-      <td>1.897518</td>
+      <td>4560.096196</td>
+      <td>268</td>
     </tr>
     <tr>
       <th>13</th>
       <td>1</td>
       <td>summer</td>
       <td>6</td>
-      <td>1.054087</td>
+      <td>3573.282351</td>
+      <td>210</td>
     </tr>
   </tbody>
 </table>
 </div></div>
 </div>
-<p>First, we highlight a few properties of the dataset. 1. The <code class="docutils literal notranslate"><span class="pre">season</span></code> column is constant within each time series; this is because in this particular dataset, each 7-day window comes from either the summer sales event or the winter sales event at a retail outlet. 2. The <code class="docutils literal notranslate"><span class="pre">day_of_week</span></code> column is categorical and represents Monday through Sunday. 3. The <code class="docutils literal notranslate"><span class="pre">nb_customers</span></code> column is continuous and contains the (normalized) number of customers who visited each day.</p>
-<p>Then, we make some additional observations about the dataset: 1. The day of the week is always ascending from 0 to 6. 2. The number of customers always peaks on Saturday. 3. The number of customers is higher in summer than winter.</p>
+<p>First, we highlight a few properties of the dataset. 1. The <code class="docutils literal notranslate"><span class="pre">season</span></code> column is constant within each time series; this is because in this particular dataset, each 7-day window comes from either the summer sales event or the winter sales event at a retail outlet. 2. The <code class="docutils literal notranslate"><span class="pre">day_of_week</span></code> column is categorical and represents Monday through Sunday. 3. The <code class="docutils literal notranslate"><span class="pre">total_sales</span></code> column is continuous and is correlated with the number of customers. 4. The <code class="docutils literal notranslate"><span class="pre">nb_customers</span></code> column is count-valued (i.e.
+non-negative integers).</p>
+<p>Then, we make some additional observations about the dataset: 1. The day of the week is always ascending from 0 to 6. 2. The number of customers always peaks on Saturday. 3. The average number of customers is higher in summer than winter.</p>
 </div>
 <div class="section" id="Using-the-PAR-Model">
 <h2>Using the PAR Model<a class="headerlink" href="#Using-the-PAR-Model" title="Permalink to this headline">¶</a></h2>
@@ -782,7 +839,8 @@ div.rendered_html tbody tr:hover {
 <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">entity_columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">],</span> <span class="n">context_columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;season&quot;</span><span class="p">],</span> <span class="n">dtypes</span><span class="o">=</span><span class="p">{</span>
     <span class="s2">&quot;season&quot;</span><span class="p">:</span> <span class="s2">&quot;categorical&quot;</span><span class="p">,</span>
     <span class="s2">&quot;day_of_week&quot;</span><span class="p">:</span> <span class="s2">&quot;categorical&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;nb_customers&quot;</span><span class="p">:</span> <span class="s2">&quot;continuous&quot;</span>
+    <span class="s2">&quot;total_sales&quot;</span><span class="p">:</span> <span class="s2">&quot;continuous&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;nb_customers&quot;</span><span class="p">:</span> <span class="s2">&quot;count&quot;</span><span class="p">,</span>
 <span class="p">})</span>
 <span class="n">model</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
@@ -793,7 +851,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-Epoch 1023 | Loss -0.04456918314099312: 100%|██████████| 1024/1024 [01:54&lt;00:00,  8.92it/s]
+Epoch 1023 | Loss 0.027066027745604515: 100%|██████████| 1024/1024 [03:31&lt;00:00,  4.84it/s]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -822,6 +880,7 @@ Epoch 1023 | Loss -0.04456918314099312: 100%|██████████| 102
       <th>id</th>
       <th>season</th>
       <th>day_of_week</th>
+      <th>total_sales</th>
       <th>nb_customers</th>
     </tr>
   </thead>
@@ -829,258 +888,288 @@ Epoch 1023 | Loss -0.04456918314099312: 100%|██████████| 102
     <tr>
       <th>0</th>
       <td>0</td>
-      <td>winter</td>
+      <td>summer</td>
       <td>0</td>
-      <td>-1.303901</td>
+      <td>2856.411281</td>
+      <td>145</td>
     </tr>
     <tr>
       <th>1</th>
       <td>0</td>
-      <td>winter</td>
+      <td>summer</td>
       <td>1</td>
-      <td>-1.268224</td>
+      <td>2994.449837</td>
+      <td>164</td>
     </tr>
     <tr>
       <th>2</th>
       <td>0</td>
-      <td>winter</td>
+      <td>summer</td>
       <td>2</td>
-      <td>-1.175574</td>
+      <td>3094.594397</td>
+      <td>202</td>
     </tr>
     <tr>
       <th>3</th>
       <td>0</td>
-      <td>winter</td>
+      <td>summer</td>
       <td>3</td>
-      <td>-0.951369</td>
+      <td>3206.578351</td>
+      <td>200</td>
     </tr>
     <tr>
       <th>4</th>
       <td>0</td>
-      <td>winter</td>
+      <td>summer</td>
       <td>4</td>
-      <td>-0.670990</td>
+      <td>3544.135498</td>
+      <td>207</td>
     </tr>
     <tr>
       <th>5</th>
       <td>0</td>
-      <td>winter</td>
+      <td>summer</td>
       <td>5</td>
-      <td>0.124725</td>
+      <td>4687.702360</td>
+      <td>274</td>
     </tr>
     <tr>
       <th>6</th>
       <td>0</td>
-      <td>winter</td>
+      <td>summer</td>
       <td>6</td>
-      <td>-0.824864</td>
+      <td>3569.471805</td>
+      <td>222</td>
     </tr>
     <tr>
       <th>7</th>
       <td>1</td>
-      <td>summer</td>
+      <td>winter</td>
       <td>0</td>
-      <td>0.460000</td>
+      <td>706.050657</td>
+      <td>46</td>
     </tr>
     <tr>
       <th>8</th>
       <td>1</td>
-      <td>summer</td>
+      <td>winter</td>
       <td>1</td>
-      <td>0.421911</td>
+      <td>845.922611</td>
+      <td>44</td>
     </tr>
     <tr>
       <th>9</th>
       <td>1</td>
-      <td>summer</td>
+      <td>winter</td>
       <td>2</td>
-      <td>0.598174</td>
+      <td>1027.911791</td>
+      <td>53</td>
     </tr>
     <tr>
       <th>10</th>
       <td>1</td>
-      <td>summer</td>
+      <td>winter</td>
       <td>3</td>
-      <td>0.673616</td>
+      <td>1011.558641</td>
+      <td>67</td>
     </tr>
     <tr>
       <th>11</th>
       <td>1</td>
-      <td>summer</td>
+      <td>winter</td>
       <td>4</td>
-      <td>0.944018</td>
+      <td>1430.849805</td>
+      <td>83</td>
     </tr>
     <tr>
       <th>12</th>
       <td>1</td>
-      <td>summer</td>
+      <td>winter</td>
       <td>5</td>
-      <td>1.845580</td>
+      <td>2527.264956</td>
+      <td>166</td>
     </tr>
     <tr>
       <th>13</th>
       <td>1</td>
-      <td>summer</td>
+      <td>winter</td>
       <td>6</td>
-      <td>1.059016</td>
+      <td>1446.636059</td>
+      <td>84</td>
     </tr>
     <tr>
       <th>14</th>
       <td>2</td>
       <td>winter</td>
       <td>0</td>
-      <td>-1.311276</td>
+      <td>741.746321</td>
+      <td>43</td>
     </tr>
     <tr>
       <th>15</th>
       <td>2</td>
       <td>winter</td>
       <td>1</td>
-      <td>-1.314506</td>
+      <td>798.454710</td>
+      <td>48</td>
     </tr>
     <tr>
       <th>16</th>
       <td>2</td>
       <td>winter</td>
-      <td>2</td>
-      <td>-1.108798</td>
+      <td>3</td>
+      <td>906.806459</td>
+      <td>54</td>
     </tr>
     <tr>
       <th>17</th>
       <td>2</td>
       <td>winter</td>
-      <td>3</td>
-      <td>-1.002529</td>
+      <td>4</td>
+      <td>1294.041696</td>
+      <td>75</td>
     </tr>
     <tr>
       <th>18</th>
       <td>2</td>
       <td>winter</td>
-      <td>4</td>
-      <td>-0.608985</td>
+      <td>5</td>
+      <td>2348.177699</td>
+      <td>180</td>
     </tr>
     <tr>
       <th>19</th>
       <td>2</td>
       <td>winter</td>
-      <td>5</td>
-      <td>0.043524</td>
+      <td>6</td>
+      <td>1305.599420</td>
+      <td>108</td>
     </tr>
     <tr>
       <th>20</th>
       <td>2</td>
       <td>winter</td>
       <td>6</td>
-      <td>-0.740538</td>
+      <td>2297.371703</td>
+      <td>39</td>
     </tr>
     <tr>
       <th>21</th>
       <td>3</td>
-      <td>winter</td>
+      <td>summer</td>
       <td>0</td>
-      <td>-1.361118</td>
+      <td>2882.450506</td>
+      <td>163</td>
     </tr>
     <tr>
       <th>22</th>
       <td>3</td>
-      <td>winter</td>
+      <td>summer</td>
       <td>1</td>
-      <td>-1.274359</td>
+      <td>2986.393350</td>
+      <td>168</td>
     </tr>
     <tr>
       <th>23</th>
       <td>3</td>
-      <td>winter</td>
+      <td>summer</td>
       <td>2</td>
-      <td>-1.086791</td>
+      <td>3085.272803</td>
+      <td>176</td>
     </tr>
     <tr>
       <th>24</th>
       <td>3</td>
-      <td>winter</td>
+      <td>summer</td>
       <td>3</td>
-      <td>-1.026707</td>
+      <td>3326.822843</td>
+      <td>197</td>
     </tr>
     <tr>
       <th>25</th>
       <td>3</td>
-      <td>winter</td>
+      <td>summer</td>
       <td>4</td>
-      <td>-0.821966</td>
+      <td>3437.017962</td>
+      <td>225</td>
     </tr>
     <tr>
       <th>26</th>
       <td>3</td>
-      <td>winter</td>
+      <td>summer</td>
       <td>5</td>
-      <td>0.078103</td>
+      <td>4586.131600</td>
+      <td>275</td>
     </tr>
     <tr>
       <th>27</th>
       <td>3</td>
-      <td>winter</td>
+      <td>summer</td>
       <td>6</td>
-      <td>-0.719410</td>
+      <td>3519.632553</td>
+      <td>215</td>
     </tr>
     <tr>
       <th>28</th>
       <td>4</td>
-      <td>winter</td>
+      <td>summer</td>
       <td>0</td>
-      <td>-1.347470</td>
+      <td>2851.107261</td>
+      <td>152</td>
     </tr>
     <tr>
       <th>29</th>
       <td>4</td>
-      <td>winter</td>
+      <td>summer</td>
       <td>1</td>
-      <td>-1.291316</td>
+      <td>2980.084763</td>
+      <td>163</td>
     </tr>
     <tr>
       <th>30</th>
       <td>4</td>
-      <td>winter</td>
+      <td>summer</td>
       <td>2</td>
-      <td>-1.257891</td>
+      <td>3067.976943</td>
+      <td>185</td>
     </tr>
     <tr>
       <th>31</th>
       <td>4</td>
-      <td>winter</td>
+      <td>summer</td>
       <td>3</td>
-      <td>-1.003860</td>
+      <td>3281.550486</td>
+      <td>210</td>
     </tr>
     <tr>
       <th>32</th>
       <td>4</td>
-      <td>winter</td>
+      <td>summer</td>
       <td>4</td>
-      <td>-0.781278</td>
+      <td>3504.432651</td>
+      <td>230</td>
     </tr>
     <tr>
       <th>33</th>
       <td>4</td>
-      <td>winter</td>
+      <td>summer</td>
       <td>5</td>
-      <td>0.093415</td>
+      <td>4652.255241</td>
+      <td>266</td>
     </tr>
     <tr>
       <th>34</th>
       <td>4</td>
-      <td>winter</td>
+      <td>summer</td>
       <td>6</td>
-      <td>-0.768289</td>
+      <td>3654.004455</td>
+      <td>202</td>
     </tr>
   </tbody>
 </table>
 </div></div>
 </div>
 <p>Looking at this synthetic dataset, we see that the three observations we made before still hold true.</p>
-<ol class="arabic simple">
-<li><p>The day of the week is always ascending from 0 to 6.</p></li>
-<li><p>The number of customers always peaks on Saturday.</p></li>
-<li><p>The number of customers is higher in summer than winter.</p></li>
-</ol>
 </div>
 </div>
 
