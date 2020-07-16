@@ -1,7 +1,0 @@
-deepecho.benchmark.tasks.classification module
-==============================================
-
-.. automodule:: deepecho.benchmark.tasks.classification
-   :members:
-   :undoc-members:
-   :show-inheritance:

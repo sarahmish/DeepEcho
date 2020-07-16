@@ -193,41 +193,88 @@
   <h1>Source code for deepecho.benchmark</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Top-level package for DeepEcho Benchmarking.&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
-<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
-
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="kn">from</span> <span class="nn">deepecho</span> <span class="kn">import</span> <span class="n">PARModel</span>
-<span class="kn">from</span> <span class="nn">deepecho.benchmark.tasks</span> <span class="kn">import</span> <span class="n">Task</span>
+<span class="kn">from</span> <span class="nn">deepecho</span> <span class="kn">import</span> <span class="n">DeepEcho</span><span class="p">,</span> <span class="n">PARModel</span>
+<span class="kn">from</span> <span class="nn">deepecho.benchmark.dataset</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">get_datasets_list</span>
+<span class="kn">from</span> <span class="nn">deepecho.benchmark.evaluation</span> <span class="kn">import</span> <span class="n">evaluate_model_on_datasets</span>
+<span class="kn">from</span> <span class="nn">deepecho.benchmark.metrics</span> <span class="kn">import</span> <span class="n">METRICS</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;Dataset&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;get_datasets_list&#39;</span><span class="p">,</span>
     <span class="s1">&#39;run_benchmark&#39;</span>
 <span class="p">]</span>
 
 
-<div class="viewcode-block" id="run_benchmark"><a class="viewcode-back" href="../../api/deepecho.benchmark.html#deepecho.benchmark.run_benchmark">[docs]</a><span class="k">def</span> <span class="nf">run_benchmark</span><span class="p">(</span><span class="n">dataset_dir</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Evaluate the models on these datasets.</span>
+<span class="n">DEFAULT_MODELS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;PARModel&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">PARModel</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;epochs&#39;</span><span class="p">:</span> <span class="mi">256</span><span class="p">,</span> <span class="s1">&#39;cuda&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="run_benchmark"><a class="viewcode-back" href="../../api/deepecho.benchmark.html#deepecho.benchmark.run_benchmark">[docs]</a><span class="k">def</span> <span class="nf">run_benchmark</span><span class="p">(</span><span class="n">models</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">datasets</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">distributed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Score the indicated models on the indicated datasets.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        dataset_dir: The path to a directory containing one or more</span>
-<span class="sd">            benchmark tasks.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">task_type_to_results</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">path_to_csv</span> <span class="ow">in</span> <span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dataset_dir</span><span class="p">,</span> <span class="s1">&#39;**/*.csv&#39;</span><span class="p">)):</span>
-        <span class="n">path_to_task</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">path_to_csv</span><span class="p">)</span>
-        <span class="n">task</span> <span class="o">=</span> <span class="n">Task</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path_to_task</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="p">[</span><span class="n">PARModel</span><span class="p">()]:</span>
-            <span class="n">results</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-            <span class="n">results</span><span class="p">[</span><span class="s1">&#39;task&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
-            <span class="n">results</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
-            <span class="n">task_type_to_results</span><span class="p">[</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;task&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+<span class="sd">        models (list):</span>
+<span class="sd">            List of models to evaluate, passed as classes or model</span>
+<span class="sd">            names or as a tuples containing the class and the keyword</span>
+<span class="sd">            arguments.</span>
+<span class="sd">            If not passed, the ``DEFAULT_MODELS`` are used.</span>
+<span class="sd">        datasets (list):</span>
+<span class="sd">            List of datasets in which to evaluate the model. They can be</span>
+<span class="sd">            passed as dataset instances or as dataset names or paths.</span>
+<span class="sd">            If not passed, all the available datasets are used.</span>
+<span class="sd">        metrics (dict):</span>
+<span class="sd">            Dict of metrics to use for the evaluation.</span>
+<span class="sd">            If not passed, all the available metrics are used.</span>
+<span class="sd">        distributed (bool):</span>
+<span class="sd">            Whether to use dask for distributed computing.</span>
+<span class="sd">            Defaults to ``False``.</span>
+<span class="sd">        output_path (str):</span>
+<span class="sd">            If passed, store the results as a CSV in the given path.</span>
 
-    <span class="k">return</span> <span class="p">{</span>
-        <span class="n">task_type</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">task_type</span><span class="p">,</span> <span class="n">rows</span> <span class="ow">in</span> <span class="n">task_type_to_results</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-    <span class="p">}</span></div>
+<span class="sd">    Returns:</span>
+<span class="sd">        pandas.DataFrame:</span>
+<span class="sd">            Table containing the model name, the dataset name the scores</span>
+<span class="sd">            obtained and the time elapsed during each stage for each one</span>
+<span class="sd">            of the given datasets and models.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">models</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">models</span> <span class="o">=</span> <span class="n">DEFAULT_MODELS</span>
+
+    <span class="k">if</span> <span class="n">datasets</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">datasets</span> <span class="o">=</span> <span class="n">get_datasets_list</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">metrics</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">metrics</span> <span class="o">=</span> <span class="n">METRICS</span>
+
+    <span class="n">delayed</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">model</span><span class="p">,</span> <span class="n">model_kwargs</span> <span class="o">=</span> <span class="n">DEFAULT_MODELS</span><span class="p">[</span><span class="n">model</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="n">model</span><span class="p">,</span> <span class="n">model_kwargs</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="k">elif</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">DeepEcho</span><span class="p">):</span>
+            <span class="n">model_kwargs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Invalid model type&#39;</span><span class="p">)</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="n">evaluate_model_on_datasets</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">model_kwargs</span><span class="p">,</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">metrics</span><span class="p">,</span> <span class="n">distributed</span><span class="p">)</span>
+        <span class="n">delayed</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">distributed</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">dask</span>
+        <span class="n">persisted</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">persist</span><span class="p">(</span><span class="o">*</span><span class="n">delayed</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="o">*</span><span class="n">persisted</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">delayed</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">output_path</span><span class="p">:</span>
+        <span class="n">results</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">results</span></div>
 </pre></div>
 
            </div>

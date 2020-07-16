@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho.benchmark.download module &mdash; DeepEcho 0.0.2.dev0 documentation</title>
+  <title>deepecho.benchmark.dataset module &mdash; DeepEcho 0.0.2.dev0 documentation</title>
   
 
   
@@ -173,14 +173,14 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>deepecho.benchmark.download module</li>
+      <li>deepecho.benchmark.dataset module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/k15z/DeepEcho/blob/master/docs/api/deepecho.benchmark.download.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/k15z/DeepEcho/blob/master/docs/api/deepecho.benchmark.dataset.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -218,9 +218,21 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="module-deepecho.benchmark.download">
-<span id="deepecho-benchmark-download-module"></span><h1>deepecho.benchmark.download module<a class="headerlink" href="#module-deepecho.benchmark.download" title="Permalink to this headline">¶</a></h1>
-<p>Utility to dowload benchmarking datasets from S3.</p>
+<div class="section" id="module-deepecho.benchmark.dataset">
+<span id="deepecho-benchmark-dataset-module"></span><h1>deepecho.benchmark.dataset module<a class="headerlink" href="#module-deepecho.benchmark.dataset" title="Permalink to this headline">¶</a></h1>
+<p>Dataset abstraction for benchmarking.</p>
+<p><strong>Classes</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.dataset.Dataset" title="deepecho.benchmark.dataset.Dataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Dataset</span></code></a>(dataset[, max_entities])</p></td>
+<td><p>Dataset abstraction for benchmarking.</p></td>
+</tr>
+</tbody>
+</table>
 <p><strong>Functions</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -228,25 +240,37 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.download.download" title="deepecho.benchmark.download.download"><code class="xref py py-obj docutils literal notranslate"><span class="pre">download</span></code></a>(data_dir)</p></td>
-<td><p>Download benchmark datasets from S3.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.dataset.get_datasets_list" title="deepecho.benchmark.dataset.get_datasets_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_datasets_list</span></code></a>()</p></td>
+<td><p>Get a list with the names of all the availale datasets.</p></td>
 </tr>
 </tbody>
 </table>
-<dl class="function">
-<dt id="deepecho.benchmark.download.download">
-<code class="sig-prename descclassname">deepecho.benchmark.download.</code><code class="sig-name descname">download</code><span class="sig-paren">(</span><em class="sig-param">data_dir</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/download.html#download"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.download.download" title="Permalink to this definition">¶</a></dt>
-<dd><p>Download benchmark datasets from S3.</p>
-<p>This downloads the benchmark datasets from S3 into the target folder in an
-uncompressed format. It skips datasets that have already been downloaded.</p>
+<dl class="class">
+<dt id="deepecho.benchmark.dataset.Dataset">
+<em class="property">class </em><code class="sig-prename descclassname">deepecho.benchmark.dataset.</code><code class="sig-name descname">Dataset</code><span class="sig-paren">(</span><em class="sig-param">dataset</em>, <em class="sig-param">max_entities=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/dataset.html#Dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.dataset.Dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Dataset abstraction for benchmarking.</p>
+<p>This class loads as TimeSeries dataset from an sdv.Metadata
+in the format expected by DeepEcho models.</p>
+<p>It handles the extraction of the context columns from analyzing
+the data and identifying the columns that are constant for each
+entity_id.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>data_dir</strong> – The directory to download the datasets to.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A DataFrame describing the downloaded datasets.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset_path</strong> (<em>str</em>) – Path to the dataset folder, where the metadata.json can be
+found.</p></li>
+<li><p><strong>max_entities</strong> (<em>int</em>) – Optionally restrict the number of entities to the indicated
+amount. If not given, use all the entities from the dataset.</p></li>
+</ul>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="deepecho.benchmark.dataset.get_datasets_list">
+<code class="sig-prename descclassname">deepecho.benchmark.dataset.</code><code class="sig-name descname">get_datasets_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/dataset.html#get_datasets_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.dataset.get_datasets_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list with the names of all the availale datasets.</p>
 </dd></dl>
 
 </div>

@@ -11,12 +11,12 @@ Subpackages
 
 .. toctree::
 
-   deepecho.benchmark.tasks
+   deepecho.benchmark.metrics
 
 Submodules
 ----------
 
 .. toctree::
 
-   deepecho.benchmark.classifier
-   deepecho.benchmark.download
+   deepecho.benchmark.dataset
+   deepecho.benchmark.evaluation

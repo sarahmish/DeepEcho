@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho.benchmark.tasks.classification module &mdash; DeepEcho 0.0.2.dev0 documentation</title>
+  <title>deepecho.benchmark.metrics package &mdash; DeepEcho 0.0.2.dev0 documentation</title>
   
 
   
@@ -173,14 +173,14 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>deepecho.benchmark.tasks.classification module</li>
+      <li>deepecho.benchmark.metrics package</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/k15z/DeepEcho/blob/master/docs/api/deepecho.benchmark.tasks.classification.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/k15z/DeepEcho/blob/master/docs/api/deepecho.benchmark.metrics.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -218,46 +218,98 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="module-deepecho.benchmark.tasks.classification">
-<span id="deepecho-benchmark-tasks-classification-module"></span><h1>deepecho.benchmark.tasks.classification module<a class="headerlink" href="#module-deepecho.benchmark.tasks.classification" title="Permalink to this headline">¶</a></h1>
-<p>Time Series Classification task.</p>
-<p><strong>Classes</strong></p>
+<div class="section" id="module-deepecho.benchmark.metrics">
+<span id="deepecho-benchmark-metrics-package"></span><h1>deepecho.benchmark.metrics package<a class="headerlink" href="#module-deepecho.benchmark.metrics" title="Permalink to this headline">¶</a></h1>
+<p>DeepEcho Benchmarking metrics.</p>
+<p><strong>Functions</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.tasks.classification.ClassificationTask" title="deepecho.benchmark.tasks.classification.ClassificationTask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ClassificationTask</span></code></a>(path_to_task)</p></td>
-<td><p>Time series classification tasks.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.metrics.sdmetrics_overall" title="deepecho.benchmark.metrics.sdmetrics_overall"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sdmetrics_overall</span></code></a>(dataset, synthetic)</p></td>
+<td><p>Compare the real and the synthetic data using SDMetrics.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.benchmark.metrics.real_vs_synthetic_score" title="deepecho.benchmark.metrics.real_vs_synthetic_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">real_vs_synthetic_score</span></code></a>(dataset, synthetic)</p></td>
+<td><p>Compare the performance of a classifier on real data vs synthetic.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.metrics.simple_detection_score" title="deepecho.benchmark.metrics.simple_detection_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">simple_detection_score</span></code></a>(dataset, synthetic)</p></td>
+<td><p>Try to detect whether a sequence is synthetic or not using a classifier.</p></td>
 </tr>
 </tbody>
 </table>
-<dl class="class">
-<dt id="deepecho.benchmark.tasks.classification.ClassificationTask">
-<em class="property">class </em><code class="sig-prename descclassname">deepecho.benchmark.tasks.classification.</code><code class="sig-name descname">ClassificationTask</code><span class="sig-paren">(</span><em class="sig-param">path_to_task</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/tasks/classification.html#ClassificationTask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.tasks.classification.ClassificationTask" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="deepecho.benchmark.tasks.base.html#deepecho.benchmark.tasks.base.Task" title="deepecho.benchmark.tasks.base.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">deepecho.benchmark.tasks.base.Task</span></code></a></p>
-<p>Time series classification tasks.</p>
-<p><strong>Methods</strong></p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.tasks.classification.ClassificationTask.evaluate" title="deepecho.benchmark.tasks.classification.ClassificationTask.evaluate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">evaluate</span></code></a>(model)</p></td>
-<td><p>Evaluate the given model.</p></td>
-</tr>
-</tbody>
-</table>
-<dl class="method">
-<dt id="deepecho.benchmark.tasks.classification.ClassificationTask.evaluate">
-<code class="sig-name descname">evaluate</code><span class="sig-paren">(</span><em class="sig-param">model</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/tasks/classification.html#ClassificationTask.evaluate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.tasks.classification.ClassificationTask.evaluate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Evaluate the given model.</p>
+<dl class="function">
+<dt id="deepecho.benchmark.metrics.sdmetrics_overall">
+<code class="sig-prename descclassname">deepecho.benchmark.metrics.</code><code class="sig-name descname">sdmetrics_overall</code><span class="sig-paren">(</span><em class="sig-param">dataset</em>, <em class="sig-param">synthetic</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/metrics/sdmetrics.html#sdmetrics_overall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.metrics.sdmetrics_overall" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compare the real and the synthetic data using SDMetrics.</p>
+<p>The returned score is the overall score of the SDMetrics report.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset</strong> (<a class="reference internal" href="deepecho.benchmark.html#deepecho.benchmark.Dataset" title="deepecho.benchmark.Dataset"><em>Dataset</em></a>) – The real dataset.</p></li>
+<li><p><strong>synthetic</strong> (<em>DataFrame</em>) – The sampled data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
 </dd></dl>
 
+<dl class="function">
+<dt id="deepecho.benchmark.metrics.real_vs_synthetic_score">
+<code class="sig-prename descclassname">deepecho.benchmark.metrics.</code><code class="sig-name descname">real_vs_synthetic_score</code><span class="sig-paren">(</span><em class="sig-param">dataset</em>, <em class="sig-param">synthetic</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/metrics/classification.html#real_vs_synthetic_score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.metrics.real_vs_synthetic_score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compare the performance of a classifier on real data vs synthetic.</p>
+<p>The score is computed by fitting two TimeSeriesForestClassifier instances
+on the real and the synthetic data respectively and then evaluating the
+performance of both instances on held out partition of the real data.</p>
+<p>The obtained accuracy scores are divided (synthetic accuracy / real accuracy)
+to obtain a ratio of how close the synthetic is accuracy is to the real one.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset</strong> (<a class="reference internal" href="deepecho.benchmark.html#deepecho.benchmark.Dataset" title="deepecho.benchmark.Dataset"><em>Dataset</em></a>) – The real dataset.</p></li>
+<li><p><strong>synthetic</strong> (<em>DataFrame</em>) – The sampled data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
 </dd></dl>
 
+<dl class="function">
+<dt id="deepecho.benchmark.metrics.simple_detection_score">
+<code class="sig-prename descclassname">deepecho.benchmark.metrics.</code><code class="sig-name descname">simple_detection_score</code><span class="sig-paren">(</span><em class="sig-param">dataset</em>, <em class="sig-param">synthetic</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/metrics/classification.html#simple_detection_score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.metrics.simple_detection_score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Try to detect whether a sequence is synthetic or not using a classifier.</p>
+<p>The detection is performed by fitting a TimeSeriesForestClassifier
+with both real and synthetic senquences and then calculating a score
+over more sequences.</p>
+<p>The obtained score is returned inverted (1 - classification_score) to
+ensure that the metric is increasing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset</strong> (<a class="reference internal" href="deepecho.benchmark.html#deepecho.benchmark.Dataset" title="deepecho.benchmark.Dataset"><em>Dataset</em></a>) – The real dataset.</p></li>
+<li><p><strong>synthetic</strong> (<em>DataFrame</em>) – The sampled data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="deepecho.benchmark.metrics.classification.html">deepecho.benchmark.metrics.classification module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deepecho.benchmark.metrics.sdmetrics.html">deepecho.benchmark.metrics.sdmetrics module</a></li>
+</ul>
+</div>
+</div>
 </div>
 
 

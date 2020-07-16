@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho.benchmark.tasks.simple module &mdash; DeepEcho 0.0.2.dev0 documentation</title>
+  <title>deepecho.benchmark.metrics.sdmetrics module &mdash; DeepEcho 0.0.2.dev0 documentation</title>
   
 
   
@@ -173,14 +173,14 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>deepecho.benchmark.tasks.simple module</li>
+      <li>deepecho.benchmark.metrics.sdmetrics module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/k15z/DeepEcho/blob/master/docs/api/deepecho.benchmark.tasks.simple.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/k15z/DeepEcho/blob/master/docs/api/deepecho.benchmark.metrics.sdmetrics.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -218,44 +218,37 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="module-deepecho.benchmark.tasks.simple">
-<span id="deepecho-benchmark-tasks-simple-module"></span><h1>deepecho.benchmark.tasks.simple module<a class="headerlink" href="#module-deepecho.benchmark.tasks.simple" title="Permalink to this headline">¶</a></h1>
-<p>Time Series modeling tasks.</p>
-<p><strong>Classes</strong></p>
+<div class="section" id="module-deepecho.benchmark.metrics.sdmetrics">
+<span id="deepecho-benchmark-metrics-sdmetrics-module"></span><h1>deepecho.benchmark.metrics.sdmetrics module<a class="headerlink" href="#module-deepecho.benchmark.metrics.sdmetrics" title="Permalink to this headline">¶</a></h1>
+<p>SDMetrics based metrics.</p>
+<p><strong>Functions</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.tasks.simple.SimpleTask" title="deepecho.benchmark.tasks.simple.SimpleTask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SimpleTask</span></code></a>(path_to_task)</p></td>
-<td><p>Time series modeling tasks.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.metrics.sdmetrics.sdmetrics_overall" title="deepecho.benchmark.metrics.sdmetrics.sdmetrics_overall"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sdmetrics_overall</span></code></a>(dataset, synthetic)</p></td>
+<td><p>Compare the real and the synthetic data using SDMetrics.</p></td>
 </tr>
 </tbody>
 </table>
-<dl class="class">
-<dt id="deepecho.benchmark.tasks.simple.SimpleTask">
-<em class="property">class </em><code class="sig-prename descclassname">deepecho.benchmark.tasks.simple.</code><code class="sig-name descname">SimpleTask</code><span class="sig-paren">(</span><em class="sig-param">path_to_task</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/tasks/simple.html#SimpleTask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.tasks.simple.SimpleTask" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="deepecho.benchmark.tasks.base.html#deepecho.benchmark.tasks.base.Task" title="deepecho.benchmark.tasks.base.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">deepecho.benchmark.tasks.base.Task</span></code></a></p>
-<p>Time series modeling tasks.</p>
-<p><strong>Methods</strong></p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.tasks.simple.SimpleTask.evaluate" title="deepecho.benchmark.tasks.simple.SimpleTask.evaluate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">evaluate</span></code></a>(model)</p></td>
-<td><p>Evaluate the given model.</p></td>
-</tr>
-</tbody>
-</table>
-<dl class="method">
-<dt id="deepecho.benchmark.tasks.simple.SimpleTask.evaluate">
-<code class="sig-name descname">evaluate</code><span class="sig-paren">(</span><em class="sig-param">model</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/tasks/simple.html#SimpleTask.evaluate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.tasks.simple.SimpleTask.evaluate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Evaluate the given model.</p>
-</dd></dl>
-
+<dl class="function">
+<dt id="deepecho.benchmark.metrics.sdmetrics.sdmetrics_overall">
+<code class="sig-prename descclassname">deepecho.benchmark.metrics.sdmetrics.</code><code class="sig-name descname">sdmetrics_overall</code><span class="sig-paren">(</span><em class="sig-param">dataset</em>, <em class="sig-param">synthetic</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/metrics/sdmetrics.html#sdmetrics_overall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.metrics.sdmetrics.sdmetrics_overall" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compare the real and the synthetic data using SDMetrics.</p>
+<p>The returned score is the overall score of the SDMetrics report.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset</strong> (<a class="reference internal" href="deepecho.benchmark.html#deepecho.benchmark.Dataset" title="deepecho.benchmark.Dataset"><em>Dataset</em></a>) – The real dataset.</p></li>
+<li><p><strong>synthetic</strong> (<em>DataFrame</em>) – The sampled data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho.benchmark.classifier module &mdash; DeepEcho 0.0.2.dev0 documentation</title>
+  <title>deepecho.benchmark.metrics.classification module &mdash; DeepEcho 0.0.2.dev0 documentation</title>
   
 
   
@@ -173,14 +173,14 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>deepecho.benchmark.classifier module</li>
+      <li>deepecho.benchmark.metrics.classification module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/k15z/DeepEcho/blob/master/docs/api/deepecho.benchmark.classifier.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/k15z/DeepEcho/blob/master/docs/api/deepecho.benchmark.metrics.classification.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -218,78 +218,66 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="module-deepecho.benchmark.classifier">
-<span id="deepecho-benchmark-classifier-module"></span><h1>deepecho.benchmark.classifier module<a class="headerlink" href="#module-deepecho.benchmark.classifier" title="Permalink to this headline">¶</a></h1>
-<p>Time series classifier model.</p>
-<p><strong>Classes</strong></p>
+<div class="section" id="module-deepecho.benchmark.metrics.classification">
+<span id="deepecho-benchmark-metrics-classification-module"></span><h1>deepecho.benchmark.metrics.classification module<a class="headerlink" href="#module-deepecho.benchmark.metrics.classification" title="Permalink to this headline">¶</a></h1>
+<p>Time Series Classification based metrics.</p>
+<p><strong>Functions</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.classifier.TimeSeriesClassifier" title="deepecho.benchmark.classifier.TimeSeriesClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimeSeriesClassifier</span></code></a></p></td>
-<td><p>Time series classifier.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.metrics.classification.real_vs_synthetic_score" title="deepecho.benchmark.metrics.classification.real_vs_synthetic_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">real_vs_synthetic_score</span></code></a>(dataset, synthetic)</p></td>
+<td><p>Compare the performance of a classifier on real data vs synthetic.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.benchmark.metrics.classification.simple_detection_score" title="deepecho.benchmark.metrics.classification.simple_detection_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">simple_detection_score</span></code></a>(dataset, synthetic)</p></td>
+<td><p>Try to detect whether a sequence is synthetic or not using a classifier.</p></td>
 </tr>
 </tbody>
 </table>
-<dl class="class">
-<dt id="deepecho.benchmark.classifier.TimeSeriesClassifier">
-<em class="property">class </em><code class="sig-prename descclassname">deepecho.benchmark.classifier.</code><code class="sig-name descname">TimeSeriesClassifier</code><a class="reference internal" href="../_modules/deepecho/benchmark/classifier.html#TimeSeriesClassifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.classifier.TimeSeriesClassifier" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Time series classifier.</p>
-<p><strong>Methods</strong></p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.classifier.TimeSeriesClassifier.fit" title="deepecho.benchmark.classifier.TimeSeriesClassifier.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(sequences, class_labels)</p></td>
-<td><p>Fit the model.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.benchmark.classifier.TimeSeriesClassifier.score" title="deepecho.benchmark.classifier.TimeSeriesClassifier.score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">score</span></code></a>(sequences, class_labels)</p></td>
-<td><p>Evaluate the model.</p></td>
-</tr>
-</tbody>
-</table>
-<dl class="method">
-<dt id="deepecho.benchmark.classifier.TimeSeriesClassifier.fit">
-<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">sequences</em>, <em class="sig-param">class_labels</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/classifier.html#TimeSeriesClassifier.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.classifier.TimeSeriesClassifier.fit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fit the model.</p>
-<p>This trains the time series classification model on the given dataset
-where <cite>sequences</cite> is the same data structure as is provided to DeepEcho
-models and <cite>class_labels</cite> is a list of strings. Note that the time
-series classification model does not take into account the context
-component of the sequence data structure.</p>
+<dl class="function">
+<dt id="deepecho.benchmark.metrics.classification.real_vs_synthetic_score">
+<code class="sig-prename descclassname">deepecho.benchmark.metrics.classification.</code><code class="sig-name descname">real_vs_synthetic_score</code><span class="sig-paren">(</span><em class="sig-param">dataset</em>, <em class="sig-param">synthetic</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/metrics/classification.html#real_vs_synthetic_score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.metrics.classification.real_vs_synthetic_score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compare the performance of a classifier on real data vs synthetic.</p>
+<p>The score is computed by fitting two TimeSeriesForestClassifier instances
+on the real and the synthetic data respectively and then evaluating the
+performance of both instances on held out partition of the real data.</p>
+<p>The obtained accuracy scores are divided (synthetic accuracy / real accuracy)
+to obtain a ratio of how close the synthetic is accuracy is to the real one.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>sequences</strong> (<em>list</em>) – A list of sequences where each sequence is a dictionary
-containing a data and context field. The data field contains a
-list of lists with the time series.</p></li>
-<li><p><strong>class_labels</strong> (<em>list</em>) – A list of strings containing the target class.</p></li>
+<li><p><strong>dataset</strong> (<a class="reference internal" href="deepecho.benchmark.html#deepecho.benchmark.Dataset" title="deepecho.benchmark.Dataset"><em>Dataset</em></a>) – The real dataset.</p></li>
+<li><p><strong>synthetic</strong> (<em>DataFrame</em>) – The sampled data.</p></li>
 </ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>float</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="deepecho.benchmark.classifier.TimeSeriesClassifier.score">
-<code class="sig-name descname">score</code><span class="sig-paren">(</span><em class="sig-param">sequences</em>, <em class="sig-param">class_labels</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/classifier.html#TimeSeriesClassifier.score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.classifier.TimeSeriesClassifier.score" title="Permalink to this definition">¶</a></dt>
-<dd><p>Evaluate the model.</p>
+<dl class="function">
+<dt id="deepecho.benchmark.metrics.classification.simple_detection_score">
+<code class="sig-prename descclassname">deepecho.benchmark.metrics.classification.</code><code class="sig-name descname">simple_detection_score</code><span class="sig-paren">(</span><em class="sig-param">dataset</em>, <em class="sig-param">synthetic</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/metrics/classification.html#simple_detection_score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.metrics.classification.simple_detection_score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Try to detect whether a sequence is synthetic or not using a classifier.</p>
+<p>The detection is performed by fitting a TimeSeriesForestClassifier
+with both real and synthetic senquences and then calculating a score
+over more sequences.</p>
+<p>The obtained score is returned inverted (1 - classification_score) to
+ensure that the metric is increasing.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>sequences</strong> (<em>list</em>) – A list of sequences where each sequence is a dictionary
-containing a data and context field. The data field contains a
-list of lists with the time series.</p></li>
-<li><p><strong>class_labels</strong> (<em>list</em>) – A list of strings containing the target class.</p></li>
+<li><p><strong>dataset</strong> (<a class="reference internal" href="deepecho.benchmark.html#deepecho.benchmark.Dataset" title="deepecho.benchmark.Dataset"><em>Dataset</em></a>) – The real dataset.</p></li>
+<li><p><strong>synthetic</strong> (<em>DataFrame</em>) – The sampled data.</p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>float</p>
+</dd>
 </dl>
-</dd></dl>
-
 </dd></dl>
 
 </div>
