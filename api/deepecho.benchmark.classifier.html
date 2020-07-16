@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho_benchmark package &mdash; DeepEcho 0.0.2.dev0 documentation</title>
+  <title>deepecho.benchmark.classifier module &mdash; DeepEcho 0.0.2.dev0 documentation</title>
   
 
   
@@ -28,8 +28,6 @@
         <script src="../_static/doctools.js"></script>
         <script src="../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -39,9 +37,7 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="deepecho_benchmark.tasks package" href="deepecho_benchmark.tasks.html" />
-    <link rel="prev" title="deepecho.par module" href="deepecho.par.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -91,69 +87,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/01_Getting_Started.html">Getting Started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Load-the-dataset">Load the dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Explore-the-dataset">Explore the dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Context">Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Data-Types">Data Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">User Guides</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/02_Model_API.html">Model API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/02_Model_API.html#Fit">Fit</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/02_Model_API.html#Sample">Sample</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/03_Seasonal_Trends.html">Seasonal Trends</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/04_Event_Data.html">Event-based Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/05_Echo_Time.html">Handling DateTime Values</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/05_Echo_Time.html#What-is-1594536602?">What is 1594536602?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Generating-Timestamps">Generating Timestamps</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Modeling-Distributions">Modeling Distributions</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Continuous-Values">Continuous Values</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Timestamps-as-Continuous-Values">Timestamps as Continuous Values</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Modeling-Timestamps">Modeling Timestamps</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Motivating-Example">Motivating Example</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../tutorials/05_Echo_Time.html#As-Input">As Input</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../tutorials/05_Echo_Time.html#As-Output">As Output</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Implementation">Implementation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Demo">Demo</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Direct-Modeling">Direct Modeling</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Using-EchoTime">Using EchoTime</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Takeaways">Takeaways</a></li>
-</ul>
-</li>
-</ul>
 <p class="caption"><span class="caption-text">Resources</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="deepecho.html">DeepEcho API</a><ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="deepecho.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="deepecho.html#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="deepecho.base.html">deepecho.base module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deepecho.par.html">deepecho.par module</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Benchmark API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="deepecho_benchmark.tasks.html">deepecho_benchmark.tasks package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="deepecho_benchmark.tasks.html#submodules">Submodules</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="deepecho_benchmark.benchmark.html">deepecho_benchmark.benchmark module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="deepecho_benchmark.classifier.html">deepecho_benchmark.classifier module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="deepecho_benchmark.download.html">deepecho_benchmark.download module</a></li>
 </ul>
 </li>
 </ul>
@@ -177,11 +122,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../authors.html#development-lead">Development Lead</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../authors.html#contributors">Contributors</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../history.html">History</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.0.1 (2020-07-11)</a></li>
 </ul>
@@ -231,14 +172,14 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>deepecho_benchmark package</li>
+      <li>deepecho.benchmark.classifier module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/k15z/DeepEcho/blob/master/docs/api/deepecho_benchmark.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/k15z/DeepEcho/blob/master/docs/api/deepecho.benchmark.classifier.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -276,34 +217,80 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="deepecho-benchmark-package">
-<h1>deepecho_benchmark package<a class="headerlink" href="#deepecho-benchmark-package" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="deepecho_benchmark.tasks.html">deepecho_benchmark.tasks package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="deepecho_benchmark.tasks.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="deepecho_benchmark.tasks.base.html">deepecho_benchmark.tasks.base module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="deepecho_benchmark.tasks.classification.html">deepecho_benchmark.tasks.classification module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="deepecho_benchmark.tasks.simple.html">deepecho_benchmark.tasks.simple module</a></li>
+<div class="section" id="module-deepecho.benchmark.classifier">
+<span id="deepecho-benchmark-classifier-module"></span><h1>deepecho.benchmark.classifier module<a class="headerlink" href="#module-deepecho.benchmark.classifier" title="Permalink to this headline">¶</a></h1>
+<p>Time series classifier model.</p>
+<p><strong>Classes</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.classifier.TimeSeriesClassifier" title="deepecho.benchmark.classifier.TimeSeriesClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimeSeriesClassifier</span></code></a></p></td>
+<td><p>Time series classifier.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="deepecho.benchmark.classifier.TimeSeriesClassifier">
+<em class="property">class </em><code class="sig-prename descclassname">deepecho.benchmark.classifier.</code><code class="sig-name descname">TimeSeriesClassifier</code><a class="reference internal" href="../_modules/deepecho/benchmark/classifier.html#TimeSeriesClassifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.classifier.TimeSeriesClassifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Time series classifier.</p>
+<p><strong>Methods</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.classifier.TimeSeriesClassifier.fit" title="deepecho.benchmark.classifier.TimeSeriesClassifier.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(sequences, class_labels)</p></td>
+<td><p>Fit the model.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.benchmark.classifier.TimeSeriesClassifier.score" title="deepecho.benchmark.classifier.TimeSeriesClassifier.score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">score</span></code></a>(sequences, class_labels)</p></td>
+<td><p>Evaluate the model.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="deepecho.benchmark.classifier.TimeSeriesClassifier.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">sequences</em>, <em class="sig-param">class_labels</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/classifier.html#TimeSeriesClassifier.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.classifier.TimeSeriesClassifier.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit the model.</p>
+<p>This trains the time series classification model on the given dataset
+where <cite>sequences</cite> is the same data structure as is provided to DeepEcho
+models and <cite>class_labels</cite> is a list of strings. Note that the time
+series classification model does not take into account the context
+component of the sequence data structure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sequences</strong> (<em>list</em>) – A list of sequences where each sequence is a dictionary
+containing a data and context field. The data field contains a
+list of lists with the time series.</p></li>
+<li><p><strong>class_labels</strong> (<em>list</em>) – A list of strings containing the target class.</p></li>
 </ul>
-</li>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="deepecho.benchmark.classifier.TimeSeriesClassifier.score">
+<code class="sig-name descname">score</code><span class="sig-paren">(</span><em class="sig-param">sequences</em>, <em class="sig-param">class_labels</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/classifier.html#TimeSeriesClassifier.score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.classifier.TimeSeriesClassifier.score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sequences</strong> (<em>list</em>) – A list of sequences where each sequence is a dictionary
+containing a data and context field. The data field contains a
+list of lists with the time series.</p></li>
+<li><p><strong>class_labels</strong> (<em>list</em>) – A list of strings containing the target class.</p></li>
 </ul>
-</li>
-</ul>
-</div>
-</div>
-<div class="section" id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="deepecho_benchmark.benchmark.html">deepecho_benchmark.benchmark module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="deepecho_benchmark.classifier.html">deepecho_benchmark.classifier module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="deepecho_benchmark.download.html">deepecho_benchmark.download module</a></li>
-</ul>
-</div>
-</div>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -311,15 +298,6 @@
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="deepecho_benchmark.tasks.html" class="btn btn-neutral float-right" title="deepecho_benchmark.tasks package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="deepecho.par.html" class="btn btn-neutral float-left" title="deepecho.par module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

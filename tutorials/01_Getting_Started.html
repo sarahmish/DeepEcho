@@ -28,8 +28,6 @@
         <script src="../_static/doctools.js"></script>
         <script src="../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -40,7 +38,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Model API" href="02_Model_API.html" />
+    <link rel="next" title="deepecho package" href="../api/deepecho.html" />
     <link rel="prev" title="Overview" href="../readme.html" /> 
 </head>
 
@@ -91,69 +89,18 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#Load-the-dataset">Load the dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Explore-the-dataset">Explore the dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Context">Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Data-Types">Data Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Using-the-PAR-Model">Using the PAR Model</a></li>
-</ul>
-</li>
-</ul>
-<p class="caption"><span class="caption-text">User Guides</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="02_Model_API.html">Model API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="02_Model_API.html#Fit">Fit</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02_Model_API.html#Sample">Sample</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="03_Seasonal_Trends.html">Seasonal Trends</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_Event_Data.html">Event-based Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05_Echo_Time.html">Handling DateTime Values</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="05_Echo_Time.html#What-is-1594536602?">What is 1594536602?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_Echo_Time.html#Generating-Timestamps">Generating Timestamps</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="05_Echo_Time.html#Modeling-Distributions">Modeling Distributions</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="05_Echo_Time.html#Continuous-Values">Continuous Values</a></li>
-<li class="toctree-l4"><a class="reference internal" href="05_Echo_Time.html#Timestamps-as-Continuous-Values">Timestamps as Continuous Values</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="05_Echo_Time.html#Modeling-Timestamps">Modeling Timestamps</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="05_Echo_Time.html#Motivating-Example">Motivating Example</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="05_Echo_Time.html#As-Input">As Input</a></li>
-<li class="toctree-l4"><a class="reference internal" href="05_Echo_Time.html#As-Output">As Output</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="05_Echo_Time.html#Implementation">Implementation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_Echo_Time.html#Demo">Demo</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="05_Echo_Time.html#Direct-Modeling">Direct Modeling</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="05_Echo_Time.html#Using-EchoTime">Using EchoTime</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_Echo_Time.html#Takeaways">Takeaways</a></li>
 </ul>
 </li>
 </ul>
 <p class="caption"><span class="caption-text">Resources</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../api/deepecho.html">DeepEcho API</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/deepecho.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../api/deepecho.html#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../api/deepecho.base.html">deepecho.base module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/deepecho.par.html">deepecho.par module</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../api/deepecho_benchmark.html">Benchmark API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../api/deepecho_benchmark.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api/deepecho_benchmark.tasks.html">deepecho_benchmark.tasks package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../api/deepecho_benchmark.tasks.html#submodules">Submodules</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../api/deepecho_benchmark.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api/deepecho_benchmark.benchmark.html">deepecho_benchmark.benchmark module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/deepecho_benchmark.classifier.html">deepecho_benchmark.classifier module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/deepecho_benchmark.download.html">deepecho_benchmark.download module</a></li>
 </ul>
 </li>
 </ul>
@@ -177,11 +124,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../authors.html#development-lead">Development Lead</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../authors.html#contributors">Contributors</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../history.html">History</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.0.1 (2020-07-11)</a></li>
 </ul>
@@ -505,8 +448,9 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;01_Getting_Started.csv&quot;</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;01_Getting_Started.csv&quot;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -628,16 +572,17 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="section" id="Explore-the-dataset">
 <h2>Explore the dataset<a class="headerlink" href="#Explore-the-dataset" title="Permalink to this headline">¶</a></h2>
-<p>If we group the table by <code class="docutils literal notranslate"><span class="pre">id</span></code>, we obtain many time series, each of which has length 7. For example, let’s look at the first two time series in the dataset.</p>
+<p>The first thing we notice when looking at the data is that there is an <code class="docutils literal notranslate"><span class="pre">id</span></code> column which acts as the <code class="docutils literal notranslate"><span class="pre">entity_id</span></code> of our dataset: The table contains time series that belong to multiple entities, each one identified by the value in the <code class="docutils literal notranslate"><span class="pre">id</span></code> column.</p>
+<p>Let’s group the table by the <code class="docutils literal notranslate"><span class="pre">id</span></code> value and see what the results look like:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">grp</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="k">break</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">grp</span><span class="p">)</span>
+<span></span><span class="n">entity_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">entity_columns</span><span class="p">))[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]:</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -821,27 +766,70 @@ div.rendered_html tbody tr:hover {
 </table>
 </div></div>
 </div>
-<p>First, we highlight a few properties of the dataset. 1. The <code class="docutils literal notranslate"><span class="pre">season</span></code> column is constant within each time series; this is because in this particular dataset, each 7-day window comes from either the summer sales event or the winter sales event at a retail outlet. 2. The <code class="docutils literal notranslate"><span class="pre">day_of_week</span></code> column is categorical and represents Monday through Sunday. 3. The <code class="docutils literal notranslate"><span class="pre">total_sales</span></code> column is continuous and is correlated with the number of customers. 4. The <code class="docutils literal notranslate"><span class="pre">nb_customers</span></code> column is count-valued (i.e.
-non-negative integers).</p>
-<p>Then, we make some additional observations about the dataset: 1. The day of the week is always ascending from 0 to 6. 2. The number of customers always peaks on Saturday. 3. The average number of customers is higher in summer than winter.</p>
+<p>Here we observe a few properties of the dataset:</p>
+<ol class="arabic simple">
+<li><p>Each <code class="docutils literal notranslate"><span class="pre">id</span></code> is associated with a 7 rows long time series.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">season</span></code> column is constant within each time series; this is because in this particular dataset, each 7-day window comes from either the summer sales event or the winter sales event at a retail outlet.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">day_of_week</span></code> column is categorical and represents Monday through Sunday.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">total_sales</span></code> column is continuous and is correlated with the number of customers.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">nb_customers</span></code> column is count-valued (i.e. non-negative integers).</p></li>
+</ol>
+<p>Then, we make some additional observations about the dataset:</p>
+<ol class="arabic simple">
+<li><p>The day of the week is always ascending from 0 to 6.</p></li>
+<li><p>The number of customers always peaks on Saturday.</p></li>
+<li><p>The average number of customers is higher in summer than winter.</p></li>
+</ol>
+</div>
+<div class="section" id="Context">
+<h2>Context<a class="headerlink" href="#Context" title="Permalink to this headline">¶</a></h2>
+<p>As we observed, the <code class="docutils literal notranslate"><span class="pre">season</span></code> column is constant within each time series. This is what we call a <em>context</em> variable, which is what we will use later on to condition what the sampled time series look like once we learn their conditional distribution.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">context_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;season&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Data-Types">
+<h2>Data Types<a class="headerlink" href="#Data-Types" title="Permalink to this headline">¶</a></h2>
+<p>Apart from the <em>entity</em> and <em>context</em> columns, DeepEcho needs to be informed about the data types of each column that it needs to model.</p>
+<p>Let’s create a dictionary with this information:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">data_types</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;season&#39;</span><span class="p">:</span> <span class="s1">&#39;categorical&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;day_of_week&#39;</span><span class="p">:</span> <span class="s1">&#39;categorical&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;total_sales&#39;</span><span class="p">:</span> <span class="s1">&#39;continuous&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;nb_customers&#39;</span><span class="p">:</span> <span class="s1">&#39;count&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="Using-the-PAR-Model">
 <h2>Using the PAR Model<a class="headerlink" href="#Using-the-PAR-Model" title="Permalink to this headline">¶</a></h2>
-<p>Now let’s apply the probabilistic autoregressive model. From our exploration, we know that <code class="docutils literal notranslate"><span class="pre">season</span></code> is fixed - therefore, we will specify that it is a “context” column that the other columns will be conditioned on.</p>
+<p>Now let’s apply the probabilistic autoregressive model to learn the time series distributions.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">deepecho</span> <span class="kn">import</span> <span class="n">PARModel</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">PARModel</span><span class="p">(</span><span class="n">nb_epochs</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">entity_columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">],</span> <span class="n">context_columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;season&quot;</span><span class="p">],</span> <span class="n">dtypes</span><span class="o">=</span><span class="p">{</span>
-    <span class="s2">&quot;season&quot;</span><span class="p">:</span> <span class="s2">&quot;categorical&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;day_of_week&quot;</span><span class="p">:</span> <span class="s2">&quot;categorical&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;total_sales&quot;</span><span class="p">:</span> <span class="s2">&quot;continuous&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;nb_customers&quot;</span><span class="p">:</span> <span class="s2">&quot;count&quot;</span><span class="p">,</span>
-<span class="p">})</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">df</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+    <span class="n">entity_columns</span><span class="o">=</span><span class="n">entity_columns</span><span class="p">,</span>
+    <span class="n">context_columns</span><span class="o">=</span><span class="n">context_columns</span><span class="p">,</span>
+    <span class="n">dtypes</span><span class="o">=</span><span class="n">data_types</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="n">model</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -851,11 +839,11 @@ non-negative integers).</p>
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-Epoch 1023 | Loss 0.027066027745604515: 100%|██████████| 1024/1024 [03:31&lt;00:00,  4.84it/s]
+Epoch 1023 | Loss 0.025627393275499344: 100%|██████████| 1024/1024 [02:58&lt;00:00,  5.72it/s]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -890,15 +878,15 @@ Epoch 1023 | Loss 0.027066027745604515: 100%|██████████| 102
       <td>0</td>
       <td>summer</td>
       <td>0</td>
-      <td>2856.411281</td>
-      <td>145</td>
+      <td>2762.018490</td>
+      <td>156</td>
     </tr>
     <tr>
       <th>1</th>
       <td>0</td>
       <td>summer</td>
       <td>1</td>
-      <td>2994.449837</td>
+      <td>2895.472612</td>
       <td>164</td>
     </tr>
     <tr>
@@ -906,55 +894,55 @@ Epoch 1023 | Loss 0.027066027745604515: 100%|██████████| 102
       <td>0</td>
       <td>summer</td>
       <td>2</td>
-      <td>3094.594397</td>
-      <td>202</td>
+      <td>2900.876148</td>
+      <td>180</td>
     </tr>
     <tr>
       <th>3</th>
       <td>0</td>
       <td>summer</td>
       <td>3</td>
-      <td>3206.578351</td>
-      <td>200</td>
+      <td>3032.070394</td>
+      <td>205</td>
     </tr>
     <tr>
       <th>4</th>
       <td>0</td>
       <td>summer</td>
       <td>4</td>
-      <td>3544.135498</td>
-      <td>207</td>
+      <td>3355.616244</td>
+      <td>225</td>
     </tr>
     <tr>
       <th>5</th>
       <td>0</td>
       <td>summer</td>
       <td>5</td>
-      <td>4687.702360</td>
-      <td>274</td>
+      <td>4535.462193</td>
+      <td>289</td>
     </tr>
     <tr>
       <th>6</th>
       <td>0</td>
       <td>summer</td>
       <td>6</td>
-      <td>3569.471805</td>
-      <td>222</td>
+      <td>3465.191048</td>
+      <td>227</td>
     </tr>
     <tr>
       <th>7</th>
       <td>1</td>
       <td>winter</td>
       <td>0</td>
-      <td>706.050657</td>
-      <td>46</td>
+      <td>819.564511</td>
+      <td>43</td>
     </tr>
     <tr>
       <th>8</th>
       <td>1</td>
       <td>winter</td>
       <td>1</td>
-      <td>845.922611</td>
+      <td>861.866680</td>
       <td>44</td>
     </tr>
     <tr>
@@ -962,7 +950,7 @@ Epoch 1023 | Loss 0.027066027745604515: 100%|██████████| 102
       <td>1</td>
       <td>winter</td>
       <td>2</td>
-      <td>1027.911791</td>
+      <td>937.729433</td>
       <td>53</td>
     </tr>
     <tr>
@@ -970,200 +958,200 @@ Epoch 1023 | Loss 0.027066027745604515: 100%|██████████| 102
       <td>1</td>
       <td>winter</td>
       <td>3</td>
-      <td>1011.558641</td>
-      <td>67</td>
+      <td>1089.859414</td>
+      <td>61</td>
     </tr>
     <tr>
       <th>11</th>
       <td>1</td>
       <td>winter</td>
       <td>4</td>
-      <td>1430.849805</td>
-      <td>83</td>
+      <td>1279.710374</td>
+      <td>95</td>
     </tr>
     <tr>
       <th>12</th>
       <td>1</td>
       <td>winter</td>
       <td>5</td>
-      <td>2527.264956</td>
-      <td>166</td>
+      <td>2409.036617</td>
+      <td>156</td>
     </tr>
     <tr>
       <th>13</th>
       <td>1</td>
       <td>winter</td>
       <td>6</td>
-      <td>1446.636059</td>
-      <td>84</td>
+      <td>1421.827594</td>
+      <td>92</td>
     </tr>
     <tr>
       <th>14</th>
       <td>2</td>
-      <td>winter</td>
+      <td>summer</td>
       <td>0</td>
-      <td>741.746321</td>
-      <td>43</td>
+      <td>2710.984566</td>
+      <td>183</td>
     </tr>
     <tr>
       <th>15</th>
       <td>2</td>
-      <td>winter</td>
+      <td>summer</td>
       <td>1</td>
-      <td>798.454710</td>
-      <td>48</td>
+      <td>2967.756509</td>
+      <td>161</td>
     </tr>
     <tr>
       <th>16</th>
       <td>2</td>
-      <td>winter</td>
-      <td>3</td>
-      <td>906.806459</td>
-      <td>54</td>
+      <td>summer</td>
+      <td>2</td>
+      <td>2959.276646</td>
+      <td>205</td>
     </tr>
     <tr>
       <th>17</th>
       <td>2</td>
-      <td>winter</td>
-      <td>4</td>
-      <td>1294.041696</td>
-      <td>75</td>
+      <td>summer</td>
+      <td>3</td>
+      <td>3098.264887</td>
+      <td>207</td>
     </tr>
     <tr>
       <th>18</th>
       <td>2</td>
-      <td>winter</td>
-      <td>5</td>
-      <td>2348.177699</td>
-      <td>180</td>
+      <td>summer</td>
+      <td>4</td>
+      <td>3317.350965</td>
+      <td>219</td>
     </tr>
     <tr>
       <th>19</th>
       <td>2</td>
-      <td>winter</td>
-      <td>6</td>
-      <td>1305.599420</td>
-      <td>108</td>
+      <td>summer</td>
+      <td>5</td>
+      <td>4472.828075</td>
+      <td>271</td>
     </tr>
     <tr>
       <th>20</th>
       <td>2</td>
-      <td>winter</td>
+      <td>summer</td>
       <td>6</td>
-      <td>2297.371703</td>
-      <td>39</td>
+      <td>3503.510862</td>
+      <td>217</td>
     </tr>
     <tr>
       <th>21</th>
       <td>3</td>
-      <td>summer</td>
+      <td>winter</td>
       <td>0</td>
-      <td>2882.450506</td>
-      <td>163</td>
+      <td>848.975995</td>
+      <td>46</td>
     </tr>
     <tr>
       <th>22</th>
       <td>3</td>
-      <td>summer</td>
+      <td>winter</td>
       <td>1</td>
-      <td>2986.393350</td>
-      <td>168</td>
+      <td>758.595722</td>
+      <td>48</td>
     </tr>
     <tr>
       <th>23</th>
       <td>3</td>
-      <td>summer</td>
+      <td>winter</td>
       <td>2</td>
-      <td>3085.272803</td>
-      <td>176</td>
+      <td>876.178615</td>
+      <td>58</td>
     </tr>
     <tr>
       <th>24</th>
       <td>3</td>
-      <td>summer</td>
+      <td>winter</td>
       <td>3</td>
-      <td>3326.822843</td>
-      <td>197</td>
+      <td>1044.144434</td>
+      <td>54</td>
     </tr>
     <tr>
       <th>25</th>
       <td>3</td>
-      <td>summer</td>
+      <td>winter</td>
       <td>4</td>
-      <td>3437.017962</td>
-      <td>225</td>
+      <td>1191.790577</td>
+      <td>102</td>
     </tr>
     <tr>
       <th>26</th>
       <td>3</td>
-      <td>summer</td>
+      <td>winter</td>
       <td>5</td>
-      <td>4586.131600</td>
-      <td>275</td>
+      <td>2475.487823</td>
+      <td>158</td>
     </tr>
     <tr>
       <th>27</th>
       <td>3</td>
-      <td>summer</td>
+      <td>winter</td>
       <td>6</td>
-      <td>3519.632553</td>
-      <td>215</td>
+      <td>1252.687815</td>
+      <td>86</td>
     </tr>
     <tr>
       <th>28</th>
       <td>4</td>
-      <td>summer</td>
+      <td>winter</td>
       <td>0</td>
-      <td>2851.107261</td>
-      <td>152</td>
+      <td>754.737707</td>
+      <td>44</td>
     </tr>
     <tr>
       <th>29</th>
       <td>4</td>
-      <td>summer</td>
+      <td>winter</td>
       <td>1</td>
-      <td>2980.084763</td>
-      <td>163</td>
+      <td>971.208143</td>
+      <td>46</td>
     </tr>
     <tr>
       <th>30</th>
       <td>4</td>
-      <td>summer</td>
+      <td>winter</td>
       <td>2</td>
-      <td>3067.976943</td>
-      <td>185</td>
+      <td>993.657879</td>
+      <td>53</td>
     </tr>
     <tr>
       <th>31</th>
       <td>4</td>
-      <td>summer</td>
+      <td>winter</td>
       <td>3</td>
-      <td>3281.550486</td>
-      <td>210</td>
+      <td>1008.173865</td>
+      <td>67</td>
     </tr>
     <tr>
       <th>32</th>
       <td>4</td>
-      <td>summer</td>
+      <td>winter</td>
       <td>4</td>
-      <td>3504.432651</td>
-      <td>230</td>
+      <td>1290.856647</td>
+      <td>81</td>
     </tr>
     <tr>
       <th>33</th>
       <td>4</td>
-      <td>summer</td>
+      <td>winter</td>
       <td>5</td>
-      <td>4652.255241</td>
-      <td>266</td>
+      <td>2355.009296</td>
+      <td>150</td>
     </tr>
     <tr>
       <th>34</th>
       <td>4</td>
-      <td>summer</td>
+      <td>winter</td>
       <td>6</td>
-      <td>3654.004455</td>
-      <td>202</td>
+      <td>1236.645067</td>
+      <td>92</td>
     </tr>
   </tbody>
 </table>
@@ -1181,7 +1169,7 @@ Epoch 1023 | Loss 0.027066027745604515: 100%|██████████| 102
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="02_Model_API.html" class="btn btn-neutral float-right" title="Model API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../api/deepecho.html" class="btn btn-neutral float-right" title="deepecho package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../readme.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

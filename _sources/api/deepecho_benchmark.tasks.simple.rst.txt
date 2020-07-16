@@ -1,7 +1,0 @@
-deepecho\_benchmark.tasks.simple module
-=======================================
-
-.. automodule:: deepecho_benchmark.tasks.simple
-   :members:
-   :undoc-members:
-   :show-inheritance:

@@ -1,7 +1,0 @@
-deepecho\_benchmark.download module
-===================================
-
-.. automodule:: deepecho_benchmark.download
-   :members:
-   :undoc-members:
-   :show-inheritance:

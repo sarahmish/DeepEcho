@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho_benchmark.tasks.base module &mdash; DeepEcho 0.0.2.dev0 documentation</title>
+  <title>deepecho.benchmark.download module &mdash; DeepEcho 0.0.2.dev0 documentation</title>
   
 
   
@@ -28,8 +28,6 @@
         <script src="../_static/doctools.js"></script>
         <script src="../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -39,9 +37,7 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="deepecho_benchmark.tasks.classification module" href="deepecho_benchmark.tasks.classification.html" />
-    <link rel="prev" title="deepecho_benchmark.tasks package" href="deepecho_benchmark.tasks.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -91,69 +87,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/01_Getting_Started.html">Getting Started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Load-the-dataset">Load the dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Explore-the-dataset">Explore the dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Context">Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Data-Types">Data Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">User Guides</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/02_Model_API.html">Model API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/02_Model_API.html#Fit">Fit</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/02_Model_API.html#Sample">Sample</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/03_Seasonal_Trends.html">Seasonal Trends</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/04_Event_Data.html">Event-based Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/05_Echo_Time.html">Handling DateTime Values</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/05_Echo_Time.html#What-is-1594536602?">What is 1594536602?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Generating-Timestamps">Generating Timestamps</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Modeling-Distributions">Modeling Distributions</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Continuous-Values">Continuous Values</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Timestamps-as-Continuous-Values">Timestamps as Continuous Values</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Modeling-Timestamps">Modeling Timestamps</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Motivating-Example">Motivating Example</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../tutorials/05_Echo_Time.html#As-Input">As Input</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../tutorials/05_Echo_Time.html#As-Output">As Output</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Implementation">Implementation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Demo">Demo</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Direct-Modeling">Direct Modeling</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Using-EchoTime">Using EchoTime</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Takeaways">Takeaways</a></li>
-</ul>
-</li>
-</ul>
 <p class="caption"><span class="caption-text">Resources</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="deepecho.html">DeepEcho API</a><ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="deepecho.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="deepecho.html#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="deepecho.base.html">deepecho.base module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deepecho.par.html">deepecho.par module</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1 current"><a class="reference internal" href="deepecho_benchmark.html">Benchmark API</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="deepecho_benchmark.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="deepecho_benchmark.tasks.html">deepecho_benchmark.tasks package</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="deepecho_benchmark.tasks.html#submodules">Submodules</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="deepecho_benchmark.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="deepecho_benchmark.benchmark.html">deepecho_benchmark.benchmark module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="deepecho_benchmark.classifier.html">deepecho_benchmark.classifier module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="deepecho_benchmark.download.html">deepecho_benchmark.download module</a></li>
 </ul>
 </li>
 </ul>
@@ -177,11 +122,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../authors.html#development-lead">Development Lead</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../authors.html#contributors">Contributors</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../history.html">History</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.0.1 (2020-07-11)</a></li>
 </ul>
@@ -231,18 +172,14 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="deepecho_benchmark.html">deepecho_benchmark package</a> &raquo;</li>
-        
-          <li><a href="deepecho_benchmark.tasks.html">deepecho_benchmark.tasks package</a> &raquo;</li>
-        
-      <li>deepecho_benchmark.tasks.base module</li>
+      <li>deepecho.benchmark.download module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/k15z/DeepEcho/blob/master/docs/api/deepecho_benchmark.tasks.base.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/k15z/DeepEcho/blob/master/docs/api/deepecho.benchmark.download.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -280,8 +217,37 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="deepecho-benchmark-tasks-base-module">
-<h1>deepecho_benchmark.tasks.base module<a class="headerlink" href="#deepecho-benchmark-tasks-base-module" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-deepecho.benchmark.download">
+<span id="deepecho-benchmark-download-module"></span><h1>deepecho.benchmark.download module<a class="headerlink" href="#module-deepecho.benchmark.download" title="Permalink to this headline">¶</a></h1>
+<p>Utility to dowload benchmarking datasets from S3.</p>
+<p><strong>Functions</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.download.download" title="deepecho.benchmark.download.download"><code class="xref py py-obj docutils literal notranslate"><span class="pre">download</span></code></a>(data_dir)</p></td>
+<td><p>Download benchmark datasets from S3.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="function">
+<dt id="deepecho.benchmark.download.download">
+<code class="sig-prename descclassname">deepecho.benchmark.download.</code><code class="sig-name descname">download</code><span class="sig-paren">(</span><em class="sig-param">data_dir</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/download.html#download"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.download.download" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download benchmark datasets from S3.</p>
+<p>This downloads the benchmark datasets from S3 into the target folder in an
+uncompressed format. It skips datasets that have already been downloaded.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data_dir</strong> – The directory to download the datasets to.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A DataFrame describing the downloaded datasets.</p>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 
 
@@ -289,15 +255,6 @@
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="deepecho_benchmark.tasks.classification.html" class="btn btn-neutral float-right" title="deepecho_benchmark.tasks.classification module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="deepecho_benchmark.tasks.html" class="btn btn-neutral float-left" title="deepecho_benchmark.tasks package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

@@ -28,8 +28,6 @@
         <script src="../_static/doctools.js"></script>
         <script src="../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -41,7 +39,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="deepecho.base module" href="deepecho.base.html" />
-    <link rel="prev" title="Handling DateTime Values" href="../tutorials/05_Echo_Time.html" /> 
+    <link rel="prev" title="Getting Started" href="../tutorials/01_Getting_Started.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -91,69 +89,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/01_Getting_Started.html">Getting Started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Load-the-dataset">Load the dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Explore-the-dataset">Explore the dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Context">Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Data-Types">Data Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
-</ul>
-</li>
-</ul>
-<p class="caption"><span class="caption-text">User Guides</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/02_Model_API.html">Model API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/02_Model_API.html#Fit">Fit</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/02_Model_API.html#Sample">Sample</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/03_Seasonal_Trends.html">Seasonal Trends</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/04_Event_Data.html">Event-based Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/05_Echo_Time.html">Handling DateTime Values</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/05_Echo_Time.html#What-is-1594536602?">What is 1594536602?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Generating-Timestamps">Generating Timestamps</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Modeling-Distributions">Modeling Distributions</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Continuous-Values">Continuous Values</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Timestamps-as-Continuous-Values">Timestamps as Continuous Values</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Modeling-Timestamps">Modeling Timestamps</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Motivating-Example">Motivating Example</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../tutorials/05_Echo_Time.html#As-Input">As Input</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../tutorials/05_Echo_Time.html#As-Output">As Output</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Implementation">Implementation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Demo">Demo</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Direct-Modeling">Direct Modeling</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Using-EchoTime">Using EchoTime</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/05_Echo_Time.html#Takeaways">Takeaways</a></li>
 </ul>
 </li>
 </ul>
 <p class="caption"><span class="caption-text">Resources</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">DeepEcho API</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="deepecho.base.html">deepecho.base module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deepecho.par.html">deepecho.par module</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="deepecho_benchmark.html">Benchmark API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="deepecho_benchmark.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="deepecho_benchmark.tasks.html">deepecho_benchmark.tasks package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="deepecho_benchmark.tasks.html#submodules">Submodules</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="deepecho_benchmark.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="deepecho_benchmark.benchmark.html">deepecho_benchmark.benchmark module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="deepecho_benchmark.classifier.html">deepecho_benchmark.classifier module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="deepecho_benchmark.download.html">deepecho_benchmark.download module</a></li>
 </ul>
 </li>
 </ul>
@@ -177,11 +124,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../authors.html#development-lead">Development Lead</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../authors.html#contributors">Contributors</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../history.html">History</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.0.1 (2020-07-11)</a></li>
 </ul>
@@ -351,10 +294,9 @@ context variables).</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>sequences</strong> – <p>This is a list of sequences. Each sequence is a
-single training example (i.e. an example of a multivariate
-time series with some context). For example, a sequence
-might look something like:</p>
+<li><p><strong>sequences</strong> – <p>List of sequences. Each sequence is a single training example
+(i.e. an example of a multivariate time series with some context).
+For example, a sequence might look something like:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="s2">&quot;context&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span>
     <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span>
@@ -373,15 +315,13 @@ to the actual time series data such that <cite>data[i][j]</cite> contains
 the value at the jth time step of the ith channel of the
 multivariate time series.</p>
 </p></li>
-<li><p><strong>context_types</strong> – This is a list of strings indicating the type
-of each value in context. The value at <cite>context[i]</cite> must match
-the type specified by <cite>context_types[i]</cite>. Valid types include
-the following: <cite>categorical</cite>, <cite>continuous</cite>, <cite>ordinal</cite>,
-<cite>count</cite>, and <cite>datetime</cite>.</p></li>
-<li><p><strong>data_types</strong> – This is a list of strings indicating the type
-of each channel in data. Each value in the list at data[i]
-must match the type specified by <cite>data_types[i]</cite>. The valid
-types are the same as for <cite>context_types</cite>.</p></li>
+<li><p><strong>context_types</strong> – List of strings indicating the type of each value in context.
+he value at <cite>context[i]</cite> must match the type specified by
+<cite>context_types[i]</cite>. Valid types include the following: <cite>categorical</cite>,
+<cite>continuous</cite>, <cite>ordinal</cite>, <cite>count</cite>, and <cite>datetime</cite>.</p></li>
+<li><p><strong>data_types</strong> – List of strings indicating the type of each channel in data.
+Each value in the list at data[i] must match the type specified by
+<cite>data_types[i]</cite>. The valid types are the same as for <cite>context_types</cite>.</p></li>
 </ul>
 </dd>
 </dl>
@@ -393,7 +333,7 @@ types are the same as for <cite>context_types</cite>.</p></li>
 <dd><p>Sample a dataframe containing time series data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>nb_entities</strong> – The number of entities.</p>
+<dd class="field-odd"><p><strong>nb_entities</strong> – The number of entities to sample.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A DataFrame which resembles the original dataframe where (1) the
@@ -401,6 +341,9 @@ entity column(s) are arbitrarily generated, (2) the context
 column(s) are resampled from the original data, and (3) the data
 columns containing the time series comes from the conditional
 time series model.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
 </dd>
 </dl>
 </dd></dl>
@@ -417,6 +360,9 @@ the types specified in context_types when fit was called.</p>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A list of lists (data) corresponding to the types specified
 in data_types when fit was called.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list[list]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -505,6 +451,16 @@ in data_types when fit was called.</p>
 </tr>
 </tbody>
 </table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nb_epochs</strong> – The number of epochs to train for.</p></li>
+<li><p><strong>max_seq_len</strong> – The maximum length of the sequence (if variable).</p></li>
+<li><p><strong>sample_size</strong> – The number of times to sample (before choosing and
+returning the sample which maximizes the likelihood).</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="method">
 <dt id="deepecho.PARModel.fit_sequences">
 <code class="sig-name descname">fit_sequences</code><span class="sig-paren">(</span><em class="sig-param">sequences</em>, <em class="sig-param">context_types</em>, <em class="sig-param">data_types</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/par.html#PARModel.fit_sequences"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.PARModel.fit_sequences" title="Permalink to this definition">¶</a></dt>
@@ -512,10 +468,9 @@ in data_types when fit was called.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>sequences</strong> – <p>This is a list of sequences. Each sequence is a
-single training example (i.e. an example of a multivariate
-time series with some context). For example, a sequence
-might look something like:</p>
+<li><p><strong>sequences</strong> – <p>List of sequences. Each sequence is a single training example
+(i.e. an example of a multivariate time series with some context).
+For example, a sequence might look something like:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="s2">&quot;context&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span>
     <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span>
@@ -534,15 +489,13 @@ to the actual time series data such that <cite>data[i][j]</cite> contains
 the value at the jth time step of the ith channel of the
 multivariate time series.</p>
 </p></li>
-<li><p><strong>context_types</strong> – This is a list of strings indicating the type
-of each value in context. The value at <cite>context[i]</cite> must match
-the type specified by <cite>context_types[i]</cite>. Valid types include
-the following: <cite>categorical</cite>, <cite>continuous</cite>, <cite>ordinal</cite>,
-<cite>count</cite>, and <cite>datetime</cite>.</p></li>
-<li><p><strong>data_types</strong> – This is a list of strings indicating the type
-of each channel in data. Each value in the list at data[i]
-must match the type specified by <cite>data_types[i]</cite>. The valid
-types are the same as for <cite>context_types</cite>.</p></li>
+<li><p><strong>context_types</strong> – List of strings indicating the type of each value in context.
+he value at <cite>context[i]</cite> must match the type specified by
+<cite>context_types[i]</cite>. Valid types include the following: <cite>categorical</cite>,
+<cite>continuous</cite>, <cite>ordinal</cite>, <cite>count</cite>, and <cite>datetime</cite>.</p></li>
+<li><p><strong>data_types</strong> – List of strings indicating the type of each channel in data.
+Each value in the list at data[i] must match the type specified by
+<cite>data_types[i]</cite>. The valid types are the same as for <cite>context_types</cite>.</p></li>
 </ul>
 </dd>
 </dl>
@@ -560,6 +513,9 @@ the types specified in context_types when fit was called.</p>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A list of lists (data) corresponding to the types specified
 in data_types when fit was called.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list[list]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -588,7 +544,7 @@ in data_types when fit was called.</p>
         <a href="deepecho.base.html" class="btn btn-neutral float-right" title="deepecho.base module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../tutorials/05_Echo_Time.html" class="btn btn-neutral float-left" title="Handling DateTime Values" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../tutorials/01_Getting_Started.html" class="btn btn-neutral float-left" title="Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
