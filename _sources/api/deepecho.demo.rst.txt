@@ -1,0 +1,7 @@
+deepecho.demo module
+====================
+
+.. automodule:: deepecho.demo
+   :members:
+   :undoc-members:
+   :show-inheritance:

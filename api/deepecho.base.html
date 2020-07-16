@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="deepecho.par module" href="deepecho.par.html" />
+    <link rel="next" title="deepecho.demo module" href="deepecho.demo.html" />
     <link rel="prev" title="deepecho package" href="deepecho.html" /> 
 </head>
 
@@ -100,6 +100,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="deepecho.html">API Reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="deepecho.html#submodules">Submodules</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">deepecho.base module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deepecho.demo.html">deepecho.demo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deepecho.par.html">deepecho.par module</a></li>
 </ul>
 </li>
@@ -248,13 +249,13 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.base.DeepEcho.fit" title="deepecho.base.DeepEcho.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(df, entity_columns[, context_columns, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.base.DeepEcho.fit" title="deepecho.base.DeepEcho.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(data, entity_columns[, context_columns, …])</p></td>
 <td><p>Fit the model to a dataframe containing time series data.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#deepecho.base.DeepEcho.fit_sequences" title="deepecho.base.DeepEcho.fit_sequences"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_sequences</span></code></a>(sequences, context_types, …)</p></td>
 <td><p>Fit a model to the specified sequences.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.base.DeepEcho.sample" title="deepecho.base.DeepEcho.sample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample</span></code></a>(nb_entities)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.base.DeepEcho.sample" title="deepecho.base.DeepEcho.sample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample</span></code></a>([num_entities, context])</p></td>
 <td><p>Sample a dataframe containing time series data.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#deepecho.base.DeepEcho.sample_sequence" title="deepecho.base.DeepEcho.sample_sequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample_sequence</span></code></a>(context)</p></td>
@@ -265,22 +266,34 @@
 </tr>
 </tbody>
 </table>
+<p><strong>Attributes</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.base.DeepEcho.verbose" title="deepecho.base.DeepEcho.verbose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">verbose</span></code></a></p></td>
+<td><p>bool(x) -&gt; bool</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
 <dt id="deepecho.base.DeepEcho.fit">
-<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">df</em>, <em class="sig-param">entity_columns</em>, <em class="sig-param">context_columns=[]</em>, <em class="sig-param">dtypes=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/base.html#DeepEcho.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.base.DeepEcho.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">entity_columns</em>, <em class="sig-param">context_columns=None</em>, <em class="sig-param">data_types=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/base.html#DeepEcho.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.base.DeepEcho.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit the model to a dataframe containing time series data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>df</strong> – The number of entities.</p></li>
-<li><p><strong>entity_columns</strong> – The columns in the dataframe to group by in order
-to obtain separate training examples.</p></li>
-<li><p><strong>context_columns</strong> – The columns in the dataframe which are constant
-within each group/entity. These columns will be provided at
-sampling time (i.e. the samples will be conditioned on the
-context variables).</p></li>
-<li><p><strong>context_types</strong> – Data types for the context columns; see <cite>fit_sequences</cite>.</p></li>
-<li><p><strong>data_types</strong> – Data types for the data columns; see <cite>fit_sequences</cite>.</p></li>
+<li><p><strong>data</strong> (<em>pd.DataFrame</em>) – DataFrame containing all the timeseries data alongside the
+entity and context columns.</p></li>
+<li><p><strong>entity_columns</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – Names of the columns which identify different time series
+sequences. These will be used to group the data in separated
+training examples.</p></li>
+<li><p><strong>context_columns</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – The columns in the dataframe which are constant within each
+group/entity. These columns will be provided at sampling time
+(i.e. the samples will be conditioned on the context variables).</p></li>
+<li><p><strong>data_types</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em>) – Dictinary indicating the data types of each column.</p></li>
 </ul>
 </dd>
 </dl>
@@ -328,11 +341,14 @@ Each value in the list at data[i] must match the type specified by
 
 <dl class="method">
 <dt id="deepecho.base.DeepEcho.sample">
-<code class="sig-name descname">sample</code><span class="sig-paren">(</span><em class="sig-param">nb_entities</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/base.html#DeepEcho.sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.base.DeepEcho.sample" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">sample</code><span class="sig-paren">(</span><em class="sig-param">num_entities=None</em>, <em class="sig-param">context=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/base.html#DeepEcho.sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.base.DeepEcho.sample" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sample a dataframe containing time series data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>nb_entities</strong> – The number of entities to sample.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_entities</strong> (<em>int</em>) – The number of entities to sample.</p></li>
+<li><p><strong>context</strong> (<em>pd.DataFrame</em>) – Context values to use when sampling.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A DataFrame which resembles the original dataframe where (1) the
@@ -353,7 +369,7 @@ time series model.</p>
 <dd><p>Sample a single sequence conditioned on context.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>context</strong> – The list of values to condition on. It must match
+<dd class="field-odd"><p><strong>context</strong> (<em>list</em>) – The list of values to condition on. It must match
 the types specified in context_types when fit was called.</p>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -381,6 +397,11 @@ in data_types when fit was called.</p>
 </dl>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="deepecho.base.DeepEcho.verbose">
+<code class="sig-name descname">verbose</code><em class="property"> = True</em><a class="headerlink" href="#deepecho.base.DeepEcho.verbose" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>
@@ -393,7 +414,7 @@ in data_types when fit was called.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="deepecho.par.html" class="btn btn-neutral float-right" title="deepecho.par module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="deepecho.demo.html" class="btn btn-neutral float-right" title="deepecho.demo module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="deepecho.html" class="btn btn-neutral float-left" title="deepecho package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

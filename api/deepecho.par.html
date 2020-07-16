@@ -39,7 +39,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Contributing" href="../contributing.html" />
-    <link rel="prev" title="deepecho.base module" href="deepecho.base.html" /> 
+    <link rel="prev" title="deepecho.demo module" href="deepecho.demo.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -100,6 +100,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="deepecho.html">API Reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="deepecho.html#submodules">Submodules</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="deepecho.base.html">deepecho.base module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deepecho.demo.html">deepecho.demo module</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">deepecho.par module</a></li>
 </ul>
 </li>
@@ -231,7 +232,7 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.par.PARModel" title="deepecho.par.PARModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PARModel</span></code></a>([nb_epochs, max_seq_len, sample_size])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.par.PARModel" title="deepecho.par.PARModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PARModel</span></code></a>([epochs, max_seq_len, sample_size, …])</p></td>
 <td><p>Probabilistic autoregressive model.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#deepecho.par.PARNet" title="deepecho.par.PARNet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PARNet</span></code></a>(data_size, context_size[, hidden_size])</p></td>
@@ -241,7 +242,7 @@
 </table>
 <dl class="class">
 <dt id="deepecho.par.PARModel">
-<em class="property">class </em><code class="sig-prename descclassname">deepecho.par.</code><code class="sig-name descname">PARModel</code><span class="sig-paren">(</span><em class="sig-param">nb_epochs=128</em>, <em class="sig-param">max_seq_len=100</em>, <em class="sig-param">sample_size=5</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/par.html#PARModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.par.PARModel" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">deepecho.par.</code><code class="sig-name descname">PARModel</code><span class="sig-paren">(</span><em class="sig-param">epochs=128</em>, <em class="sig-param">max_seq_len=100</em>, <em class="sig-param">sample_size=5</em>, <em class="sig-param">cuda=True</em>, <em class="sig-param">verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/par.html#PARModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.par.PARModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="deepecho.base.html#deepecho.base.DeepEcho" title="deepecho.base.DeepEcho"><code class="xref py py-class docutils literal notranslate"><span class="pre">deepecho.base.DeepEcho</span></code></a></p>
 <p>Probabilistic autoregressive model.</p>
 <ol class="arabic simple">
@@ -309,10 +310,15 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>nb_epochs</strong> – The number of epochs to train for.</p></li>
-<li><p><strong>max_seq_len</strong> – The maximum length of the sequence (if variable).</p></li>
-<li><p><strong>sample_size</strong> – The number of times to sample (before choosing and
-returning the sample which maximizes the likelihood).</p></li>
+<li><p><strong>epochs</strong> (<em>int</em>) – The number of epochs to train for. Defaults to 128.</p></li>
+<li><p><strong>max_seq_len</strong> (<em>int</em>) – The maximum length of the sequence (if variable).
+Defaults to 100.</p></li>
+<li><p><strong>sample_size</strong> (<em>int</em>) – The number of times to sample (before choosing and
+returning the sample which maximizes the likelihood).
+Defaults to 5.</p></li>
+<li><p><strong>cuda</strong> (<em>bool</em>) – Whether to attempt to use cuda for GPU computation.
+If this is False or CUDA is not available, CPU will be used.
+Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
 </ul>
 </dd>
 </dl>
@@ -323,7 +329,7 @@ returning the sample which maximizes the likelihood).</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>sequences</strong> – <p>List of sequences. Each sequence is a single training example
+<li><p><strong>sequences</strong> (<em>list</em>) – <p>List of sequences. Each sequence is a single training example
 (i.e. an example of a multivariate time series with some context).
 For example, a sequence might look something like:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
@@ -344,11 +350,11 @@ to the actual time series data such that <cite>data[i][j]</cite> contains
 the value at the jth time step of the ith channel of the
 multivariate time series.</p>
 </p></li>
-<li><p><strong>context_types</strong> – List of strings indicating the type of each value in context.
+<li><p><strong>context_types</strong> (<em>list</em>) – List of strings indicating the type of each value in context.
 he value at <cite>context[i]</cite> must match the type specified by
 <cite>context_types[i]</cite>. Valid types include the following: <cite>categorical</cite>,
 <cite>continuous</cite>, <cite>ordinal</cite>, <cite>count</cite>, and <cite>datetime</cite>.</p></li>
-<li><p><strong>data_types</strong> – List of strings indicating the type of each channel in data.
+<li><p><strong>data_types</strong> (<em>list</em>) – List of strings indicating the type of each channel in data.
 Each value in the list at data[i] must match the type specified by
 <cite>data_types[i]</cite>. The valid types are the same as for <cite>context_types</cite>.</p></li>
 </ul>
@@ -362,7 +368,7 @@ Each value in the list at data[i] must match the type specified by
 <dd><p>Sample a single sequence conditioned on context.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>context</strong> – The list of values to condition on. It must match
+<dd class="field-odd"><p><strong>context</strong> (<em>list</em>) – The list of values to condition on. It must match
 the types specified in context_types when fit was called.</p>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -415,7 +421,7 @@ in data_types when fit was called.</p>
         <a href="../contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="deepecho.base.html" class="btn btn-neutral float-left" title="deepecho.base module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="deepecho.demo.html" class="btn btn-neutral float-left" title="deepecho.demo module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

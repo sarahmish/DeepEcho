@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho.benchmark.tasks.classification module &mdash; DeepEcho 0.0.2.dev0 documentation</title>
+  <title>deepecho.demo module &mdash; DeepEcho 0.0.2.dev0 documentation</title>
   
 
   
@@ -37,7 +37,9 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="deepecho.par module" href="deepecho.par.html" />
+    <link rel="prev" title="deepecho.base module" href="deepecho.base.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -94,11 +96,11 @@
 </li>
 </ul>
 <p class="caption"><span class="caption-text">Resources</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="deepecho.html">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="deepecho.html#submodules">Submodules</a><ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="deepecho.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="deepecho.html#submodules">Submodules</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="deepecho.base.html">deepecho.base module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="deepecho.demo.html">deepecho.demo module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">deepecho.demo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deepecho.par.html">deepecho.par module</a></li>
 </ul>
 </li>
@@ -173,14 +175,16 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>deepecho.benchmark.tasks.classification module</li>
+          <li><a href="deepecho.html">deepecho package</a> &raquo;</li>
+        
+      <li>deepecho.demo module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/k15z/DeepEcho/blob/master/docs/api/deepecho.benchmark.tasks.classification.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/k15z/DeepEcho/blob/master/docs/api/deepecho.demo.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -218,44 +222,25 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="module-deepecho.benchmark.tasks.classification">
-<span id="deepecho-benchmark-tasks-classification-module"></span><h1>deepecho.benchmark.tasks.classification module<a class="headerlink" href="#module-deepecho.benchmark.tasks.classification" title="Permalink to this headline">¶</a></h1>
-<p>Time Series Classification task.</p>
-<p><strong>Classes</strong></p>
+<div class="section" id="module-deepecho.demo">
+<span id="deepecho-demo-module"></span><h1>deepecho.demo module<a class="headerlink" href="#module-deepecho.demo" title="Permalink to this headline">¶</a></h1>
+<p>Functions to load demo data.</p>
+<p><strong>Functions</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.tasks.classification.ClassificationTask" title="deepecho.benchmark.tasks.classification.ClassificationTask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ClassificationTask</span></code></a>(path_to_task)</p></td>
-<td><p>Time series classification tasks.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.demo.load_demo" title="deepecho.demo.load_demo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_demo</span></code></a>()</p></td>
+<td><p>Load the demo DataFrame.</p></td>
 </tr>
 </tbody>
 </table>
-<dl class="class">
-<dt id="deepecho.benchmark.tasks.classification.ClassificationTask">
-<em class="property">class </em><code class="sig-prename descclassname">deepecho.benchmark.tasks.classification.</code><code class="sig-name descname">ClassificationTask</code><span class="sig-paren">(</span><em class="sig-param">path_to_task</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/tasks/classification.html#ClassificationTask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.tasks.classification.ClassificationTask" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="deepecho.benchmark.tasks.base.html#deepecho.benchmark.tasks.base.Task" title="deepecho.benchmark.tasks.base.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">deepecho.benchmark.tasks.base.Task</span></code></a></p>
-<p>Time series classification tasks.</p>
-<p><strong>Methods</strong></p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.tasks.classification.ClassificationTask.evaluate" title="deepecho.benchmark.tasks.classification.ClassificationTask.evaluate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">evaluate</span></code></a>(model)</p></td>
-<td><p>Evaluate the given model.</p></td>
-</tr>
-</tbody>
-</table>
-<dl class="method">
-<dt id="deepecho.benchmark.tasks.classification.ClassificationTask.evaluate">
-<code class="sig-name descname">evaluate</code><span class="sig-paren">(</span><em class="sig-param">model</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/tasks/classification.html#ClassificationTask.evaluate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.tasks.classification.ClassificationTask.evaluate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Evaluate the given model.</p>
-</dd></dl>
-
+<dl class="function">
+<dt id="deepecho.demo.load_demo">
+<code class="sig-prename descclassname">deepecho.demo.</code><code class="sig-name descname">load_demo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/demo.html#load_demo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.demo.load_demo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the demo DataFrame.</p>
 </dd></dl>
 
 </div>
@@ -265,6 +250,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="deepecho.par.html" class="btn btn-neutral float-right" title="deepecho.par module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="deepecho.base.html" class="btn btn-neutral float-left" title="deepecho.base module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

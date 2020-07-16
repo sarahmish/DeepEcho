@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho.benchmark &mdash; DeepEcho 0.0.2.dev0 documentation</title>
+  <title>deepecho.demo &mdash; DeepEcho 0.0.2.dev0 documentation</title>
   
 
   
@@ -175,7 +175,7 @@
         
           <li><a href="../index.html">Module code</a> &raquo;</li>
         
-      <li>deepecho.benchmark</li>
+      <li>deepecho.demo</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -190,44 +190,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for deepecho.benchmark</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Top-level package for DeepEcho Benchmarking.&quot;&quot;&quot;</span>
+  <h1>Source code for deepecho.demo</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Functions to load demo data.&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
-<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="kn">from</span> <span class="nn">deepecho</span> <span class="kn">import</span> <span class="n">PARModel</span>
-<span class="kn">from</span> <span class="nn">deepecho.benchmark.tasks</span> <span class="kn">import</span> <span class="n">Task</span>
-
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;run_benchmark&#39;</span>
-<span class="p">]</span>
+<span class="n">_DATA_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="run_benchmark"><a class="viewcode-back" href="../../api/deepecho.benchmark.html#deepecho.benchmark.run_benchmark">[docs]</a><span class="k">def</span> <span class="nf">run_benchmark</span><span class="p">(</span><span class="n">dataset_dir</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Evaluate the models on these datasets.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        dataset_dir: The path to a directory containing one or more</span>
-<span class="sd">            benchmark tasks.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">task_type_to_results</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">path_to_csv</span> <span class="ow">in</span> <span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dataset_dir</span><span class="p">,</span> <span class="s1">&#39;**/*.csv&#39;</span><span class="p">)):</span>
-        <span class="n">path_to_task</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">path_to_csv</span><span class="p">)</span>
-        <span class="n">task</span> <span class="o">=</span> <span class="n">Task</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path_to_task</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="p">[</span><span class="n">PARModel</span><span class="p">()]:</span>
-            <span class="n">results</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-            <span class="n">results</span><span class="p">[</span><span class="s1">&#39;task&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
-            <span class="n">results</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
-            <span class="n">task_type_to_results</span><span class="p">[</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;task&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="p">{</span>
-        <span class="n">task_type</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">task_type</span><span class="p">,</span> <span class="n">rows</span> <span class="ow">in</span> <span class="n">task_type_to_results</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-    <span class="p">}</span></div>
+<div class="viewcode-block" id="load_demo"><a class="viewcode-back" href="../../api/deepecho.demo.html#deepecho.demo.load_demo">[docs]</a><span class="k">def</span> <span class="nf">load_demo</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Load the demo DataFrame.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_DATA_PATH</span><span class="p">,</span> <span class="s1">&#39;demo.csv&#39;</span><span class="p">))</span></div>
 </pre></div>
 
            </div>

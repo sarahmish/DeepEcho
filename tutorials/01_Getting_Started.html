@@ -100,6 +100,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../api/deepecho.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../api/deepecho.html#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../api/deepecho.base.html">deepecho.base module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/deepecho.demo.html">deepecho.demo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/deepecho.par.html">deepecho.par module</a></li>
 </ul>
 </li>
@@ -447,9 +448,9 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span></span><span class="kn">from</span> <span class="nn">deepecho.demo</span> <span class="kn">import</span> <span class="n">load_demo</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;01_Getting_Started.csv&quot;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">load_demo</span><span class="p">()</span>
 <span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -817,18 +818,18 @@ div.rendered_html tbody tr:hover {
 <h2>Using the PAR Model<a class="headerlink" href="#Using-the-PAR-Model" title="Permalink to this headline">¶</a></h2>
 <p>Now let’s apply the probabilistic autoregressive model to learn the time series distributions.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">deepecho</span> <span class="kn">import</span> <span class="n">PARModel</span>
 
-<span class="n">model</span> <span class="o">=</span> <span class="n">PARModel</span><span class="p">(</span><span class="n">nb_epochs</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">PARModel</span><span class="p">(</span><span class="n">epochs</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">cuda</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
-    <span class="n">df</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
     <span class="n">entity_columns</span><span class="o">=</span><span class="n">entity_columns</span><span class="p">,</span>
     <span class="n">context_columns</span><span class="o">=</span><span class="n">context_columns</span><span class="p">,</span>
-    <span class="n">dtypes</span><span class="o">=</span><span class="n">data_types</span><span class="p">,</span>
+    <span class="n">data_types</span><span class="o">=</span><span class="n">data_types</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">model</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
@@ -839,11 +840,11 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-Epoch 1023 | Loss 0.025627393275499344: 100%|██████████| 1024/1024 [02:58&lt;00:00,  5.72it/s]
+Epoch 1023 | Loss 0.02558230422437191: 100%|██████████| 1024/1024 [02:29&lt;00:00,  6.86it/s]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -876,282 +877,282 @@ Epoch 1023 | Loss 0.025627393275499344: 100%|██████████| 102
     <tr>
       <th>0</th>
       <td>0</td>
-      <td>summer</td>
+      <td>winter</td>
       <td>0</td>
-      <td>2762.018490</td>
-      <td>156</td>
+      <td>745.084512</td>
+      <td>43</td>
     </tr>
     <tr>
       <th>1</th>
       <td>0</td>
-      <td>summer</td>
+      <td>winter</td>
       <td>1</td>
-      <td>2895.472612</td>
-      <td>164</td>
+      <td>733.233054</td>
+      <td>46</td>
     </tr>
     <tr>
       <th>2</th>
       <td>0</td>
-      <td>summer</td>
+      <td>winter</td>
       <td>2</td>
-      <td>2900.876148</td>
-      <td>180</td>
+      <td>964.711822</td>
+      <td>53</td>
     </tr>
     <tr>
       <th>3</th>
       <td>0</td>
-      <td>summer</td>
+      <td>winter</td>
       <td>3</td>
-      <td>3032.070394</td>
-      <td>205</td>
+      <td>1183.122563</td>
+      <td>57</td>
     </tr>
     <tr>
       <th>4</th>
       <td>0</td>
-      <td>summer</td>
+      <td>winter</td>
       <td>4</td>
-      <td>3355.616244</td>
-      <td>225</td>
+      <td>1441.497386</td>
+      <td>92</td>
     </tr>
     <tr>
       <th>5</th>
       <td>0</td>
-      <td>summer</td>
+      <td>winter</td>
       <td>5</td>
-      <td>4535.462193</td>
-      <td>289</td>
+      <td>2547.192759</td>
+      <td>128</td>
     </tr>
     <tr>
       <th>6</th>
       <td>0</td>
-      <td>summer</td>
+      <td>winter</td>
       <td>6</td>
-      <td>3465.191048</td>
-      <td>227</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>1</td>
-      <td>winter</td>
-      <td>0</td>
-      <td>819.564511</td>
-      <td>43</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>1</td>
-      <td>winter</td>
-      <td>1</td>
-      <td>861.866680</td>
-      <td>44</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>1</td>
-      <td>winter</td>
-      <td>2</td>
-      <td>937.729433</td>
-      <td>53</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>1</td>
-      <td>winter</td>
-      <td>3</td>
-      <td>1089.859414</td>
-      <td>61</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>1</td>
-      <td>winter</td>
-      <td>4</td>
-      <td>1279.710374</td>
+      <td>1544.425097</td>
       <td>95</td>
     </tr>
     <tr>
-      <th>12</th>
+      <th>0</th>
       <td>1</td>
-      <td>winter</td>
-      <td>5</td>
-      <td>2409.036617</td>
-      <td>156</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>1</td>
-      <td>winter</td>
-      <td>6</td>
-      <td>1421.827594</td>
-      <td>92</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>2</td>
-      <td>summer</td>
-      <td>0</td>
-      <td>2710.984566</td>
-      <td>183</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>2</td>
-      <td>summer</td>
-      <td>1</td>
-      <td>2967.756509</td>
-      <td>161</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>2</td>
-      <td>summer</td>
-      <td>2</td>
-      <td>2959.276646</td>
-      <td>205</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>2</td>
-      <td>summer</td>
-      <td>3</td>
-      <td>3098.264887</td>
-      <td>207</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>2</td>
-      <td>summer</td>
-      <td>4</td>
-      <td>3317.350965</td>
-      <td>219</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>2</td>
-      <td>summer</td>
-      <td>5</td>
-      <td>4472.828075</td>
-      <td>271</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>2</td>
-      <td>summer</td>
-      <td>6</td>
-      <td>3503.510862</td>
-      <td>217</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>3</td>
       <td>winter</td>
       <td>0</td>
-      <td>848.975995</td>
-      <td>46</td>
+      <td>775.741925</td>
+      <td>42</td>
     </tr>
     <tr>
-      <th>22</th>
-      <td>3</td>
+      <th>1</th>
+      <td>1</td>
       <td>winter</td>
       <td>1</td>
-      <td>758.595722</td>
+      <td>743.837607</td>
       <td>48</td>
     </tr>
     <tr>
-      <th>23</th>
-      <td>3</td>
-      <td>winter</td>
-      <td>2</td>
-      <td>876.178615</td>
-      <td>58</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>3</td>
-      <td>winter</td>
-      <td>3</td>
-      <td>1044.144434</td>
-      <td>54</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>3</td>
-      <td>winter</td>
-      <td>4</td>
-      <td>1191.790577</td>
-      <td>102</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>3</td>
-      <td>winter</td>
-      <td>5</td>
-      <td>2475.487823</td>
-      <td>158</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>3</td>
-      <td>winter</td>
-      <td>6</td>
-      <td>1252.687815</td>
-      <td>86</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>4</td>
-      <td>winter</td>
-      <td>0</td>
-      <td>754.737707</td>
-      <td>44</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>4</td>
-      <td>winter</td>
+      <th>2</th>
       <td>1</td>
-      <td>971.208143</td>
-      <td>46</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>4</td>
       <td>winter</td>
       <td>2</td>
-      <td>993.657879</td>
+      <td>1010.109358</td>
       <td>53</td>
     </tr>
     <tr>
-      <th>31</th>
-      <td>4</td>
+      <th>3</th>
+      <td>1</td>
       <td>winter</td>
       <td>3</td>
-      <td>1008.173865</td>
-      <td>67</td>
+      <td>1079.416512</td>
+      <td>61</td>
     </tr>
     <tr>
-      <th>32</th>
-      <td>4</td>
+      <th>4</th>
+      <td>1</td>
       <td>winter</td>
       <td>4</td>
-      <td>1290.856647</td>
+      <td>1576.949172</td>
+      <td>78</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1</td>
+      <td>winter</td>
+      <td>5</td>
+      <td>2525.459907</td>
+      <td>151</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1</td>
+      <td>winter</td>
+      <td>6</td>
+      <td>1398.271544</td>
+      <td>84</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>2</td>
+      <td>summer</td>
+      <td>1</td>
+      <td>2785.869948</td>
+      <td>156</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>summer</td>
+      <td>2</td>
+      <td>2831.104263</td>
+      <td>156</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>summer</td>
+      <td>3</td>
+      <td>3071.700155</td>
+      <td>161</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2</td>
+      <td>summer</td>
+      <td>4</td>
+      <td>3634.579929</td>
+      <td>230</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2</td>
+      <td>summer</td>
+      <td>5</td>
+      <td>4608.545212</td>
+      <td>319</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2</td>
+      <td>summer</td>
+      <td>6</td>
+      <td>3457.911367</td>
+      <td>229</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2</td>
+      <td>summer</td>
+      <td>6</td>
+      <td>2359.203987</td>
+      <td>39</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>3</td>
+      <td>winter</td>
+      <td>0</td>
+      <td>765.124261</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3</td>
+      <td>winter</td>
+      <td>1</td>
+      <td>818.049395</td>
+      <td>48</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>winter</td>
+      <td>2</td>
+      <td>1022.958620</td>
+      <td>61</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>winter</td>
+      <td>3</td>
+      <td>1159.282472</td>
+      <td>61</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3</td>
+      <td>winter</td>
+      <td>4</td>
+      <td>1456.492538</td>
       <td>81</td>
     </tr>
     <tr>
-      <th>33</th>
+      <th>5</th>
+      <td>3</td>
+      <td>winter</td>
+      <td>5</td>
+      <td>2555.055951</td>
+      <td>135</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>3</td>
+      <td>winter</td>
+      <td>6</td>
+      <td>1484.414361</td>
+      <td>75</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>4</td>
+      <td>winter</td>
+      <td>0</td>
+      <td>765.129980</td>
+      <td>41</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4</td>
+      <td>winter</td>
+      <td>1</td>
+      <td>865.122163</td>
+      <td>48</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4</td>
+      <td>winter</td>
+      <td>2</td>
+      <td>990.717191</td>
+      <td>56</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>winter</td>
+      <td>3</td>
+      <td>989.798051</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>winter</td>
+      <td>4</td>
+      <td>1363.694538</td>
+      <td>81</td>
+    </tr>
+    <tr>
+      <th>5</th>
       <td>4</td>
       <td>winter</td>
       <td>5</td>
-      <td>2355.009296</td>
-      <td>150</td>
+      <td>2628.548381</td>
+      <td>134</td>
     </tr>
     <tr>
-      <th>34</th>
+      <th>6</th>
       <td>4</td>
       <td>winter</td>
       <td>6</td>
-      <td>1236.645067</td>
-      <td>92</td>
+      <td>1464.537658</td>
+      <td>78</td>
     </tr>
   </tbody>
 </table>
