@@ -289,8 +289,10 @@ names and model classes or (model_class, model_kwargs) tuples.
 If a list of model names are passed, they are taken from the
 <code class="docutils literal notranslate"><span class="pre">DEFAULT_MODELS</span></code> dictionary.
 If not passed at all, the complete <code class="docutils literal notranslate"><span class="pre">DEFAULT_MODELS</span></code> dict is used.</p></li>
-<li><p><strong>datasets</strong> (<em>list</em>) – List of datasets in which to evaluate the model. They can be
+<li><p><strong>datasets</strong> (<em>list</em><em> or </em><em>int</em>) – List of datasets in which to evaluate the model. They can be
 passed as dataset instances or as dataset names or paths.
+If an integer is passed, the corresponding number of datasets
+will be tested, starting by the smallest ones.
 If not passed, all the available datasets are used.</p></li>
 <li><p><strong>metrics</strong> (<em>list</em>) – List of metric names to use.
 If not passed, all the available metrics are used.</p></li>
