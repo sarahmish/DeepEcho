@@ -275,7 +275,7 @@
             <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="k">with</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">urljoin</span><span class="p">(</span><span class="n">DATA_URL</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;.zip&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
                 <span class="k">with</span> <span class="n">ZipFile</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">()))</span> <span class="k">as</span> <span class="n">zipfile</span><span class="p">:</span>
-                    <span class="n">zipfile</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_path</span><span class="p">)</span>
+                    <span class="n">zipfile</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">max_entities</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">dataset</span><span class="p">):</span>
@@ -317,9 +317,12 @@
     <span class="k">for</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">client</span><span class="o">.</span><span class="n">list_objects</span><span class="p">(</span><span class="n">Bucket</span><span class="o">=</span><span class="n">BUCKET_NAME</span><span class="p">)[</span><span class="s1">&#39;Contents&#39;</span><span class="p">]:</span>
         <span class="n">key</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;Key&#39;</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">key</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.zip&#39;</span><span class="p">):</span>
-            <span class="n">datasets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.zip&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">))</span>
+            <span class="n">datasets</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s1">&#39;dataset&#39;</span><span class="p">:</span> <span class="n">key</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.zip&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+                <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;Size&#39;</span><span class="p">]</span>
+            <span class="p">})</span>
 
-    <span class="k">return</span> <span class="n">datasets</span></div>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">datasets</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;size&#39;</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

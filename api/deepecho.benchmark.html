@@ -278,20 +278,24 @@ amount. If not given, use all the entities from the dataset.</p></li>
 
 <dl class="function">
 <dt id="deepecho.benchmark.run_benchmark">
-<code class="sig-prename descclassname">deepecho.benchmark.</code><code class="sig-name descname">run_benchmark</code><span class="sig-paren">(</span><em class="sig-param">models=None</em>, <em class="sig-param">datasets=None</em>, <em class="sig-param">metrics=None</em>, <em class="sig-param">distributed=False</em>, <em class="sig-param">output_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark.html#run_benchmark"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.run_benchmark" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">deepecho.benchmark.</code><code class="sig-name descname">run_benchmark</code><span class="sig-paren">(</span><em class="sig-param">models=None</em>, <em class="sig-param">datasets=None</em>, <em class="sig-param">metrics=None</em>, <em class="sig-param">max_entities=None</em>, <em class="sig-param">distributed=False</em>, <em class="sig-param">output_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark.html#run_benchmark"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.run_benchmark" title="Permalink to this definition">¶</a></dt>
 <dd><p>Score the indicated models on the indicated datasets.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>models</strong> (<em>list</em>) – List of models to evaluate, passed as classes or model
-names or as a tuples containing the class and the keyword
-arguments.
-If not passed, the <code class="docutils literal notranslate"><span class="pre">DEFAULT_MODELS</span></code> are used.</p></li>
+<li><p><strong>models</strong> (<em>list</em><em> or </em><em>dict</em>) – Models to evaluate, passed as a list of model names, or model
+classes or (model class, model kwargs) tuples, or as a dict of
+names and model classes or (model_class, model_kwargs) tuples.
+If a list of model names are passed, they are taken from the
+<code class="docutils literal notranslate"><span class="pre">DEFAULT_MODELS</span></code> dictionary.
+If not passed at all, the complete <code class="docutils literal notranslate"><span class="pre">DEFAULT_MODELS</span></code> dict is used.</p></li>
 <li><p><strong>datasets</strong> (<em>list</em>) – List of datasets in which to evaluate the model. They can be
 passed as dataset instances or as dataset names or paths.
 If not passed, all the available datasets are used.</p></li>
-<li><p><strong>metrics</strong> (<em>dict</em>) – Dict of metrics to use for the evaluation.
+<li><p><strong>metrics</strong> (<em>list</em>) – List of metric names to use.
 If not passed, all the available metrics are used.</p></li>
+<li><p><strong>max_entities</strong> (<em>int</em>) – Max number of entities to load per dataset.
+Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
 <li><p><strong>distributed</strong> (<em>bool</em>) – Whether to use dask for distributed computing.
 Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
 <li><p><strong>output_path</strong> (<em>str</em>) – If passed, store the results as a CSV in the given path.</p></li>
@@ -329,6 +333,7 @@ of the given datasets and models.</p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="deepecho.benchmark.dataset.html">deepecho.benchmark.dataset module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deepecho.benchmark.evaluation.html">deepecho.benchmark.evaluation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deepecho.benchmark.kubernetes.html">deepecho.benchmark.kubernetes module</a></li>
 </ul>
 </div>
 </div>

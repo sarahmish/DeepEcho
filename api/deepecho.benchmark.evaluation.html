@@ -228,22 +228,24 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.evaluation.evaluate_model_on_datasets" title="deepecho.benchmark.evaluation.evaluate_model_on_datasets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">evaluate_model_on_datasets</span></code></a>(model_class, …)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.evaluation.evaluate_model_on_datasets" title="deepecho.benchmark.evaluation.evaluate_model_on_datasets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">evaluate_model_on_datasets</span></code></a>(name, model, …)</p></td>
 <td><p>Evaluate the given model on a list of datasets.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="function">
 <dt id="deepecho.benchmark.evaluation.evaluate_model_on_datasets">
-<code class="sig-prename descclassname">deepecho.benchmark.evaluation.</code><code class="sig-name descname">evaluate_model_on_datasets</code><span class="sig-paren">(</span><em class="sig-param">model_class</em>, <em class="sig-param">model_kwargs</em>, <em class="sig-param">datasets</em>, <em class="sig-param">metrics</em>, <em class="sig-param">distributed=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/evaluation.html#evaluate_model_on_datasets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.evaluation.evaluate_model_on_datasets" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">deepecho.benchmark.evaluation.</code><code class="sig-name descname">evaluate_model_on_datasets</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">model</em>, <em class="sig-param">datasets</em>, <em class="sig-param">metrics</em>, <em class="sig-param">max_entities=None</em>, <em class="sig-param">distributed=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/evaluation.html#evaluate_model_on_datasets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.evaluation.evaluate_model_on_datasets" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluate the given model on a list of datasets.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>model_class</strong> (<em>class</em>) – Class of the model to evaluate.</p></li>
-<li><p><strong>model_kwargs</strong> (<em>dict</em>) – Arguments to initialize the model with.</p></li>
+<li><p><strong>model</strong> (<em>class</em>) – Class of the model to evaluate or tuple containing the model
+class and the keyword arguments to use to initialize it.</p></li>
 <li><p><strong>datasets</strong> (<em>list</em>) – List of datasets in which to evaluate the model.</p></li>
 <li><p><strong>metrics</strong> (<em>dict</em>) – Dict of metrics to use for the evaluation.</p></li>
+<li><p><strong>max_entities</strong> (<em>int</em>) – Max number of entities to load per dataset.
+Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
 <li><p><strong>distributed</strong> (<em>bool</em>) – Whether to use dask for distributed computing.
 Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
 </ul>

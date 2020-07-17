@@ -20,3 +20,4 @@ Submodules
 
    deepecho.benchmark.dataset
    deepecho.benchmark.evaluation
+   deepecho.benchmark.kubernetes

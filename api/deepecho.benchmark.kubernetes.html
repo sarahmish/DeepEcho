@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho.benchmark.metrics.classification module &mdash; DeepEcho 0.0.2.dev3 documentation</title>
+  <title>deepecho.benchmark.kubernetes module &mdash; DeepEcho 0.0.2.dev3 documentation</title>
   
 
   
@@ -173,14 +173,14 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>deepecho.benchmark.metrics.classification module</li>
+      <li>deepecho.benchmark.kubernetes module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/k15z/DeepEcho/blob/master/docs/api/deepecho.benchmark.metrics.classification.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/k15z/DeepEcho/blob/master/docs/api/deepecho.benchmark.kubernetes.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -218,9 +218,9 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="module-deepecho.benchmark.metrics.classification">
-<span id="deepecho-benchmark-metrics-classification-module"></span><h1>deepecho.benchmark.metrics.classification module<a class="headerlink" href="#module-deepecho.benchmark.metrics.classification" title="Permalink to this headline">¶</a></h1>
-<p>Time Series Classification based metrics.</p>
+<div class="section" id="module-deepecho.benchmark.kubernetes">
+<span id="deepecho-benchmark-kubernetes-module"></span><h1>deepecho.benchmark.kubernetes module<a class="headerlink" href="#module-deepecho.benchmark.kubernetes" title="Permalink to this headline">¶</a></h1>
+<p>Functions to run the DeepEcho Benchmark on a Kubernetes cluster.</p>
 <p><strong>Functions</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -228,54 +228,60 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.metrics.classification.classification_score" title="deepecho.benchmark.metrics.classification.classification_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">classification_score</span></code></a>(dataset, synthetic)</p></td>
-<td><p>Compare the performance of a classifier on real data vs synthetic.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.kubernetes.main" title="deepecho.benchmark.kubernetes.main"><code class="xref py py-obj docutils literal notranslate"><span class="pre">main</span></code></a>()</p></td>
+<td><p>Command Line Interface to run DeepEcho Benchmark on a Kubernetes cluster.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.benchmark.metrics.classification.detection_score" title="deepecho.benchmark.metrics.classification.detection_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">detection_score</span></code></a>(dataset, synthetic)</p></td>
-<td><p>Try to detect whether a sequence is synthetic or not using a classifier.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.benchmark.kubernetes.run_dask_function" title="deepecho.benchmark.kubernetes.run_dask_function"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_dask_function</span></code></a>(config)</p></td>
+<td><p>Start a Dask Cluster using dask-kubernetes and run a function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.kubernetes.run_on_kubernetes" title="deepecho.benchmark.kubernetes.run_on_kubernetes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_on_kubernetes</span></code></a>(config[, namespace])</p></td>
+<td><p>Run dask function inside a pod using the given config.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="function">
-<dt id="deepecho.benchmark.metrics.classification.classification_score">
-<code class="sig-prename descclassname">deepecho.benchmark.metrics.classification.</code><code class="sig-name descname">classification_score</code><span class="sig-paren">(</span><em class="sig-param">dataset</em>, <em class="sig-param">synthetic</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/metrics/classification.html#classification_score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.metrics.classification.classification_score" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compare the performance of a classifier on real data vs synthetic.</p>
-<p>The score is computed by fitting two TimeSeriesForestClassifier instances
-on the real and the synthetic data respectively and then evaluating the
-performance of both instances on held out partition of the real data.</p>
-<p>The obtained accuracy scores are divided (synthetic accuracy / real accuracy)
-to obtain a ratio of how close the synthetic is accuracy is to the real one.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>dataset</strong> (<a class="reference internal" href="deepecho.benchmark.html#deepecho.benchmark.Dataset" title="deepecho.benchmark.Dataset"><em>Dataset</em></a>) – The real dataset.</p></li>
-<li><p><strong>synthetic</strong> (<em>DataFrame</em>) – The sampled data.</p></li>
+<dt id="deepecho.benchmark.kubernetes.main">
+<code class="sig-prename descclassname">deepecho.benchmark.kubernetes.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/kubernetes.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.kubernetes.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Command Line Interface to run DeepEcho Benchmark on a Kubernetes cluster.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="deepecho.benchmark.kubernetes.run_dask_function">
+<code class="sig-prename descclassname">deepecho.benchmark.kubernetes.</code><code class="sig-name descname">run_dask_function</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/kubernetes.html#run_dask_function"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.kubernetes.run_dask_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start a Dask Cluster using dask-kubernetes and run a function.</p>
+<p>Talks to kubernetes to create <cite>n</cite> amount of new <cite>pods</cite> with a dask worker inside of each
+forming a <cite>dask</cite> cluster. Then, a function specified from <cite>config</cite> is being imported and
+run with the given arguments. The tasks created by this <cite>function</cite> are being run on the
+<cite>dask</cite> cluster for distributed computation.</p>
+<dl class="simple">
+<dt>The config dict must contain the following sections:</dt><dd><ul class="simple">
+<li><p>run</p></li>
+<li><p>dask_cluster</p></li>
+<li><p>output</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>float</p>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> (<em>dict</em>) – Config dictionary.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="function">
-<dt id="deepecho.benchmark.metrics.classification.detection_score">
-<code class="sig-prename descclassname">deepecho.benchmark.metrics.classification.</code><code class="sig-name descname">detection_score</code><span class="sig-paren">(</span><em class="sig-param">dataset</em>, <em class="sig-param">synthetic</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/metrics/classification.html#detection_score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.metrics.classification.detection_score" title="Permalink to this definition">¶</a></dt>
-<dd><p>Try to detect whether a sequence is synthetic or not using a classifier.</p>
-<p>The detection is performed by fitting a TimeSeriesForestClassifier
-with both real and synthetic senquences and then calculating a score
-over more sequences.</p>
-<p>The obtained score is returned inverted (1 - classification_score) to
-ensure that the metric is increasing.</p>
+<dt id="deepecho.benchmark.kubernetes.run_on_kubernetes">
+<code class="sig-prename descclassname">deepecho.benchmark.kubernetes.</code><code class="sig-name descname">run_on_kubernetes</code><span class="sig-paren">(</span><em class="sig-param">config</em>, <em class="sig-param">namespace='default'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/kubernetes.html#run_on_kubernetes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.kubernetes.run_on_kubernetes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run dask function inside a pod using the given config.</p>
+<blockquote>
+<div><p>Create a pod, using the local kubernetes configuration that starts a Dask Cluster
+using dask-kubernetes and runs a function specified within the <cite>config</cite> dictionary.</p>
+</div></blockquote>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>dataset</strong> (<a class="reference internal" href="deepecho.benchmark.html#deepecho.benchmark.Dataset" title="deepecho.benchmark.Dataset"><em>Dataset</em></a>) – The real dataset.</p></li>
-<li><p><strong>synthetic</strong> (<em>DataFrame</em>) – The sampled data.</p></li>
+<li><p><strong>config</strong> (<em>dict</em>) – Config dictionary.</p></li>
+<li><p><strong>namespace</strong> (<em>str</em>) – Kubernetes namespace were the pod will be created.</p></li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>float</p>
 </dd>
 </dl>
 </dd></dl>
