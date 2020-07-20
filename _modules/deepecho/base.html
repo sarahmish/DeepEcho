@@ -202,6 +202,10 @@
     <span class="sd">&quot;&quot;&quot;The base class for DeepEcho models.&quot;&quot;&quot;</span>
 
     <span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">data_columns</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">entity_columns</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">context_columns</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_context_values</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="nf">_assemble</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="n">sequences</span> <span class="o">=</span> <span class="p">[]</span>
@@ -247,9 +251,9 @@
 <span class="sd">            data_types:</span>
 <span class="sd">                See `fit`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">DTYPES</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="s1">&#39;continuous&#39;</span><span class="p">,</span> <span class="s1">&#39;categorical&#39;</span><span class="p">,</span> <span class="s1">&#39;ordinal&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="s1">&#39;datetime&#39;</span><span class="p">])</span>
-        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="n">dtype</span> <span class="ow">in</span> <span class="n">DTYPES</span> <span class="k">for</span> <span class="n">dtype</span> <span class="ow">in</span> <span class="n">context_types</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="n">dtype</span> <span class="ow">in</span> <span class="n">DTYPES</span> <span class="k">for</span> <span class="n">dtype</span> <span class="ow">in</span> <span class="n">data_types</span><span class="p">)</span>
+        <span class="n">dtypes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="s1">&#39;continuous&#39;</span><span class="p">,</span> <span class="s1">&#39;categorical&#39;</span><span class="p">,</span> <span class="s1">&#39;ordinal&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="s1">&#39;datetime&#39;</span><span class="p">])</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="n">dtype</span> <span class="ow">in</span> <span class="n">dtypes</span> <span class="k">for</span> <span class="n">dtype</span> <span class="ow">in</span> <span class="n">context_types</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="n">dtype</span> <span class="ow">in</span> <span class="n">dtypes</span> <span class="k">for</span> <span class="n">dtype</span> <span class="ow">in</span> <span class="n">data_types</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">sequences</span><span class="p">:</span>
             <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">sequence</span><span class="p">[</span><span class="s1">&#39;context&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">context_types</span><span class="p">)</span>
@@ -330,7 +334,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">fit_sequences</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">context_types</span><span class="p">,</span> <span class="n">data_types</span><span class="p">)</span>
 
         <span class="c1"># Store context values</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_context</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">context_columns</span><span class="p">]</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_context_values</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">context_columns</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="DeepEcho.sample_sequence"><a class="viewcode-back" href="../../api/deepecho.base.html#deepecho.DeepEcho.sample_sequence">[docs]</a>    <span class="k">def</span> <span class="nf">sample_sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sample a single sequence conditioned on context.</span>
@@ -370,7 +374,7 @@
             <span class="k">if</span> <span class="n">num_entities</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Either context or num_entities must be not None&#39;</span><span class="p">)</span>
 
-            <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_context</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">num_entities</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_context_values</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">num_entities</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="n">context</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>

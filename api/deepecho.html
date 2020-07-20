@@ -244,6 +244,18 @@
 <em class="property">class </em><code class="sig-prename descclassname">deepecho.</code><code class="sig-name descname">DeepEcho</code><a class="reference internal" href="../_modules/deepecho/base.html#DeepEcho"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.DeepEcho" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>The base class for DeepEcho models.</p>
+<p><strong>Attributes</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.DeepEcho.verbose" title="deepecho.DeepEcho.verbose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">verbose</span></code></a></p></td>
+<td><p>bool(x) -&gt; bool</p></td>
+</tr>
+</tbody>
+</table>
 <p><strong>Methods</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -268,18 +280,21 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Attributes</strong></p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.DeepEcho.verbose" title="deepecho.DeepEcho.verbose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">verbose</span></code></a></p></td>
-<td><p>bool(x) -&gt; bool</p></td>
-</tr>
-</tbody>
-</table>
+<dl class="attribute">
+<dt id="deepecho.DeepEcho.context_columns">
+<code class="sig-name descname">context_columns</code><em class="property"> = None</em><a class="headerlink" href="#deepecho.DeepEcho.context_columns" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="deepecho.DeepEcho.data_columns">
+<code class="sig-name descname">data_columns</code><em class="property"> = None</em><a class="headerlink" href="#deepecho.DeepEcho.data_columns" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="deepecho.DeepEcho.entity_columns">
+<code class="sig-name descname">entity_columns</code><em class="property"> = None</em><a class="headerlink" href="#deepecho.DeepEcho.entity_columns" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="deepecho.DeepEcho.fit">
 <code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">entity_columns</em>, <em class="sig-param">context_columns=None</em>, <em class="sig-param">data_types=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/base.html#DeepEcho.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.DeepEcho.fit" title="Permalink to this definition">¶</a></dt>

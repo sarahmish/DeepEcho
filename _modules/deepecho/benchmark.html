@@ -260,22 +260,25 @@
 <span class="sd">    LogProgressBar is defined inside here to avoid having to import</span>
 <span class="sd">    its dependencies if not used.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">distributed.client</span> <span class="kn">import</span> <span class="n">futures_of</span>
-    <span class="kn">from</span> <span class="nn">distributed.diagnostics.progressbar</span> <span class="kn">import</span> <span class="n">TextProgressBar</span>
+    <span class="c1"># Import distributed only when used</span>
+    <span class="kn">from</span> <span class="nn">distributed.client</span> <span class="kn">import</span> <span class="n">futures_of</span>  <span class="c1"># pylint: disable=C0415</span>
+    <span class="kn">from</span> <span class="nn">distributed.diagnostics.progressbar</span> <span class="kn">import</span> <span class="n">TextProgressBar</span>  <span class="c1"># pylint: disable=c0415</span>
 
     <span class="k">class</span> <span class="nc">LogProgressBar</span><span class="p">(</span><span class="n">TextProgressBar</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Dask progress bar based on logging instead of stdout.&quot;&quot;&quot;</span>
+
         <span class="n">last</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;distributed&#39;</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">_draw_bar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">remaining</span><span class="p">,</span> <span class="nb">all</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-            <span class="n">frac</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">remaining</span> <span class="o">/</span> <span class="nb">all</span><span class="p">)</span> <span class="k">if</span> <span class="nb">all</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="k">def</span> <span class="nf">_draw_bar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">remaining</span><span class="p">,</span> <span class="n">total</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>   <span class="c1"># pylint: disable=W0221</span>
+            <span class="n">frac</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">remaining</span> <span class="o">/</span> <span class="n">total</span><span class="p">)</span> <span class="k">if</span> <span class="n">total</span> <span class="k">else</span> <span class="mi">0</span>
 
             <span class="k">if</span> <span class="n">frac</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">last</span> <span class="o">+</span> <span class="mf">0.01</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">last</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">frac</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
                 <span class="n">bar</span> <span class="o">=</span> <span class="s2">&quot;#&quot;</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">*</span> <span class="n">frac</span><span class="p">)</span>
                 <span class="n">percent</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">frac</span><span class="p">)</span>
 
-                <span class="n">time_per_task</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">elapsed</span> <span class="o">/</span> <span class="p">(</span><span class="nb">all</span> <span class="o">-</span> <span class="n">remaining</span><span class="p">)</span>
+                <span class="n">time_per_task</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">elapsed</span> <span class="o">/</span> <span class="p">(</span><span class="n">total</span> <span class="o">-</span> <span class="n">remaining</span><span class="p">)</span>
                 <span class="n">remaining_time</span> <span class="o">=</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">time_per_task</span> <span class="o">*</span> <span class="n">remaining</span><span class="p">)</span>
                 <span class="n">eta</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="o">+</span> <span class="n">remaining_time</span>
 
@@ -347,7 +350,7 @@
         <span class="n">delayed</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">distributed</span><span class="p">:</span>
-        <span class="kn">import</span> <span class="nn">dask</span>
+        <span class="kn">import</span> <span class="nn">dask</span>   <span class="c1"># pylint: disable=c0415</span>
         <span class="n">persisted</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">persist</span><span class="p">(</span><span class="o">*</span><span class="n">delayed</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
@@ -370,8 +373,9 @@
 
     <span class="k">if</span> <span class="n">output_path</span><span class="p">:</span>
         <span class="n">results</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">results</span></div>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">return</span> <span class="n">results</span></div>
 </pre></div>
 
            </div>
