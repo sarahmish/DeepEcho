@@ -243,7 +243,7 @@
 </table>
 <dl class="class">
 <dt id="deepecho.par.PARModel">
-<em class="property">class </em><code class="sig-prename descclassname">deepecho.par.</code><code class="sig-name descname">PARModel</code><span class="sig-paren">(</span><em class="sig-param">epochs=128</em>, <em class="sig-param">max_seq_len=100</em>, <em class="sig-param">sample_size=5</em>, <em class="sig-param">cuda=True</em>, <em class="sig-param">verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/par.html#PARModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.par.PARModel" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">deepecho.par.</code><code class="sig-name descname">PARModel</code><span class="sig-paren">(</span><em class="sig-param">epochs=128</em>, <em class="sig-param">max_seq_len=100</em>, <em class="sig-param">sample_size=1</em>, <em class="sig-param">cuda=True</em>, <em class="sig-param">verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/par.html#PARModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.par.PARModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="deepecho.base.html#deepecho.base.DeepEcho" title="deepecho.base.DeepEcho"><code class="xref py py-class docutils literal notranslate"><span class="pre">deepecho.base.DeepEcho</span></code></a></p>
 <p>Probabilistic autoregressive model.</p>
 <ol class="arabic simple">
@@ -316,7 +316,7 @@
 Defaults to 100.</p></li>
 <li><p><strong>sample_size</strong> (<em>int</em>) – The number of times to sample (before choosing and
 returning the sample which maximizes the likelihood).
-Defaults to 5.</p></li>
+Defaults to 1.</p></li>
 <li><p><strong>cuda</strong> (<em>bool</em>) – Whether to attempt to use cuda for GPU computation.
 If this is False or CUDA is not available, CPU will be used.
 Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
