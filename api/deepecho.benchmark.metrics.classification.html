@@ -8,12 +8,12 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho.benchmark.metrics.classification module &mdash; DeepEcho 0.0.3.dev0 documentation</title>
+  <title>deepecho.benchmark.metrics.classification module &mdash; DeepEcho 0.1.0 documentation</title>
   
 
   
   
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
+    <link rel="shortcut icon" href="../_static/deepecho.ico"/>
   
   
   
@@ -56,7 +56,7 @@
 
           
             
-            <img src="../_static/header-light.png" class="logo" alt="Logo"/>
+            <img src="../_static/DeepEcho-Logo-White-Small.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -125,8 +125,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.0.2 (2020-07-17)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.0.1 (2020-07-11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.1.0 (2020-08-11)</a></li>
 </ul>
 </li>
 </ul>
@@ -232,8 +231,11 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.metrics.classification.classification_score" title="deepecho.benchmark.metrics.classification.classification_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">classification_score</span></code></a>(dataset, synthetic)</p></td>
 <td><p>Compare the performance of a classifier on real data vs synthetic.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.benchmark.metrics.classification.detection_score" title="deepecho.benchmark.metrics.classification.detection_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">detection_score</span></code></a>(dataset, synthetic)</p></td>
-<td><p>Try to detect whether a sequence is synthetic or not using a classifier.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.benchmark.metrics.classification.lstm_detection_score" title="deepecho.benchmark.metrics.classification.lstm_detection_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lstm_detection_score</span></code></a>(dataset, synthetic)</p></td>
+<td><p>Try to detect whether a sequence is synthetic or not using an lstm classifier.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.metrics.classification.rf_detection_score" title="deepecho.benchmark.metrics.classification.rf_detection_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rf_detection_score</span></code></a>(dataset, synthetic)</p></td>
+<td><p>Try to detect whether a sequence is synthetic or not using a random forest classifier.</p></td>
 </tr>
 </tbody>
 </table>
@@ -260,9 +262,31 @@ to obtain a ratio of how close the synthetic is accuracy is to the real one.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="deepecho.benchmark.metrics.classification.detection_score">
-<code class="sig-prename descclassname">deepecho.benchmark.metrics.classification.</code><code class="sig-name descname">detection_score</code><span class="sig-paren">(</span><em class="sig-param">dataset</em>, <em class="sig-param">synthetic</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/metrics/classification.html#detection_score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.metrics.classification.detection_score" title="Permalink to this definition">¶</a></dt>
-<dd><p>Try to detect whether a sequence is synthetic or not using a classifier.</p>
+<dt id="deepecho.benchmark.metrics.classification.lstm_detection_score">
+<code class="sig-prename descclassname">deepecho.benchmark.metrics.classification.</code><code class="sig-name descname">lstm_detection_score</code><span class="sig-paren">(</span><em class="sig-param">dataset</em>, <em class="sig-param">synthetic</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/metrics/classification.html#lstm_detection_score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.metrics.classification.lstm_detection_score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Try to detect whether a sequence is synthetic or not using an lstm classifier.</p>
+<p>The detection is performed by fitting a TimeSeriesForestClassifier
+with both real and synthetic senquences and then calculating a score
+over more sequences.</p>
+<p>The obtained score is returned inverted (1 - classification_score) to
+ensure that the metric is increasing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset</strong> (<a class="reference internal" href="deepecho.benchmark.html#deepecho.benchmark.Dataset" title="deepecho.benchmark.Dataset"><em>Dataset</em></a>) – The real dataset.</p></li>
+<li><p><strong>synthetic</strong> (<em>DataFrame</em>) – The sampled data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="deepecho.benchmark.metrics.classification.rf_detection_score">
+<code class="sig-prename descclassname">deepecho.benchmark.metrics.classification.</code><code class="sig-name descname">rf_detection_score</code><span class="sig-paren">(</span><em class="sig-param">dataset</em>, <em class="sig-param">synthetic</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/metrics/classification.html#rf_detection_score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.metrics.classification.rf_detection_score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Try to detect whether a sequence is synthetic or not using a random forest classifier.</p>
 <p>The detection is performed by fitting a TimeSeriesForestClassifier
 with both real and synthetic senquences and then calculating a score
 over more sequences.</p>

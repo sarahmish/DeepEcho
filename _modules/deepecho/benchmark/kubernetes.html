@@ -8,12 +8,12 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho.benchmark.kubernetes &mdash; DeepEcho 0.0.3.dev0 documentation</title>
+  <title>deepecho.benchmark.kubernetes &mdash; DeepEcho 0.1.0 documentation</title>
   
 
   
   
-    <link rel="shortcut icon" href="../../../_static/favicon.png"/>
+    <link rel="shortcut icon" href="../../../_static/deepecho.ico"/>
   
   
   
@@ -56,7 +56,7 @@
 
           
             
-            <img src="../../../_static/header-light.png" class="logo" alt="Logo"/>
+            <img src="../../../_static/DeepEcho-Logo-White-Small.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -125,8 +125,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id1">0.0.2 (2020-07-17)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id2">0.0.1 (2020-07-11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id1">0.1.0 (2020-08-11)</a></li>
 </ul>
 </li>
 </ul>
@@ -229,7 +228,7 @@
 <span class="s2">JSON</span>
 <span class="s2">&quot;&quot;&quot;</span>
 
-<span class="n">WORKER_COMM</span> <span class="o">=</span> <span class="s1">&#39;/usr/bin/prepare.sh dask-worker --no-dashboard --memory-limit 0 --death-timeout 0&#39;</span>
+<span class="n">WORKER_COMM</span> <span class="o">=</span> <span class="s1">&#39;/usr/local/bin/dask-worker --no-dashboard --memory-limit 0 --death-timeout 0&#39;</span>
 
 
 <span class="k">def</span> <span class="nf">_import_function</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
@@ -273,27 +272,28 @@
     <span class="k">return</span> <span class="n">extra_packages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 
-<span class="k">def</span> <span class="nf">_generate_cluster_spec</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">kubernetes</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_generate_cluster_spec</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="n">extra_setup</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
     <span class="n">dask_cluster</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;dask_cluster&#39;</span><span class="p">]</span>
     <span class="n">metadata</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">dask_cluster</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;image&#39;</span><span class="p">,</span> <span class="s1">&#39;daskdev/dask:latest&#39;</span><span class="p">)</span>
 
-    <span class="n">worker_config</span> <span class="o">=</span> <span class="n">dask_cluster</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;worker_config&#39;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">worker_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;setup&#39;</span><span class="p">):</span>
-        <span class="n">extra_setup</span> <span class="o">=</span> <span class="n">_get_extra_setup</span><span class="p">(</span><span class="n">worker_config</span><span class="p">[</span><span class="s1">&#39;setup&#39;</span><span class="p">])</span>
+    <span class="n">setup</span> <span class="o">=</span> <span class="n">dask_cluster</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;setup&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">setup</span><span class="p">:</span>
+        <span class="n">extra_setup</span> <span class="o">=</span> <span class="n">_get_extra_setup</span><span class="p">(</span><span class="n">setup</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">kubernetes</span><span class="p">:</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="n">worker_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;image&#39;</span><span class="p">,</span> <span class="s1">&#39;daskdev/dask:latest&#39;</span><span class="p">)</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">-&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[\W_]&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
-        <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;generateName&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="k">if</span> <span class="n">master</span><span class="p">:</span>
+        <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;generateName&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">-&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[\W_]&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">image</span><span class="p">))</span>
 
         <span class="n">config_command</span> <span class="o">=</span> <span class="n">CONFIG_TEMPLATE</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">config</span><span class="p">))</span>
         <span class="n">run_command</span> <span class="o">=</span> <span class="s1">&#39;python -u -m deepecho.benchmark.kubernetes config.json&#39;</span>
         <span class="n">extra_setup</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">extra_setup</span><span class="p">,</span> <span class="n">config_command</span><span class="p">,</span> <span class="n">run_command</span><span class="p">])</span>
+        <span class="n">resources</span> <span class="o">=</span> <span class="n">dask_cluster</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;master_resources&#39;</span><span class="p">,</span> <span class="p">{})</span>
 
     <span class="k">else</span><span class="p">:</span>
         <span class="n">run_command</span> <span class="o">=</span> <span class="n">WORKER_COMM</span>
         <span class="n">extra_setup</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">extra_setup</span><span class="p">,</span> <span class="n">run_command</span><span class="p">])</span>
+        <span class="n">resources</span> <span class="o">=</span> <span class="n">dask_cluster</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;worker_resources&#39;</span><span class="p">,</span> <span class="p">{})</span>
 
     <span class="n">run_commands</span> <span class="o">=</span> <span class="n">RUN_TEMPLATE</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">extra_setup</span><span class="p">)</span>
 
@@ -304,9 +304,9 @@
             <span class="s1">&#39;containers&#39;</span><span class="p">:</span> <span class="p">[{</span>
                 <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;-c&#39;</span><span class="p">,</span> <span class="n">run_commands</span><span class="p">],</span>
                 <span class="s1">&#39;command&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;tini&#39;</span><span class="p">,</span> <span class="s1">&#39;-g&#39;</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="s1">&#39;/bin/sh&#39;</span><span class="p">],</span>
-                <span class="s1">&#39;image&#39;</span><span class="p">:</span> <span class="n">worker_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;image&#39;</span><span class="p">,</span> <span class="s1">&#39;daskdev/dask:latest&#39;</span><span class="p">),</span>
+                <span class="s1">&#39;image&#39;</span><span class="p">:</span> <span class="n">image</span><span class="p">,</span>
                 <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;dask-worker&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;resources&#39;</span><span class="p">:</span> <span class="n">worker_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;resources&#39;</span><span class="p">,</span> <span class="p">{})</span>
+                <span class="s1">&#39;resources&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;requests&#39;</span><span class="p">:</span> <span class="n">resources</span><span class="p">,</span> <span class="s1">&#39;limits&#39;</span><span class="p">:</span> <span class="n">resources</span><span class="p">}</span>
             <span class="p">}]</span>
         <span class="p">}</span>
     <span class="p">}</span>
@@ -348,7 +348,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;An output path must be provided when providing `output`.&#39;</span><span class="p">)</span>
 
-    <span class="n">cluster_spec</span> <span class="o">=</span> <span class="n">_generate_cluster_spec</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">kubernetes</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">cluster_spec</span> <span class="o">=</span> <span class="n">_generate_cluster_spec</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
     <span class="c1"># Importing here to avoid an aiohttp error if not used.</span>
     <span class="kn">from</span> <span class="nn">dask_kubernetes</span> <span class="kn">import</span> <span class="n">KubeCluster</span>   <span class="c1"># pylint: disable=C0415</span>
@@ -415,7 +415,7 @@
 
     <span class="c1"># create client and create pod on default namespace</span>
     <span class="n">core_v1</span> <span class="o">=</span> <span class="n">core_v1_api</span><span class="o">.</span><span class="n">CoreV1Api</span><span class="p">()</span>
-    <span class="n">spec</span> <span class="o">=</span> <span class="n">_generate_cluster_spec</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">kubernetes</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">spec</span> <span class="o">=</span> <span class="n">_generate_cluster_spec</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">core_v1</span><span class="o">.</span><span class="n">create_namespaced_pod</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="n">spec</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="n">namespace</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Pod created.&#39;</span><span class="p">)</span></div>
 

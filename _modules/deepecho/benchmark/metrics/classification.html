@@ -8,12 +8,12 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho.benchmark.metrics.classification &mdash; DeepEcho 0.0.3.dev0 documentation</title>
+  <title>deepecho.benchmark.metrics.classification &mdash; DeepEcho 0.1.0 documentation</title>
   
 
   
   
-    <link rel="shortcut icon" href="../../../../_static/favicon.png"/>
+    <link rel="shortcut icon" href="../../../../_static/deepecho.ico"/>
   
   
   
@@ -56,7 +56,7 @@
 
           
             
-            <img src="../../../../_static/header-light.png" class="logo" alt="Logo"/>
+            <img src="../../../../_static/DeepEcho-Logo-White-Small.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -125,8 +125,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id1">0.0.2 (2020-07-17)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id2">0.0.1 (2020-07-11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id1">0.1.0 (2020-08-11)</a></li>
 </ul>
 </li>
 </ul>
@@ -207,8 +206,8 @@
 
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>  <span class="c1"># pylint: disable=C0413</span>
 
-<span class="kn">from</span> <span class="nn">sktime.classifiers.compose</span> <span class="kn">import</span> <span class="n">TimeSeriesForestClassifier</span>  <span class="c1"># noqa isort:skip</span>
-<span class="kn">from</span> <span class="nn">sktime.transformers.compose</span> <span class="kn">import</span> <span class="n">ColumnConcatenator</span>  <span class="c1"># noqa isort:skip</span>
+<span class="kn">from</span> <span class="nn">sktime.classification.compose</span> <span class="kn">import</span> <span class="n">TimeSeriesForestClassifier</span>  <span class="c1"># noqa isort:skip</span>
+<span class="kn">from</span> <span class="nn">sktime.transformers.series_as_features.compose</span> <span class="kn">import</span> <span class="n">ColumnConcatenator</span>  <span class="c1"># noqa isort:skip</span>
 
 
 <span class="k">def</span> <span class="nf">_build_xy</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">entity_columns</span><span class="p">,</span> <span class="n">target_column</span><span class="p">):</span>
@@ -239,7 +238,7 @@
     <span class="k">return</span> <span class="n">X</span>
 
 
-<span class="k">def</span> <span class="nf">_score_classifier</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_rf_scorer</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">):</span>
     <span class="n">steps</span> <span class="o">=</span> <span class="p">[</span>
         <span class="p">(</span><span class="s1">&#39;concatenate&#39;</span><span class="p">,</span> <span class="n">ColumnConcatenator</span><span class="p">()),</span>
         <span class="p">(</span><span class="s1">&#39;classify&#39;</span><span class="p">,</span> <span class="n">TimeSeriesForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">))</span>
@@ -259,7 +258,7 @@
     <span class="k">return</span> <span class="n">pack_sequence</span><span class="p">(</span><span class="n">sequences</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">_lstm_score_classifier</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_lstm_scorer</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">):</span>
     <span class="n">input_dim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
     <span class="n">output_dim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">y_train</span><span class="p">))</span>
     <span class="n">hidden_dim</span> <span class="o">=</span> <span class="mi">32</span>
@@ -269,7 +268,7 @@
     <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">_x_to_packed_sequence</span><span class="p">,</span> <span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">))</span>
     <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">,</span> <span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
 
-    <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda:0&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+    <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
     <span class="n">lstm</span><span class="p">,</span> <span class="n">linear</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span>
         <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="p">(</span><span class="n">lstm</span><span class="p">,</span> <span class="n">linear</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
 
@@ -320,14 +319,25 @@
     <span class="n">real_y_train</span><span class="p">,</span> <span class="n">real_y_test</span> <span class="o">=</span> <span class="n">real_y</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">real_y</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
     <span class="n">synt_x_train</span><span class="p">,</span> <span class="n">synt_x_test</span> <span class="o">=</span> <span class="n">synt_x</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">synt_x</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
 
-    <span class="n">real_acc</span> <span class="o">=</span> <span class="n">_score_classifier</span><span class="p">(</span><span class="n">real_x_train</span><span class="p">,</span> <span class="n">real_x_test</span><span class="p">,</span> <span class="n">real_y_train</span><span class="p">,</span> <span class="n">real_y_test</span><span class="p">)</span>
-    <span class="n">synt_acc</span> <span class="o">=</span> <span class="n">_score_classifier</span><span class="p">(</span><span class="n">synt_x_train</span><span class="p">,</span> <span class="n">synt_x_test</span><span class="p">,</span> <span class="n">real_y_train</span><span class="p">,</span> <span class="n">real_y_test</span><span class="p">)</span>
+    <span class="n">real_acc</span> <span class="o">=</span> <span class="n">_rf_scorer</span><span class="p">(</span><span class="n">real_x_train</span><span class="p">,</span> <span class="n">real_x_test</span><span class="p">,</span> <span class="n">real_y_train</span><span class="p">,</span> <span class="n">real_y_test</span><span class="p">)</span>
+    <span class="n">synt_acc</span> <span class="o">=</span> <span class="n">_rf_scorer</span><span class="p">(</span><span class="n">synt_x_train</span><span class="p">,</span> <span class="n">synt_x_test</span><span class="p">,</span> <span class="n">real_y_train</span><span class="p">,</span> <span class="n">real_y_test</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">synt_acc</span> <span class="o">/</span> <span class="n">real_acc</span></div>
 
 
-<div class="viewcode-block" id="detection_score"><a class="viewcode-back" href="../../../../api/deepecho.benchmark.metrics.classification.html#deepecho.benchmark.metrics.detection_score">[docs]</a><span class="k">def</span> <span class="nf">detection_score</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">synthetic</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Try to detect whether a sequence is synthetic or not using a classifier.</span>
+<span class="k">def</span> <span class="nf">_detection_score</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">synthetic</span><span class="p">,</span> <span class="n">scorer</span><span class="p">):</span>
+    <span class="n">real_x</span> <span class="o">=</span> <span class="n">_build_x</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">entity_columns</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">context_columns</span><span class="p">)</span>
+    <span class="n">synt_x</span> <span class="o">=</span> <span class="n">_build_x</span><span class="p">(</span><span class="n">synthetic</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">entity_columns</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">context_columns</span><span class="p">)</span>
+
+    <span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">real_x</span><span class="p">,</span> <span class="n">synt_x</span><span class="p">])</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">real_x</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">synt_x</span><span class="p">))</span>
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">scorer</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="rf_detection_score"><a class="viewcode-back" href="../../../../api/deepecho.benchmark.metrics.classification.html#deepecho.benchmark.metrics.rf_detection_score">[docs]</a><span class="k">def</span> <span class="nf">rf_detection_score</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">synthetic</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Try to detect whether a sequence is synthetic or not using a random forest classifier.</span>
 
 <span class="sd">    The detection is performed by fitting a TimeSeriesForestClassifier</span>
 <span class="sd">    with both real and synthetic senquences and then calculating a score</span>
@@ -345,20 +355,29 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        float</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">real_x</span> <span class="o">=</span> <span class="n">_build_x</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">entity_columns</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">context_columns</span><span class="p">)</span>
-    <span class="n">synt_x</span> <span class="o">=</span> <span class="n">_build_x</span><span class="p">(</span><span class="n">synthetic</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">entity_columns</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">context_columns</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_detection_score</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">synthetic</span><span class="p">,</span> <span class="n">_rf_scorer</span><span class="p">)</span></div>
 
-    <span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">real_x</span><span class="p">,</span> <span class="n">synt_x</span><span class="p">])</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">real_x</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">synt_x</span><span class="p">))</span>
-    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
-    <span class="n">rf_score</span> <span class="o">=</span> <span class="n">_score_classifier</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-    <span class="n">lstm_score</span> <span class="o">=</span> <span class="n">_lstm_score_classifier</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<div class="viewcode-block" id="lstm_detection_score"><a class="viewcode-back" href="../../../../api/deepecho.benchmark.metrics.classification.html#deepecho.benchmark.metrics.lstm_detection_score">[docs]</a><span class="k">def</span> <span class="nf">lstm_detection_score</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">synthetic</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Try to detect whether a sequence is synthetic or not using an lstm classifier.</span>
 
-    <span class="k">return</span> <span class="p">{</span>
-        <span class="s2">&quot;rf&quot;</span><span class="p">:</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">rf_score</span><span class="p">,</span>
-        <span class="s2">&quot;lstm&quot;</span><span class="p">:</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">lstm_score</span><span class="p">,</span>
-    <span class="p">}</span></div>
+<span class="sd">    The detection is performed by fitting a TimeSeriesForestClassifier</span>
+<span class="sd">    with both real and synthetic senquences and then calculating a score</span>
+<span class="sd">    over more sequences.</span>
+
+<span class="sd">    The obtained score is returned inverted (1 - classification_score) to</span>
+<span class="sd">    ensure that the metric is increasing.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        dataset (Dataset):</span>
+<span class="sd">            The real dataset.</span>
+<span class="sd">        synthetic (DataFrame):</span>
+<span class="sd">            The sampled data.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_detection_score</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">synthetic</span><span class="p">,</span> <span class="n">_lstm_scorer</span><span class="p">)</span></div>
 </pre></div>
 
            </div>
