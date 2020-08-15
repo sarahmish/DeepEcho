@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho.benchmark.evaluation &mdash; DeepEcho 0.1.0 documentation</title>
+  <title>deepecho.benchmark.evaluation &mdash; DeepEcho 0.1.1 documentation</title>
   
 
   
@@ -85,11 +85,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../readme.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../readme.html#installation">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/01_Getting_Started.html">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/01_Getting_Started.html#Load-the-dataset">Load the dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/01_Getting_Started.html#Explore-the-dataset">Explore the dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/01_Getting_Started.html#Context">Context</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/01_Getting_Started.html#Data-Types">Data Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/01_Getting_Started.html#DeepEcho-Overview">DeepEcho Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/01_Getting_Started.html#Load-the-demo-dataset">Load the demo dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/01_Getting_Started.html#Context">Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/01_Getting_Started.html#Data-Types">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -100,6 +102,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../api/deepecho.base.html">deepecho.base module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../api/deepecho.demo.html">deepecho.demo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../api/deepecho.par.html">deepecho.par module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/deepecho.sequences.html">deepecho.sequences module</a></li>
 </ul>
 </li>
 </ul>
@@ -125,7 +128,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id1">0.1.0 (2020-08-11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id1">0.1.1 (2020-08-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id2">0.1.0 (2020-08-11)</a></li>
 </ul>
 </li>
 </ul>
@@ -230,7 +234,7 @@
     <span class="k">return</span> <span class="n">now</span>
 
 
-<span class="k">def</span> <span class="nf">_fit_model</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_fit_model</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">segment_size</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
         <span class="n">model_instance</span> <span class="o">=</span> <span class="n">model</span><span class="p">[</span><span class="mi">0</span><span class="p">](</span><span class="o">**</span><span class="n">model</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="nb">type</span><span class="p">):</span>
@@ -239,7 +243,8 @@
     <span class="n">model_instance</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
         <span class="n">data</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
         <span class="n">entity_columns</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">entity_columns</span><span class="p">,</span>
-        <span class="n">context_columns</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">context_columns</span>
+        <span class="n">context_columns</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">context_columns</span><span class="p">,</span>
+        <span class="n">segment_size</span><span class="o">=</span><span class="n">segment_size</span>
     <span class="p">)</span>
 
     <span class="k">return</span> <span class="n">model_instance</span>
@@ -247,7 +252,7 @@
 
 <span class="k">def</span> <span class="nf">_sample</span><span class="p">(</span><span class="n">model_instance</span><span class="p">,</span> <span class="n">dataset</span><span class="p">):</span>
     <span class="n">context_columns</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">entity_columns</span> <span class="o">+</span> <span class="n">dataset</span><span class="o">.</span><span class="n">context_columns</span>
-    <span class="n">context</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">context_columns</span><span class="p">]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">evaluation_data</span><span class="p">[</span><span class="n">context_columns</span><span class="p">]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">model_instance</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">)</span>
 
 
@@ -263,7 +268,8 @@
             <span class="n">result</span><span class="p">[</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metric_name</span><span class="p">,</span> <span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="n">value</span>
 
 
-<span class="k">def</span> <span class="nf">_evaluate_model_on_dataset</span><span class="p">(</span><span class="n">model_name</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">metrics</span><span class="p">,</span> <span class="n">max_entities</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_evaluate_model_on_dataset</span><span class="p">(</span><span class="n">model_name</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">metrics</span><span class="p">,</span>
+                               <span class="n">max_entities</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">segment_size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Evaluating model </span><span class="si">%s</span><span class="s1"> on </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">dataset</span><span class="p">)</span>
 
     <span class="n">dataset_name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
@@ -275,12 +281,12 @@
 
     <span class="k">try</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-            <span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">max_entities</span><span class="o">=</span><span class="n">max_entities</span><span class="p">)</span>
+            <span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">max_entities</span><span class="o">=</span><span class="n">max_entities</span><span class="p">,</span> <span class="n">segment_size</span><span class="o">=</span><span class="n">segment_size</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
             <span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="o">*</span><span class="n">dataset</span><span class="p">)</span>
 
         <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Fitting model </span><span class="si">%s</span><span class="s1"> on dataset </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">)</span>
-        <span class="n">model_instance</span> <span class="o">=</span> <span class="n">_fit_model</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
+        <span class="n">model_instance</span> <span class="o">=</span> <span class="n">_fit_model</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">segment_size</span><span class="p">)</span>
         <span class="n">now</span> <span class="o">=</span> <span class="n">_log_time</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="s1">&#39;fit&#39;</span><span class="p">,</span> <span class="n">now</span><span class="p">)</span>
 
         <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Sampling dataset </span><span class="si">%s</span><span class="s1"> with model </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">model_name</span><span class="p">)</span>
@@ -302,8 +308,8 @@
     <span class="k">return</span> <span class="n">result</span>
 
 
-<div class="viewcode-block" id="evaluate_model_on_datasets"><a class="viewcode-back" href="../../../api/deepecho.benchmark.evaluation.html#deepecho.benchmark.evaluation.evaluate_model_on_datasets">[docs]</a><span class="k">def</span> <span class="nf">evaluate_model_on_datasets</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">metrics</span><span class="p">,</span>
-                               <span class="n">max_entities</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">distributed</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="evaluate_model_on_datasets"><a class="viewcode-back" href="../../../api/deepecho.benchmark.evaluation.html#deepecho.benchmark.evaluation.evaluate_model_on_datasets">[docs]</a><span class="k">def</span> <span class="nf">evaluate_model_on_datasets</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">metrics</span><span class="p">,</span> <span class="n">max_entities</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                               <span class="n">segment_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">distributed</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Evaluate the given model on a list of datasets.</span>
 
 <span class="sd">    Args:</span>
@@ -317,6 +323,9 @@
 <span class="sd">        max_entities (int):</span>
 <span class="sd">            Max number of entities to load per dataset.</span>
 <span class="sd">            Defaults to ``None``.</span>
+<span class="sd">        segment_size (int):</span>
+<span class="sd">            If specified, cut each training sequence in several segments of the</span>
+<span class="sd">            indicated size.</span>
 <span class="sd">        distributed (bool):</span>
 <span class="sd">            Whether to use dask for distributed computing.</span>
 <span class="sd">            Defaults to ``False``.</span>
@@ -336,7 +345,7 @@
         <span class="n">function</span> <span class="o">=</span> <span class="n">_evaluate_model_on_dataset</span>
 
     <span class="k">for</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">datasets</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">metrics</span><span class="p">,</span> <span class="n">max_entities</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">metrics</span><span class="p">,</span> <span class="n">max_entities</span><span class="p">,</span> <span class="n">segment_size</span><span class="p">)</span>
         <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">results</span></div>

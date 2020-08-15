@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho.benchmark package &mdash; DeepEcho 0.1.0 documentation</title>
+  <title>deepecho.benchmark package &mdash; DeepEcho 0.1.1 documentation</title>
   
 
   
@@ -85,11 +85,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../readme.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../readme.html#installation">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/01_Getting_Started.html">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Load-the-dataset">Load the dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Explore-the-dataset">Explore the dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Context">Context</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Data-Types">Data Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#DeepEcho-Overview">DeepEcho Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Load-the-demo-dataset">Load the demo dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Context">Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Data-Types">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -100,6 +102,7 @@
 <li class="toctree-l3"><a class="reference internal" href="deepecho.base.html">deepecho.base module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deepecho.demo.html">deepecho.demo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deepecho.par.html">deepecho.par module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deepecho.sequences.html">deepecho.sequences module</a></li>
 </ul>
 </li>
 </ul>
@@ -125,7 +128,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.1.0 (2020-08-11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.1.1 (2020-08-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.1.0 (2020-08-11)</a></li>
 </ul>
 </li>
 </ul>
@@ -228,7 +232,7 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.Dataset" title="deepecho.benchmark.Dataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Dataset</span></code></a>(dataset[, max_entities])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.Dataset" title="deepecho.benchmark.Dataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Dataset</span></code></a>(dataset[, table_name, max_entities, …])</p></td>
 <td><p>Dataset abstraction for benchmarking.</p></td>
 </tr>
 </tbody>
@@ -240,8 +244,8 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.get_datasets_list" title="deepecho.benchmark.get_datasets_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_datasets_list</span></code></a>([extended])</p></td>
-<td><p>Get a list with the names of all the availale datasets.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.get_datasets_list" title="deepecho.benchmark.get_datasets_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_datasets_list</span></code></a>()</p></td>
+<td><p>Get a list with the names and details of all the availale datasets.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#deepecho.benchmark.run_benchmark" title="deepecho.benchmark.run_benchmark"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_benchmark</span></code></a>([models, datasets, metrics, …])</p></td>
 <td><p>Score the indicated models on the indicated datasets.</p></td>
@@ -250,7 +254,7 @@
 </table>
 <dl class="class">
 <dt id="deepecho.benchmark.Dataset">
-<em class="property">class </em><code class="sig-prename descclassname">deepecho.benchmark.</code><code class="sig-name descname">Dataset</code><span class="sig-paren">(</span><em class="sig-param">dataset</em>, <em class="sig-param">max_entities=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/dataset.html#Dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.Dataset" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">deepecho.benchmark.</code><code class="sig-name descname">Dataset</code><span class="sig-paren">(</span><em class="sig-param">dataset</em>, <em class="sig-param">table_name=None</em>, <em class="sig-param">max_entities=None</em>, <em class="sig-param">segment_size=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/dataset.html#Dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.Dataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Dataset abstraction for benchmarking.</p>
 <p>This class loads as TimeSeries dataset from an sdv.Metadata
@@ -265,20 +269,77 @@ entity_id.</p>
 found.</p></li>
 <li><p><strong>max_entities</strong> (<em>int</em>) – Optionally restrict the number of entities to the indicated
 amount. If not given, use all the entities from the dataset.</p></li>
+<li><p><strong>segment_size</strong> (<em>int</em><em>, </em><em>pd.Timedelta</em><em> or </em><em>str</em>) – If specified, cut each training sequence in several segments of the
+indicated size. The size can either can passed as an integer value,
+which will interpreted as the number of data points to put on each
+segment, or as a pd.Timedelta (or equivalent str representation),
+which will be interpreted as the segment length in time. Timedelta
+segment sizes can only be used with sequence indexes of type datetime.</p></li>
 </ul>
+</dd>
+</dl>
+<p><strong>Attributes</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.Dataset.VERSION" title="deepecho.benchmark.Dataset.VERSION"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VERSION</span></code></a></p></td>
+<td><p>str(object=’’) -&gt; str</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Methods</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.Dataset.describe" title="deepecho.benchmark.Dataset.describe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">describe</span></code></a>()</p></td>
+<td><p>Describe this datasets.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="deepecho.benchmark.Dataset.VERSION">
+<code class="sig-name descname">VERSION</code><em class="property"> = '0.1.1'</em><a class="headerlink" href="#deepecho.benchmark.Dataset.VERSION" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="deepecho.benchmark.Dataset.describe">
+<code class="sig-name descname">describe</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/dataset.html#Dataset.describe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.Dataset.describe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Describe this datasets.</p>
+<dl class="simple">
+<dt>The output is a <code class="docutils literal notranslate"><span class="pre">pandas.Series</span></code> containing:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">entities</span></code>: Number of entities in the dataset.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">entity_colums</span></code>: Number of entity columns.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">context_colums</span></code>: Number of context columns.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_columns</span></code>: Number of data columns.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_sequence_len</span></code>: Maximum sequence length.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min_sequence_len</span></code>: Minimum sequence length.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>pandas.Series</p>
 </dd>
 </dl>
 </dd></dl>
 
+</dd></dl>
+
 <dl class="function">
 <dt id="deepecho.benchmark.get_datasets_list">
-<code class="sig-prename descclassname">deepecho.benchmark.</code><code class="sig-name descname">get_datasets_list</code><span class="sig-paren">(</span><em class="sig-param">extended=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/dataset.html#get_datasets_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.get_datasets_list" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get a list with the names of all the availale datasets.</p>
+<code class="sig-prename descclassname">deepecho.benchmark.</code><code class="sig-name descname">get_datasets_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/dataset.html#get_datasets_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.get_datasets_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list with the names and details of all the availale datasets.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="deepecho.benchmark.run_benchmark">
-<code class="sig-prename descclassname">deepecho.benchmark.</code><code class="sig-name descname">run_benchmark</code><span class="sig-paren">(</span><em class="sig-param">models=None</em>, <em class="sig-param">datasets=None</em>, <em class="sig-param">metrics=None</em>, <em class="sig-param">max_entities=None</em>, <em class="sig-param">distributed=False</em>, <em class="sig-param">output_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark.html#run_benchmark"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.run_benchmark" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">deepecho.benchmark.</code><code class="sig-name descname">run_benchmark</code><span class="sig-paren">(</span><em class="sig-param">models=None</em>, <em class="sig-param">datasets=None</em>, <em class="sig-param">metrics=None</em>, <em class="sig-param">max_entities=None</em>, <em class="sig-param">segment_size=None</em>, <em class="sig-param">distributed=False</em>, <em class="sig-param">output_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark.html#run_benchmark"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.run_benchmark" title="Permalink to this definition">¶</a></dt>
 <dd><p>Score the indicated models on the indicated datasets.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -298,6 +359,8 @@ If not passed, all the available datasets are used.</p></li>
 If not passed, all the available metrics are used.</p></li>
 <li><p><strong>max_entities</strong> (<em>int</em>) – Max number of entities to load per dataset.
 Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>segment_size</strong> (<em>int</em>) – If specified, cut each training sequence in several segments of the
+indicated size.</p></li>
 <li><p><strong>distributed</strong> (<em>bool</em>) – Whether to use dask for distributed computing.
 Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
 <li><p><strong>output_path</strong> (<em>str</em>) – If passed, store the results as a CSV in the given path.</p></li>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho.benchmark.metrics.classification &mdash; DeepEcho 0.1.0 documentation</title>
+  <title>deepecho.benchmark.metrics.classification &mdash; DeepEcho 0.1.1 documentation</title>
   
 
   
@@ -85,11 +85,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../readme.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../readme.html#installation">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/01_Getting_Started.html">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/01_Getting_Started.html#Load-the-dataset">Load the dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/01_Getting_Started.html#Explore-the-dataset">Explore the dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/01_Getting_Started.html#Context">Context</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/01_Getting_Started.html#Data-Types">Data Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/01_Getting_Started.html#DeepEcho-Overview">DeepEcho Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/01_Getting_Started.html#Load-the-demo-dataset">Load the demo dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorials/01_Getting_Started.html#Context">Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorials/01_Getting_Started.html#Data-Types">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -100,6 +102,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../api/deepecho.base.html">deepecho.base module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../api/deepecho.demo.html">deepecho.demo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../api/deepecho.par.html">deepecho.par module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/deepecho.sequences.html">deepecho.sequences module</a></li>
 </ul>
 </li>
 </ul>
@@ -125,7 +128,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id1">0.1.0 (2020-08-11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id1">0.1.1 (2020-08-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id2">0.1.0 (2020-08-11)</a></li>
 </ul>
 </li>
 </ul>
@@ -227,13 +231,13 @@
 
 <span class="k">def</span> <span class="nf">_build_x</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">entity_columns</span><span class="p">,</span> <span class="n">context_columns</span><span class="p">):</span>
     <span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">entity_id</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">entity_columns</span><span class="p">):</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">entity_columns</span> <span class="o">+</span> <span class="n">context_columns</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span>
-            <span class="n">c</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">.</span><span class="n">values</span>
-            <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">columns</span>
+    <span class="k">for</span> <span class="n">entity_id</span><span class="p">,</span> <span class="n">entity_data</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">entity_columns</span><span class="p">):</span>
+        <span class="n">entity_data</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">entity_columns</span> <span class="o">+</span> <span class="n">context_columns</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">entity_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span>
+            <span class="n">column</span><span class="p">:</span> <span class="n">entity_data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">entity_data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">.</span><span class="n">values</span>
+            <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">columns</span>
         <span class="p">},</span> <span class="n">name</span><span class="o">=</span><span class="n">entity_id</span><span class="p">)</span>
-        <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">entity_data</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">X</span>
 
@@ -311,7 +315,7 @@
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;This metric only works for datasets with single column context&#39;</span><span class="p">)</span>
 
     <span class="n">target_column</span> <span class="o">=</span> <span class="n">context_columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">real_x</span><span class="p">,</span> <span class="n">real_y</span> <span class="o">=</span> <span class="n">_build_xy</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">entity_columns</span><span class="p">,</span> <span class="n">target_column</span><span class="p">)</span>
+    <span class="n">real_x</span><span class="p">,</span> <span class="n">real_y</span> <span class="o">=</span> <span class="n">_build_xy</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">evaluation_data</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">entity_columns</span><span class="p">,</span> <span class="n">target_column</span><span class="p">)</span>
     <span class="n">synt_x</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_build_xy</span><span class="p">(</span><span class="n">synthetic</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">entity_columns</span><span class="p">,</span> <span class="n">target_column</span><span class="p">)</span>
 
     <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">real_x</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
@@ -326,7 +330,7 @@
 
 
 <span class="k">def</span> <span class="nf">_detection_score</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">synthetic</span><span class="p">,</span> <span class="n">scorer</span><span class="p">):</span>
-    <span class="n">real_x</span> <span class="o">=</span> <span class="n">_build_x</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">entity_columns</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">context_columns</span><span class="p">)</span>
+    <span class="n">real_x</span> <span class="o">=</span> <span class="n">_build_x</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">evaluation_data</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">entity_columns</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">context_columns</span><span class="p">)</span>
     <span class="n">synt_x</span> <span class="o">=</span> <span class="n">_build_x</span><span class="p">(</span><span class="n">synthetic</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">entity_columns</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">context_columns</span><span class="p">)</span>
 
     <span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">real_x</span><span class="p">,</span> <span class="n">synt_x</span><span class="p">])</span>

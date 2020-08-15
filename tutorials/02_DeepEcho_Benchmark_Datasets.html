@@ -1,0 +1,1442 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Benchmark Datasets &mdash; DeepEcho 0.1.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/deepecho.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0095B2" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/DeepEcho-Logo-White-Small.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_Getting_Started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="01_Getting_Started.html#DeepEcho-Overview">DeepEcho Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01_Getting_Started.html#Load-the-demo-dataset">Load the demo dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="01_Getting_Started.html#Context">Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="01_Getting_Started.html#Data-Types">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/deepecho.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/deepecho.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/deepecho.base.html">deepecho.base module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/deepecho.demo.html">deepecho.demo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/deepecho.par.html">deepecho.par module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/deepecho.sequences.html">deepecho.sequences module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#types-of-contributions">Types of Contributions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#report-bugs">Report Bugs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#fix-bugs">Fix Bugs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#implement-features">Implement Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#write-documentation">Write Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#submit-feedback">Submit Feedback</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#get-started">Get Started!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#pull-request-guidelines">Pull Request Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#unit-testing-guidelines">Unit Testing Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#tips">Tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#release-workflow">Release Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#release-candidates">Release Candidates</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../history.html">History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.1.1 (2020-08-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.1.0 (2020-08-11)</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DeepEcho</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Benchmark Datasets</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/k15z/DeepEcho/blob/master/docs/tutorials/02_DeepEcho_Benchmark_Datasets.ipynb" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    min-width: 5ex;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Benchmark-Datasets">
+<h1>Benchmark Datasets<a class="headerlink" href="#Benchmark-Datasets" title="Permalink to this headline">¶</a></h1>
+<p>In this guide we will explain the format in which the datasets used by the DeepEcho benchmarking framework are stored, how to use them to test a DeepEcho model and how to create a new dataset with your own data.</p>
+<div class="section" id="DeepEcho-Input-Format">
+<h2>DeepEcho Input Format<a class="headerlink" href="#DeepEcho-Input-Format" title="Permalink to this headline">¶</a></h2>
+<p>DeepEcho models work with time series datasets passed as <code class="docutils literal notranslate"><span class="pre">pandas.DataFrames</span></code> with the following format:</p>
+<div class="section" id="Entities-and-entity_id:">
+<h3>Entities and <code class="docutils literal notranslate"><span class="pre">entity_id</span></code>:<a class="headerlink" href="#Entities-and-entity_id:" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The datasets may contain one or more <code class="docutils literal notranslate"><span class="pre">entity_columns</span></code> that form an <code class="docutils literal notranslate"><span class="pre">entity_id</span></code> that relates groups of rows to external, abstract, <code class="docutils literal notranslate"><span class="pre">entities</span></code>.</p></li>
+<li><p>The rows associated with each <code class="docutils literal notranslate"><span class="pre">entity_id</span></code> form a time series sequence, where order of the rows matters and where inter-row dependencies exist.</p></li>
+<li><p>However, the rows of different <code class="docutils literal notranslate"><span class="pre">entities</span></code> are completely independent from each other.</p></li>
+<li><p>If a dataset does not contain <code class="docutils literal notranslate"><span class="pre">entity_columns</span></code>, the complete dataset is interpreted as a single timeseries sequence.</p></li>
+</ul>
+</div>
+<div class="section" id="Context">
+<h3>Context<a class="headerlink" href="#Context" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The datasets may have one or more <code class="docutils literal notranslate"><span class="pre">context_columns</span></code>. <code class="docutils literal notranslate"><span class="pre">context_columns</span></code> are expected to be constant within each <code class="docutils literal notranslate"><span class="pre">entity_id</span></code>, and they provide contextual information that conditions the properties of the associated timeseries.</p></li>
+<li><p>These <code class="docutils literal notranslate"><span class="pre">context_columns</span></code> will be used by DeepEcho models to learn how to generate timeseries with different properties based on the values of these columns.</p></li>
+</ul>
+</div>
+<div class="section" id="Sequence-Index">
+<h3>Sequence Index<a class="headerlink" href="#Sequence-Index" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p>The datasets may contain a <code class="docutils literal notranslate"><span class="pre">sequence_index</span></code> column which indicates the order in which the rows of each timeseries must be learned.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">sequence_index</span></code> column can be of any type that can be sorted, including numerical values such as integers or floats, or datetimes.</p></li>
+<li><p>If the <code class="docutils literal notranslate"><span class="pre">sequence_index</span></code> is not present on a dataset, the rows are assumed to be already given in the right order.</p>
+<blockquote>
+<div><p><strong>NOTE</strong>: It’s important to mention that the <code class="docutils literal notranslate"><span class="pre">sequence_index</span></code> column will be only used to sort the rows and then dropped before learning the data, which means that the synthetically generated sequences will not contain this column.</p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="Data-Columns">
+<h3>Data Columns<a class="headerlink" href="#Data-Columns" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The dataset will contain an arbitrary number of additional columns which can be <code class="docutils literal notranslate"><span class="pre">numerical</span></code> or <code class="docutils literal notranslate"><span class="pre">categorical</span></code>, and which will be what the models learn to replicate.</p></li>
+</ul>
+</div>
+<div class="section" id="DeepEcho-Benchmark-Dataset-Format">
+<h3>DeepEcho Benchmark Dataset Format<a class="headerlink" href="#DeepEcho-Benchmark-Dataset-Format" title="Permalink to this headline">¶</a></h3>
+<p>The DeepEcho Benchmark framework is prepared to load datasets containing the information explained above by reading from a folder that contains:</p>
+<ul class="simple">
+<li><p>A CSV file with the values from all the required columns, if they exist:</p>
+<ul>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">entity_columns</span></code></p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">context_columns</span></code></p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">sequence_index</span></code></p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">data_columns</span></code></p></li>
+</ul>
+</li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">metadata.json</span></code> with the <a href="#id1"><span class="problematic" id="id2">`SDV Metadata &lt;&gt;`__</span></a> format, with the following properties:</p>
+<ul>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">tables</span></code> entry which should contain at least one table in it.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">table</span></code> entry within the <code class="docutils literal notranslate"><span class="pre">tables</span></code> dictionary, which by default should be named exactly like the dataset (it can optionally have a different name).</p></li>
+<li><p>Within that <code class="docutils literal notranslate"><span class="pre">table</span></code>, there are the following additional entries:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">path</span></code>: Path to the CSV file, relative to the <code class="docutils literal notranslate"><span class="pre">metadata.json</span></code> file within the dataset folder. In most cases, this is just the CSV file name.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">entity_columns</span></code>: List containing the names of the <code class="docutils literal notranslate"><span class="pre">entity_columns</span></code>. It can be empty.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sequence_index</span></code>: Name of the column that acts as the <code class="docutils literal notranslate"><span class="pre">sequence_index</span></code>. It can be null, or not exist at all.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">deepecho_version</span></code>: Version of the DeepEcho dataset format.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Here is an example of what a very simple <code class="docutils literal notranslate"><span class="pre">metadata.json</span></code> file will look like for a dataset named <code class="docutils literal notranslate"><span class="pre">my_dataset</span></code> with the following columns:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: Column that acts as the <code class="docutils literal notranslate"><span class="pre">entity_id</span></code> for this dataset.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamp</span></code>: Column that acts as the <code class="docutils literal notranslate"><span class="pre">sequence_index</span></code> for this dataset.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float_value</span></code>: Float value that we want to replicate.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">categorical_value</span></code>: Categorical value that we want to replicate.</p></li>
+</ul>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;tables&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;my_dataset&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;my_dataset.csv&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;numerical&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;subtype&quot;</span><span class="p">:</span> <span class="s2">&quot;integer&quot;</span>
+                <span class="p">},</span>
+                <span class="nt">&quot;timestamp&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;datetime&quot;</span>
+                <span class="p">},</span>
+                <span class="nt">&quot;float_value&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;numerical&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;subtype&quot;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span>
+                <span class="p">},</span>
+                <span class="nt">&quot;categorical_value&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;categorical&quot;</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;entity_columns&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;id&quot;</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;sequence_index&quot;</span><span class="p">:</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;deepecho_version&quot;</span><span class="p">:</span> <span class="s2">&quot;0.1.1&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Generating-a-dataset-from-a-pandas.DataFrame">
+<h3>Generating a dataset from a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code><a class="headerlink" href="#Generating-a-dataset-from-a-pandas.DataFrame" title="Permalink to this headline">¶</a></h3>
+<p>The DeepEcho benchmark framework provides a utility function to facilitate the creation of new datasets from <code class="docutils literal notranslate"><span class="pre">pandas.DataFrames</span></code>.</p>
+<p>Let’s try to load the DeepEcho Demo data and store it as a valid dataset.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">deepecho.demo</span> <span class="kn">import</span> <span class="n">load_demo</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">load_demo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>The output of this call will be the <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> that you used if you followed the DeepEcho Quickstart:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>season</th>
+      <th>day_of_week</th>
+      <th>total_sales</th>
+      <th>nb_customers</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>winter</td>
+      <td>0</td>
+      <td>736.192546</td>
+      <td>43</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>winter</td>
+      <td>1</td>
+      <td>777.309789</td>
+      <td>45</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>winter</td>
+      <td>2</td>
+      <td>921.220142</td>
+      <td>54</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>winter</td>
+      <td>3</td>
+      <td>1085.689116</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>winter</td>
+      <td>4</td>
+      <td>1476.302930</td>
+      <td>86</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0</td>
+      <td>winter</td>
+      <td>5</td>
+      <td>2463.116775</td>
+      <td>144</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0</td>
+      <td>winter</td>
+      <td>6</td>
+      <td>1579.096039</td>
+      <td>92</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>1</td>
+      <td>summer</td>
+      <td>0</td>
+      <td>2750.937480</td>
+      <td>161</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1</td>
+      <td>summer</td>
+      <td>1</td>
+      <td>2853.730589</td>
+      <td>167</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1</td>
+      <td>summer</td>
+      <td>2</td>
+      <td>2915.406454</td>
+      <td>171</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>This table has 5 columns:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: Column that acts as <code class="docutils literal notranslate"><span class="pre">entity_id</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">season</span></code>: Column that acts as <code class="docutils literal notranslate"><span class="pre">context</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">day_of_week</span></code>, <code class="docutils literal notranslate"><span class="pre">total_sales</span></code> and <code class="docutils literal notranslate"><span class="pre">nb_customers</span></code>: Columns that we want to learn and replicate.</p></li>
+</ul>
+<p>In order to create a valid DeepEcho Dataset with this data, we can use the <code class="docutils literal notranslate"><span class="pre">deepecho.benchmark.dataset.make_dataset</span></code> function, passing the name of the dataset, the data, the <code class="docutils literal notranslate"><span class="pre">entity_columns</span></code> and the <code class="docutils literal notranslate"><span class="pre">sequence_index</span></code>, which in this case is <code class="docutils literal notranslate"><span class="pre">None</span></code>:</p>
+<p>Additionally, we can also pass a path to where we want the dataset to be created, which in this case we will pass as <code class="docutils literal notranslate"><span class="pre">'.'</span></code> (which is the default value) to create the dataset in this same folder.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">deepecho.benchmark.dataset</span> <span class="kn">import</span> <span class="n">make_dataset</span>
+
+<span class="n">make_dataset</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Demo&#39;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+    <span class="n">entity_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span>
+    <span class="n">sequence_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>   <span class="c1"># This is actually the default value.</span>
+    <span class="n">datasets_path</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span>    <span class="c1"># This is actually the default value.</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2020-08-14 15:42:58,507 - INFO - deepecho.benchmark.dataset - Dataset Demo generated in folder ./Demo
+</pre></div></div>
+</div>
+<p>As we can see, the a <code class="docutils literal notranslate"><span class="pre">Demo</span></code> folder has been generated in our current working directory, containing both the <code class="docutils literal notranslate"><span class="pre">Demo.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">metadata.json</span></code> files explained above:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>tree ./Demo
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-blue-intense-fg ansi-bold">./Demo</span>
+├── Demo.csv
+└── metadata.json
+
+0 directories, 2 files
+</pre></div></div>
+</div>
+<p>And we can see the contents of our <code class="docutils literal notranslate"><span class="pre">metadata.json</span></code> file:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>cat ./Demo/metadata.json
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{
+    &#34;tables&#34;: {
+        &#34;Demo&#34;: {
+            &#34;fields&#34;: {
+                &#34;nb_customers&#34;: {
+                    &#34;type&#34;: &#34;numerical&#34;,
+                    &#34;subtype&#34;: &#34;integer&#34;
+                },
+                &#34;total_sales&#34;: {
+                    &#34;type&#34;: &#34;numerical&#34;,
+                    &#34;subtype&#34;: &#34;float&#34;
+                },
+                &#34;day_of_week&#34;: {
+                    &#34;type&#34;: &#34;numerical&#34;,
+                    &#34;subtype&#34;: &#34;integer&#34;
+                },
+                &#34;season&#34;: {
+                    &#34;type&#34;: &#34;categorical&#34;
+                },
+                &#34;id&#34;: {
+                    &#34;type&#34;: &#34;numerical&#34;,
+                    &#34;subtype&#34;: &#34;integer&#34;
+                }
+            },
+            &#34;path&#34;: &#34;Demo.csv&#34;,
+            &#34;entity_columns&#34;: [
+                &#34;id&#34;
+            ],
+            &#34;sequence_index&#34;: null,
+            &#34;deepecho_version&#34;: &#34;0.1.1&#34;
+        }
+    }
+}
+</pre></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="The-Dataset-class">
+<h2>The <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> class<a class="headerlink" href="#The-Dataset-class" title="Permalink to this headline">¶</a></h2>
+<p>The DeepEcho benchmark framework also provides a class <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> to load and work with datasets stored in the format explained above.</p>
+<p>In order to load the dataset that we just created all we need to do is create an instance of the class <code class="docutils literal notranslate"><span class="pre">deepecho.benchmark.Dataset</span></code> passing the path to the datset folder.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">deepecho.benchmark</span> <span class="kn">import</span> <span class="n">Dataset</span>
+
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="s1">&#39;./Demo&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2020-08-14 15:43:02,035 - INFO - sdv.metadata - Loading table Demo
+</pre></div></div>
+</div>
+<p>This will load the data and its properties and have it ready to use by DeepEcho in the following attributes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: The table data, loaded and ready to be learned.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">entity_columns</span></code>: The names of the entity columns of this dataset.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">context_columns</span></code>: The names of the context columns of this dataset.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sequence_index</span></code>: The names of the sequence index of this dataset.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">model_columns</span></code>: The names of the columns that will be learned.</p></li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">dataset</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Dataset(&#39;Demo&#39;)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>nb_customers</th>
+      <th>total_sales</th>
+      <th>day_of_week</th>
+      <th>season</th>
+      <th>id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>43</td>
+      <td>736.192546</td>
+      <td>0</td>
+      <td>winter</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>45</td>
+      <td>777.309789</td>
+      <td>1</td>
+      <td>winter</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>54</td>
+      <td>921.220142</td>
+      <td>2</td>
+      <td>winter</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>63</td>
+      <td>1085.689116</td>
+      <td>3</td>
+      <td>winter</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>86</td>
+      <td>1476.302930</td>
+      <td>4</td>
+      <td>winter</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">dataset</span><span class="o">.</span><span class="n">entity_columns</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;id&#39;]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">dataset</span><span class="o">.</span><span class="n">context_columns</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;season&#39;]
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">dataset</span><span class="o">.</span><span class="n">sequence_index</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">dataset</span><span class="o">.</span><span class="n">model_columns</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;nb_customers&#39;, &#39;total_sales&#39;, &#39;day_of_week&#39;]
+</pre></div></div>
+</div>
+<p>Additionally, it provides a <code class="docutils literal notranslate"><span class="pre">describe</span></code> method that will return some basic information about the dataset characteristics.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">dataset</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+entities            100
+entity_columns        1
+context_columns       1
+model_columns         3
+max_sequence_len      7
+min_sequence_len      7
+dtype: int64
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Loading-the-DeepEcho-datasets">
+<h2>Loading the DeepEcho datasets<a class="headerlink" href="#Loading-the-DeepEcho-datasets" title="Permalink to this headline">¶</a></h2>
+<p>The DeepEcho benchmark framwork has a collection of datasets which are used to evaluate the DeepEcho models at every release.</p>
+<p>You can see the complete list of datasets and their properties by calling the <code class="docutils literal notranslate"><span class="pre">get_datasets_list</span></code> function:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">deepecho.benchmark</span> <span class="kn">import</span> <span class="n">get_datasets_list</span>
+
+<span class="n">get_datasets_list</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dataset</th>
+      <th>size_in_kb</th>
+      <th>entities</th>
+      <th>entity_columns</th>
+      <th>context_columns</th>
+      <th>data_columns</th>
+      <th>max_sequence_len</th>
+      <th>min_sequence_len</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Libras</td>
+      <td>108739</td>
+      <td>360</td>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+      <td>45</td>
+      <td>45</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>AtrialFibrillation</td>
+      <td>111019</td>
+      <td>30</td>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+      <td>640</td>
+      <td>640</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>BasicMotions</td>
+      <td>196062</td>
+      <td>80</td>
+      <td>1</td>
+      <td>1</td>
+      <td>8</td>
+      <td>100</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ERing</td>
+      <td>223502</td>
+      <td>300</td>
+      <td>1</td>
+      <td>1</td>
+      <td>6</td>
+      <td>65</td>
+      <td>65</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>RacketSports</td>
+      <td>235392</td>
+      <td>303</td>
+      <td>1</td>
+      <td>1</td>
+      <td>8</td>
+      <td>30</td>
+      <td>30</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>These datsets can easily be loaded using our <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> class by simply passing their name to it.</p>
+<p>Let’s load the first dataset from the list, <code class="docutils literal notranslate"><span class="pre">Libras</span></code>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">libras</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="s1">&#39;Libras&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2020-08-14 15:43:19,071 - INFO - deepecho.benchmark.dataset - Downloading dataset Libras from http://deepecho-data.s3.amazonaws.com/Libras_v0.1.1.zip
+2020-08-14 15:43:19,746 - INFO - sdv.metadata - Loading table Libras
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">libras</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+entities            360
+entity_columns        1
+context_columns       1
+model_columns         2
+max_sequence_len     45
+min_sequence_len     45
+dtype: int64
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">libras</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>e_id</th>
+      <th>dim_0</th>
+      <th>dim_1</th>
+      <th>ml_class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0.67892</td>
+      <td>0.27315</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>0.68085</td>
+      <td>0.27315</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>0.68085</td>
+      <td>0.27315</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>0.68085</td>
+      <td>0.27315</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>0.67892</td>
+      <td>0.26852</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+<div class="section" id="Using-a-Dataset-with-DeepEcho.">
+<h2>Using a <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> with <code class="docutils literal notranslate"><span class="pre">DeepEcho</span></code>.<a class="headerlink" href="#Using-a-Dataset-with-DeepEcho." title="Permalink to this headline">¶</a></h2>
+<p>Once we have loaded a <code class="docutils literal notranslate"><span class="pre">dataset</span></code> instance, we can use a DeepEcho model to learn it and generate synthetic versions of it.</p>
+<p>Let’s try to use the <code class="docutils literal notranslate"><span class="pre">PARModel</span></code> class on the <code class="docutils literal notranslate"><span class="pre">Libras</span></code> dataset that we just loaded.</p>
+<p>In order to do this, we will first need to create an instance of the model with the desired hyperparameters.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">deepecho</span> <span class="kn">import</span> <span class="n">PARModel</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">PARModel</span><span class="p">(</span><span class="n">epochs</span><span class="o">=</span><span class="mi">512</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2020-08-14 15:43:25,172 - INFO - deepecho.par - PARModel(epochs=512, max_seq_len=100, sample_size=1, cuda=&#39;cuda&#39;, verbose=True) instance created
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+PARModel(epochs=512, max_seq_len=100, sample_size=1, cuda=&#39;cuda&#39;, verbose=True) instance created
+</pre></div></div>
+</div>
+<p>And then we can fit the model by passing the <code class="docutils literal notranslate"><span class="pre">data</span></code>, the <code class="docutils literal notranslate"><span class="pre">entity_columns</span></code>, the <code class="docutils literal notranslate"><span class="pre">context_columns</span></code> and the <code class="docutils literal notranslate"><span class="pre">sequence_index</span></code> from our `dataset.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">libras</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+    <span class="n">entity_columns</span><span class="o">=</span><span class="n">libras</span><span class="o">.</span><span class="n">entity_columns</span><span class="p">,</span>
+    <span class="n">context_columns</span><span class="o">=</span><span class="n">libras</span><span class="o">.</span><span class="n">context_columns</span><span class="p">,</span>
+    <span class="n">sequence_index</span><span class="o">=</span><span class="n">libras</span><span class="o">.</span><span class="n">sequence_index</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Epoch 512 | Loss -0.06642289459705353: 100%|██████████| 512/512 [05:32&lt;00:00,  1.54it/s]
+</pre></div></div>
+</div>
+<p>And finally create new versions of our dataset:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sampled</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">num_entities</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|██████████| 5/5 [00:00&lt;00:00, 10.84it/s]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sampled</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>e_id</th>
+      <th>dim_0</th>
+      <th>dim_1</th>
+      <th>ml_class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.808394</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>0.452329</td>
+      <td>0.672987</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0</td>
+      <td>0.425964</td>
+      <td>0.579815</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.0</td>
+      <td>0.403935</td>
+      <td>0.528071</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.0</td>
+      <td>0.408310</td>
+      <td>0.499602</td>
+      <td>9</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Kevin Alex Zhang
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

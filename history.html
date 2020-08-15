@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>History &mdash; DeepEcho 0.1.0 documentation</title>
+  <title>History &mdash; DeepEcho 0.1.1 documentation</title>
   
 
   
@@ -86,11 +86,13 @@
 <li class="toctree-l1"><a class="reference internal" href="readme.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="readme.html#installation">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/01_Getting_Started.html">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/01_Getting_Started.html#Load-the-dataset">Load the dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/01_Getting_Started.html#Explore-the-dataset">Explore the dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/01_Getting_Started.html#Context">Context</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/01_Getting_Started.html#Data-Types">Data Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/01_Getting_Started.html#DeepEcho-Overview">DeepEcho Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/01_Getting_Started.html#Load-the-demo-dataset">Load the demo dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/01_Getting_Started.html#Context">Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/01_Getting_Started.html#Data-Types">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -101,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="api/deepecho.base.html">deepecho.base module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/deepecho.demo.html">deepecho.demo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/deepecho.par.html">deepecho.par module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/deepecho.sequences.html">deepecho.sequences module</a></li>
 </ul>
 </li>
 </ul>
@@ -126,7 +129,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">0.1.0 (2020-08-11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">0.1.1 (2020-08-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">0.1.0 (2020-08-11)</a></li>
 </ul>
 </li>
 </ul>
@@ -222,7 +226,20 @@
 <div class="section" id="history">
 <h1>History<a class="headerlink" href="#history" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2>0.1.0 (2020-08-11)<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>0.1.1 (2020-08-15)<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>This release includes a few new features to make DeepEcho work on more types of datasets
+as well as to making it easier to add new datasets to the benchmarking framework.</p>
+<ul class="simple">
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">segment_size</span></code> and <code class="docutils literal notranslate"><span class="pre">sequence_index</span></code> arguments to <code class="docutils literal notranslate"><span class="pre">fit</span></code> method.</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">sequence_length</span></code> as an optional argument to <code class="docutils literal notranslate"><span class="pre">sample</span></code> and <code class="docutils literal notranslate"><span class="pre">sample_sequence</span></code> methods.</p></li>
+<li><p>Update the Dataset storage format to add <code class="docutils literal notranslate"><span class="pre">sequence_index</span></code> and versioning.</p></li>
+<li><p>Separate the sequence assembling process in its own <code class="docutils literal notranslate"><span class="pre">deepecho.sequences</span></code> module.</p></li>
+<li><p>Add function <code class="docutils literal notranslate"><span class="pre">make_dataset</span></code> to create a dataset from a dataframe and just a few column names.</p></li>
+<li><p>Add notebook tutorial to show how to create a datasets and use them.</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>0.1.0 (2020-08-11)<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>First release.</p>
 <p>Included Features:</p>
 <ul class="simple">

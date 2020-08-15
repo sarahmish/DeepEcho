@@ -14,3 +14,4 @@ Submodules
    deepecho.base
    deepecho.demo
    deepecho.par
+   deepecho.sequences

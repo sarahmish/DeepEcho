@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho.par module &mdash; DeepEcho 0.1.0 documentation</title>
+  <title>deepecho.par module &mdash; DeepEcho 0.1.1 documentation</title>
   
 
   
@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Contributing" href="../contributing.html" />
+    <link rel="next" title="deepecho.sequences module" href="deepecho.sequences.html" />
     <link rel="prev" title="deepecho.demo module" href="deepecho.demo.html" /> 
 </head>
 
@@ -87,11 +87,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../readme.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../readme.html#installation">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/01_Getting_Started.html">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Load-the-dataset">Load the dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Explore-the-dataset">Explore the dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Context">Context</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Data-Types">Data Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#DeepEcho-Overview">DeepEcho Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Load-the-demo-dataset">Load the demo dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Context">Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Data-Types">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -102,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="deepecho.base.html">deepecho.base module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deepecho.demo.html">deepecho.demo module</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">deepecho.par module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deepecho.sequences.html">deepecho.sequences module</a></li>
 </ul>
 </li>
 </ul>
@@ -127,7 +130,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.1.0 (2020-08-11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.1.1 (2020-08-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.1.0 (2020-08-11)</a></li>
 </ul>
 </li>
 </ul>
@@ -302,7 +306,7 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.par.PARModel.fit_sequences" title="deepecho.par.PARModel.fit_sequences"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_sequences</span></code></a>(sequences, context_types, …)</p></td>
 <td><p>Fit a model to the specified sequences.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.par.PARModel.sample_sequence" title="deepecho.par.PARModel.sample_sequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample_sequence</span></code></a>(context)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.par.PARModel.sample_sequence" title="deepecho.par.PARModel.sample_sequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample_sequence</span></code></a>(context[, sequence_length])</p></td>
 <td><p>Sample a single sequence conditioned on context.</p></td>
 </tr>
 </tbody>
@@ -364,12 +368,17 @@ Each value in the list at data[i] must match the type specified by
 
 <dl class="method">
 <dt id="deepecho.par.PARModel.sample_sequence">
-<code class="sig-name descname">sample_sequence</code><span class="sig-paren">(</span><em class="sig-param">context</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/par.html#PARModel.sample_sequence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.par.PARModel.sample_sequence" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">sample_sequence</code><span class="sig-paren">(</span><em class="sig-param">context</em>, <em class="sig-param">sequence_length=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/par.html#PARModel.sample_sequence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.par.PARModel.sample_sequence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sample a single sequence conditioned on context.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>context</strong> (<em>list</em>) – The list of values to condition on. It must match
-the types specified in context_types when fit was called.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>context</strong> (<em>list</em>) – The list of values to condition on. It must match
+the types specified in context_types when fit was called.</p></li>
+<li><p><strong>sequence_length</strong> (<em>int</em><em> or </em><em>None</em>) – If given, force sequences to be of the indicated length.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code> (default), sample sequences of the same length
+as the original dataset.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A list of lists (data) corresponding to the types specified
@@ -423,7 +432,7 @@ in data_types when fit was called.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="deepecho.sequences.html" class="btn btn-neutral float-right" title="deepecho.sequences module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="deepecho.demo.html" class="btn btn-neutral float-left" title="deepecho.demo module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

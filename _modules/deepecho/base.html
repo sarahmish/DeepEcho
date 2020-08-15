@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho.base &mdash; DeepEcho 0.1.0 documentation</title>
+  <title>deepecho.base &mdash; DeepEcho 0.1.1 documentation</title>
   
 
   
@@ -85,11 +85,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../../readme.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../readme.html#installation">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/01_Getting_Started.html">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Load-the-dataset">Load the dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Explore-the-dataset">Explore the dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Context">Context</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Data-Types">Data Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#DeepEcho-Overview">DeepEcho Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Load-the-demo-dataset">Load the demo dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Context">Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Data-Types">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -100,6 +102,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../api/deepecho.base.html">deepecho.base module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api/deepecho.demo.html">deepecho.demo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api/deepecho.par.html">deepecho.par module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/deepecho.sequences.html">deepecho.sequences module</a></li>
 </ul>
 </li>
 </ul>
@@ -125,7 +128,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../history.html#id1">0.1.0 (2020-08-11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id1">0.1.1 (2020-08-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id2">0.1.0 (2020-08-11)</a></li>
 </ul>
 </li>
 </ul>
@@ -194,52 +198,23 @@
 <span></span><span class="sd">&quot;&quot;&quot;Base DeepEcho class.&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span> <span class="nn">tqdm</span>
+
+<span class="kn">from</span> <span class="nn">deepecho.sequences</span> <span class="kn">import</span> <span class="n">assemble_sequences</span>
 
 
 <div class="viewcode-block" id="DeepEcho"><a class="viewcode-back" href="../../api/deepecho.base.html#deepecho.DeepEcho">[docs]</a><span class="k">class</span> <span class="nc">DeepEcho</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;The base class for DeepEcho models.&quot;&quot;&quot;</span>
 
-    <span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="n">data_columns</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">entity_columns</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">context_columns</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_verbose</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">_output_columns</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_data_columns</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_entity_columns</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_context_columns</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">_context_values</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">_assemble</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-        <span class="n">sequences</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">context_types</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;categorical&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">context_columns</span><span class="p">)</span>
-        <span class="n">data_types</span> <span class="o">=</span> <span class="kc">None</span>
-
-        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">entity_columns</span><span class="p">):</span>
-            <span class="n">sequence</span> <span class="o">=</span> <span class="p">{}</span>
-            <span class="n">group</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">entity_columns</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-            <span class="n">sequence</span><span class="p">[</span><span class="s1">&#39;context&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">context_columns</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-            <span class="n">group</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">context_columns</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-            <span class="n">sequence</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">data_columns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-                <span class="n">sequence</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">group</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
-
-            <span class="n">data_types</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-                <span class="n">dtype</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span>
-                <span class="n">kind</span> <span class="o">=</span> <span class="n">dtype</span><span class="o">.</span><span class="n">kind</span>
-                <span class="k">if</span> <span class="n">kind</span> <span class="ow">in</span> <span class="s1">&#39;fiu&#39;</span><span class="p">:</span>
-                    <span class="n">data_types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;continuous&#39;</span><span class="p">)</span>
-                <span class="k">elif</span> <span class="n">kind</span> <span class="ow">in</span> <span class="s1">&#39;OSU&#39;</span><span class="p">:</span>
-                    <span class="n">data_types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;categorical&#39;</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Unknown type: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dtype</span><span class="p">))</span>
-
-            <span class="n">sequences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">sequences</span><span class="p">,</span> <span class="n">context_types</span><span class="p">,</span> <span class="n">data_types</span>
-
-<div class="viewcode-block" id="DeepEcho.validate"><a class="viewcode-back" href="../../api/deepecho.base.html#deepecho.DeepEcho.validate">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">context_types</span><span class="p">,</span> <span class="n">data_types</span><span class="p">):</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">context_types</span><span class="p">,</span> <span class="n">data_types</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Validate the model input.</span>
 
 <span class="sd">        Args:</span>
@@ -258,7 +233,7 @@
             <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">sequence</span><span class="p">[</span><span class="s1">&#39;context&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">context_types</span><span class="p">)</span>
             <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">sequence</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_types</span><span class="p">)</span>
             <span class="n">lengths</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]]</span>
-            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">lengths</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span></div>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">lengths</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span>
 
 <div class="viewcode-block" id="DeepEcho.fit_sequences"><a class="viewcode-back" href="../../api/deepecho.base.html#deepecho.DeepEcho.fit_sequences">[docs]</a>    <span class="k">def</span> <span class="nf">fit_sequences</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequences</span><span class="p">,</span> <span class="n">context_types</span><span class="p">,</span> <span class="n">data_types</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fit a model to the specified sequences.</span>
@@ -298,7 +273,31 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="DeepEcho.fit"><a class="viewcode-back" href="../../api/deepecho.base.html#deepecho.DeepEcho.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">entity_columns</span><span class="p">,</span> <span class="n">context_columns</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data_types</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_get_data_types</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">data_types</span><span class="p">,</span> <span class="n">columns</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Analyze the data and tell the data type of each column.&quot;&quot;&quot;</span>
+        <span class="n">dtypes_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">data_types</span> <span class="o">=</span> <span class="n">data_types</span> <span class="ow">or</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">data_types</span><span class="p">:</span>
+                <span class="n">dtypes_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data_types</span><span class="p">[</span><span class="n">column</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">dtype</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span>
+                <span class="n">kind</span> <span class="o">=</span> <span class="n">dtype</span><span class="o">.</span><span class="n">kind</span>
+                <span class="k">if</span> <span class="n">kind</span> <span class="ow">in</span> <span class="s1">&#39;fiud&#39;</span><span class="p">:</span>
+                    <span class="n">dtypes_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;continuous&#39;</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">kind</span> <span class="ow">in</span> <span class="s1">&#39;OSUb&#39;</span><span class="p">:</span>
+                    <span class="n">dtypes_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;categorical&#39;</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span><span class="p">:</span>
+                    <span class="n">dtypes_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;datetime&#39;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">error</span> <span class="o">=</span> <span class="s1">&#39;Unsupported data_type for column </span><span class="si">{}</span><span class="s1">: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">column</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">dtypes_list</span>
+
+<div class="viewcode-block" id="DeepEcho.fit"><a class="viewcode-back" href="../../api/deepecho.base.html#deepecho.DeepEcho.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">entity_columns</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">context_columns</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">data_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">segment_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sequence_index</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fit the model to a dataframe containing time series data.</span>
 
 <span class="sd">        Args:</span>
@@ -314,34 +313,71 @@
 <span class="sd">                group/entity. These columns will be provided at sampling time</span>
 <span class="sd">                (i.e. the samples will be conditioned on the context variables).</span>
 <span class="sd">            data_types (dict[str, str]):</span>
-<span class="sd">                Dictinary indicating the data types of each column.</span>
+<span class="sd">                Dictinary indicating the data types of each column, which can be</span>
+<span class="sd">                ``categorical``, ``continuous`` or ``datetime``.</span>
+<span class="sd">            segment_size (int, pd.Timedelta or str):</span>
+<span class="sd">                If specified, cut each training sequence in several segments of the</span>
+<span class="sd">                indicated size. The size can either can passed as an integer value,</span>
+<span class="sd">                which will interpreted as the number of data points to put on each</span>
+<span class="sd">                segment, or as a pd.Timedelta (or equivalent str representation),</span>
+<span class="sd">                which will be interpreted as the segment length in time. Timedelta</span>
+<span class="sd">                segment sizes can only be used with sequence indexes of type datetime.</span>
+<span class="sd">            sequence_index (str):</span>
+<span class="sd">                Name of the column that acts as the order index of each sequence.</span>
+<span class="sd">                The sequence index column can be of any type that can be sorted,</span>
+<span class="sd">                such as integer values or datetimes.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">entity_columns</span> <span class="o">=</span> <span class="n">entity_columns</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">context_columns</span> <span class="o">=</span> <span class="n">context_columns</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">entity_columns</span> <span class="ow">and</span> <span class="n">segment_size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;If the data has no `entity_columns`, `segment_size` must be given.&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">segment_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">segment_size</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">sequence_index</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                    <span class="s1">&#39;`segment_size` must be of type `int` if &#39;</span>
+                    <span class="s1">&#39;no `sequence_index` is given.&#39;</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">sequence_index</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">kind</span> <span class="o">!=</span> <span class="s1">&#39;M&#39;</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                    <span class="s1">&#39;`segment_size` must be of type `int` if &#39;</span>
+                    <span class="s1">&#39;`sequence_index` is not a `datetime` column.&#39;</span>
+                <span class="p">)</span>
 
-        <span class="c1"># Convert to sequences</span>
-        <span class="n">sequences</span><span class="p">,</span> <span class="n">_ctypes</span><span class="p">,</span> <span class="n">_dtypes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_assemble</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">data_types</span><span class="p">:</span>
-            <span class="n">context_types</span> <span class="o">=</span> <span class="p">[</span><span class="n">data_types</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">context_columns</span><span class="p">]</span>
-            <span class="n">data_types</span> <span class="o">=</span> <span class="p">[</span><span class="n">data_types</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_columns</span><span class="p">]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">context_types</span> <span class="o">=</span> <span class="n">_ctypes</span>
-            <span class="n">data_types</span> <span class="o">=</span> <span class="n">_dtypes</span>
+            <span class="n">segment_size</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="n">segment_size</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_output_columns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_entity_columns</span> <span class="o">=</span> <span class="n">entity_columns</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_context_columns</span> <span class="o">=</span> <span class="n">context_columns</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_columns</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">column</span>
+            <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span>
+            <span class="k">if</span> <span class="n">column</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_entity_columns</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_context_columns</span>
+        <span class="p">]</span>
+        <span class="k">if</span> <span class="n">sequence_index</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_output_columns</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">sequence_index</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data_columns</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">sequence_index</span><span class="p">)</span>
+
+        <span class="n">data_types</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_data_types</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">data_types</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_columns</span><span class="p">)</span>
+        <span class="n">context_types</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_data_types</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">data_types</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_context_columns</span><span class="p">)</span>
+        <span class="n">sequences</span> <span class="o">=</span> <span class="n">assemble_sequences</span><span class="p">(</span>
+            <span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_entity_columns</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_context_columns</span><span class="p">,</span> <span class="n">segment_size</span><span class="p">,</span> <span class="n">sequence_index</span><span class="p">)</span>
 
         <span class="c1"># Validate and fit</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">context_types</span><span class="p">,</span> <span class="n">data_types</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_validate</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">context_types</span><span class="p">,</span> <span class="n">data_types</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fit_sequences</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">context_types</span><span class="p">,</span> <span class="n">data_types</span><span class="p">)</span>
 
         <span class="c1"># Store context values</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_context_values</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">context_columns</span><span class="p">]</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_context_values</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_context_columns</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="DeepEcho.sample_sequence"><a class="viewcode-back" href="../../api/deepecho.base.html#deepecho.DeepEcho.sample_sequence">[docs]</a>    <span class="k">def</span> <span class="nf">sample_sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+<div class="viewcode-block" id="DeepEcho.sample_sequence"><a class="viewcode-back" href="../../api/deepecho.base.html#deepecho.DeepEcho.sample_sequence">[docs]</a>    <span class="k">def</span> <span class="nf">sample_sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">sequence_length</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sample a single sequence conditioned on context.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            context (list):</span>
 <span class="sd">                The list of values to condition on. It must match</span>
 <span class="sd">                the types specified in context_types when fit was called.</span>
+<span class="sd">            sequence_length (int or None):</span>
+<span class="sd">                If given, force sequences to be of the indicated length.</span>
+<span class="sd">                If ``None`` (default), sample sequences of the same length</span>
+<span class="sd">                as the original dataset.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            list[list]:</span>
@@ -350,7 +386,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="DeepEcho.sample"><a class="viewcode-back" href="../../api/deepecho.base.html#deepecho.DeepEcho.sample">[docs]</a>    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_entities</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="DeepEcho.sample"><a class="viewcode-back" href="../../api/deepecho.base.html#deepecho.DeepEcho.sample">[docs]</a>    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_entities</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sequence_length</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sample a dataframe containing time series data.</span>
 
 <span class="sd">        Args:</span>
@@ -358,6 +394,10 @@
 <span class="sd">                The number of entities to sample.</span>
 <span class="sd">            context (pd.DataFrame):</span>
 <span class="sd">                Context values to use when sampling.</span>
+<span class="sd">            sequence_length (int or None):</span>
+<span class="sd">                If given, force sequences to be of the indicated length.</span>
+<span class="sd">                If ``None`` (default), sample sequences of the same length</span>
+<span class="sd">                as the original dataset.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            pd.DataFrame:</span>
@@ -367,8 +407,6 @@
 <span class="sd">                columns containing the time series comes from the conditional</span>
 <span class="sd">                time series model.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">columns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">entity_columns</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">context_columns</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_columns</span>
-
         <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">num_entities</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Either context or num_entities must be not None&#39;</span><span class="p">)</span>
@@ -380,32 +418,36 @@
             <span class="n">num_entities</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
             <span class="n">context</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
-        <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">entity_columns</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_entity_columns</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">column</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">context</span><span class="p">:</span>
                 <span class="n">context</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_entities</span><span class="p">)</span>
 
         <span class="c1"># Set the entity_columns as index to properly iterate over them</span>
-        <span class="n">context</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">entity_columns</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_entity_columns</span><span class="p">:</span>
+            <span class="n">context</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_entity_columns</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-            <span class="n">iterator</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">iterrows</span><span class="p">(),</span> <span class="n">total</span><span class="o">=</span><span class="n">num_entities</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_verbose</span><span class="p">:</span>
+            <span class="n">iterator</span> <span class="o">=</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">iterrows</span><span class="p">(),</span> <span class="n">total</span><span class="o">=</span><span class="n">num_entities</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">iterator</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()</span>
 
-        <span class="n">groups</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">entity_values</span><span class="p">,</span> <span class="n">context_values</span> <span class="ow">in</span> <span class="n">iterator</span><span class="p">:</span>
             <span class="n">context_values</span> <span class="o">=</span> <span class="n">context_values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-            <span class="n">sequence</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_sequence</span><span class="p">(</span><span class="n">context_values</span><span class="p">)</span>
+            <span class="n">sequence</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_sequence</span><span class="p">(</span><span class="n">context_values</span><span class="p">,</span> <span class="n">sequence_length</span><span class="p">)</span>
 
             <span class="c1"># Reformat as a DataFrame</span>
-            <span class="n">group</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_columns</span><span class="p">,</span> <span class="n">sequence</span><span class="p">)),</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
-            <span class="n">group</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">entity_columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">entity_values</span>
-            <span class="k">for</span> <span class="n">column</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">context_columns</span><span class="p">,</span> <span class="n">context_values</span><span class="p">):</span>
+            <span class="n">group</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+                <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_columns</span><span class="p">,</span> <span class="n">sequence</span><span class="p">)),</span>
+                <span class="n">columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_columns</span>
+            <span class="p">)</span>
+            <span class="n">group</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_entity_columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">entity_values</span>
+            <span class="k">for</span> <span class="n">column</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_context_columns</span><span class="p">,</span> <span class="n">context_values</span><span class="p">):</span>
                 <span class="n">group</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
 
-            <span class="n">groups</span> <span class="o">=</span> <span class="n">groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">groups</span></div></div>
+        <span class="k">return</span> <span class="n">output</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_output_columns</span><span class="p">]</span></div></div>
 </pre></div>
 
            </div>

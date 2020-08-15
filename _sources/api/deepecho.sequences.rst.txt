@@ -1,0 +1,7 @@
+deepecho.sequences module
+=========================
+
+.. automodule:: deepecho.sequences
+   :members:
+   :undoc-members:
+   :show-inheritance:

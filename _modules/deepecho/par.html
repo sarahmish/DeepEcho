@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho.par &mdash; DeepEcho 0.1.0 documentation</title>
+  <title>deepecho.par &mdash; DeepEcho 0.1.1 documentation</title>
   
 
   
@@ -85,11 +85,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../../readme.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../readme.html#installation">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/01_Getting_Started.html">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Load-the-dataset">Load the dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Explore-the-dataset">Explore the dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Context">Context</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Data-Types">Data Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#DeepEcho-Overview">DeepEcho Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Load-the-demo-dataset">Load the demo dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Context">Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Data-Types">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -100,6 +102,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../api/deepecho.base.html">deepecho.base module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api/deepecho.demo.html">deepecho.demo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api/deepecho.par.html">deepecho.par module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/deepecho.sequences.html">deepecho.sequences module</a></li>
 </ul>
 </li>
 </ul>
@@ -125,7 +128,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../history.html#id1">0.1.0 (2020-08-11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id1">0.1.1 (2020-08-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id2">0.1.0 (2020-08-11)</a></li>
 </ul>
 </li>
 </ul>
@@ -365,6 +369,7 @@
         <span class="n">contexts</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">context_types</span><span class="p">)):</span>
             <span class="n">contexts</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">sequence</span><span class="p">[</span><span class="s1">&#39;context&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">sequences</span><span class="p">])</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">_ctx_map</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ctx_dims</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_idx_map</span><span class="p">(</span><span class="n">contexts</span><span class="p">,</span> <span class="n">context_types</span><span class="p">)</span>
 
         <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
@@ -488,8 +493,6 @@
 <span class="sd">                Each value in the list at data[i] must match the type specified by</span>
 <span class="sd">                `data_types[i]`. The valid types are the same as for `context_types`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">context_types</span><span class="p">,</span> <span class="n">data_types</span><span class="p">)</span>
-
         <span class="n">X</span><span class="p">,</span> <span class="n">C</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_build</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">context_types</span><span class="p">,</span> <span class="n">data_types</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">sequences</span><span class="p">:</span>
@@ -516,7 +519,7 @@
             <span class="n">loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_loss</span><span class="p">(</span><span class="n">X_padded</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="p">:,</span> <span class="p">:],</span> <span class="n">Y_padded</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:],</span> <span class="n">seq_len</span><span class="p">)</span>
             <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                <span class="n">iterator</span><span class="o">.</span><span class="n">set_description</span><span class="p">(</span><span class="s1">&#39;Epoch </span><span class="si">{}</span><span class="s1"> | Loss </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()))</span>
+                <span class="n">iterator</span><span class="o">.</span><span class="n">set_description</span><span class="p">(</span><span class="s1">&#39;Epoch </span><span class="si">{}</span><span class="s1"> | Loss </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()))</span>
 
             <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span></div>
 
@@ -636,22 +639,29 @@
 
         <span class="k">return</span> <span class="n">data</span>
 
-<div class="viewcode-block" id="PARModel.sample_sequence"><a class="viewcode-back" href="../../api/deepecho.par.html#deepecho.PARModel.sample_sequence">[docs]</a>    <span class="k">def</span> <span class="nf">sample_sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+<div class="viewcode-block" id="PARModel.sample_sequence"><a class="viewcode-back" href="../../api/deepecho.par.html#deepecho.PARModel.sample_sequence">[docs]</a>    <span class="k">def</span> <span class="nf">sample_sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">sequence_length</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sample a single sequence conditioned on context.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            context (list):</span>
 <span class="sd">                The list of values to condition on. It must match</span>
 <span class="sd">                the types specified in context_types when fit was called.</span>
+<span class="sd">            sequence_length (int or None):</span>
+<span class="sd">                If given, force sequences to be of the indicated length.</span>
+<span class="sd">                If ``None`` (default), sample sequences of the same length</span>
+<span class="sd">                as the original dataset.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            list[list]:</span>
 <span class="sd">                A list of lists (data) corresponding to the types specified</span>
 <span class="sd">                in data_types when fit was called.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">seq_len</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_seq_len</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fixed_length</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sequence_length</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">seq_len</span> <span class="o">=</span> <span class="n">sequence_length</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fixed_length</span><span class="p">:</span>
             <span class="n">seq_len</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fixed_length</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">seq_len</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_seq_len</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ctx_dims</span><span class="p">:</span>
             <span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_context_to_tensor</span><span class="p">(</span><span class="n">context</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -718,7 +728,7 @@
                 <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">next_x</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
                 <span class="n">log_likelihood</span> <span class="o">+=</span> <span class="n">ll</span>
                 <span class="k">if</span> <span class="n">next_x</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_map</span><span class="p">[</span><span class="s1">&#39;&lt;TOKEN&gt;&#39;</span><span class="p">][</span><span class="s1">&#39;indices&#39;</span><span class="p">][</span><span class="s1">&#39;&lt;END&gt;&#39;</span><span class="p">]]</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fixed_length</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">sequence_length</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fixed_length</span><span class="p">:</span>
                         <span class="k">break</span>  <span class="c1"># received end token</span>
 
                     <span class="n">next_x</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_map</span><span class="p">[</span><span class="s1">&#39;&lt;TOKEN&gt;&#39;</span><span class="p">][</span><span class="s1">&#39;indices&#39;</span><span class="p">][</span><span class="s1">&#39;&lt;BODY&gt;&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="mf">1.0</span>

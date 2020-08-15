@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; DeepEcho 0.1.0 documentation</title>
+  <title>Index &mdash; DeepEcho 0.1.1 documentation</title>
   
 
   
@@ -86,11 +86,13 @@
 <li class="toctree-l1"><a class="reference internal" href="readme.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="readme.html#installation">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/01_Getting_Started.html">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/01_Getting_Started.html#Load-the-dataset">Load the dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/01_Getting_Started.html#Explore-the-dataset">Explore the dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/01_Getting_Started.html#Context">Context</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/01_Getting_Started.html#Data-Types">Data Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/01_Getting_Started.html#DeepEcho-Overview">DeepEcho Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/01_Getting_Started.html#Load-the-demo-dataset">Load the demo dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/01_Getting_Started.html#Context">Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/01_Getting_Started.html#Data-Types">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -101,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="api/deepecho.base.html">deepecho.base module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/deepecho.demo.html">deepecho.demo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/deepecho.par.html">deepecho.par module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/deepecho.sequences.html">deepecho.sequences module</a></li>
 </ul>
 </li>
 </ul>
@@ -126,7 +129,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="history.html#id1">0.1.0 (2020-08-11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id1">0.1.1 (2020-08-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id2">0.1.0 (2020-08-11)</a></li>
 </ul>
 </li>
 </ul>
@@ -199,7 +203,8 @@
 <h1 id="index">Index</h1>
 
 <div class="genindex-jumpbox">
- <a href="#C"><strong>C</strong></a>
+ <a href="#A"><strong>A</strong></a>
+ | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
@@ -213,6 +218,14 @@
  | <a href="#V"><strong>V</strong></a>
  
 </div>
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/deepecho.sequences.html#deepecho.sequences.assemble_sequences">assemble_sequences() (in module deepecho.sequences)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -223,25 +236,11 @@
 </li>
       </ul></li>
   </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/deepecho.base.html#deepecho.base.DeepEcho.context_columns">context_columns (deepecho.base.DeepEcho attribute)</a>
-
-      <ul>
-        <li><a href="api/deepecho.html#deepecho.DeepEcho.context_columns">(deepecho.DeepEcho attribute)</a>
-</li>
-      </ul></li>
-  </ul></td>
 </tr></table>
 
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/deepecho.base.html#deepecho.base.DeepEcho.data_columns">data_columns (deepecho.base.DeepEcho attribute)</a>
-
-      <ul>
-        <li><a href="api/deepecho.html#deepecho.DeepEcho.data_columns">(deepecho.DeepEcho attribute)</a>
-</li>
-      </ul></li>
       <li><a href="api/deepecho.benchmark.html#deepecho.benchmark.Dataset">Dataset (class in deepecho.benchmark)</a>
 
       <ul>
@@ -258,14 +257,14 @@
 </li>
       <li><a href="api/deepecho.base.html#module-deepecho.base">deepecho.base (module)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/deepecho.benchmark.html#module-deepecho.benchmark">deepecho.benchmark (module)</a>
 </li>
       <li><a href="api/deepecho.benchmark.dataset.html#module-deepecho.benchmark.dataset">deepecho.benchmark.dataset (module)</a>
 </li>
       <li><a href="api/deepecho.benchmark.evaluation.html#module-deepecho.benchmark.evaluation">deepecho.benchmark.evaluation (module)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/deepecho.benchmark.kubernetes.html#module-deepecho.benchmark.kubernetes">deepecho.benchmark.kubernetes (module)</a>
 </li>
       <li><a href="api/deepecho.benchmark.metrics.html#module-deepecho.benchmark.metrics">deepecho.benchmark.metrics (module)</a>
@@ -278,19 +277,19 @@
 </li>
       <li><a href="api/deepecho.par.html#module-deepecho.par">deepecho.par (module)</a>
 </li>
+      <li><a href="api/deepecho.sequences.html#module-deepecho.sequences">deepecho.sequences (module)</a>
+</li>
+      <li><a href="api/deepecho.benchmark.html#deepecho.benchmark.Dataset.describe">describe() (deepecho.benchmark.Dataset method)</a>
+
+      <ul>
+        <li><a href="api/deepecho.benchmark.dataset.html#deepecho.benchmark.dataset.Dataset.describe">(deepecho.benchmark.dataset.Dataset method)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/deepecho.base.html#deepecho.base.DeepEcho.entity_columns">entity_columns (deepecho.base.DeepEcho attribute)</a>
-
-      <ul>
-        <li><a href="api/deepecho.html#deepecho.DeepEcho.entity_columns">(deepecho.DeepEcho attribute)</a>
-</li>
-      </ul></li>
-  </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/deepecho.benchmark.evaluation.html#deepecho.benchmark.evaluation.evaluate_model_on_datasets">evaluate_model_on_datasets() (in module deepecho.benchmark.evaluation)</a>
 </li>
@@ -355,6 +354,10 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/deepecho.benchmark.kubernetes.html#deepecho.benchmark.kubernetes.main">main() (in module deepecho.benchmark.kubernetes)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/deepecho.benchmark.dataset.html#deepecho.benchmark.dataset.make_dataset">make_dataset() (in module deepecho.benchmark.dataset)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -422,6 +425,12 @@
         <li><a href="api/deepecho.benchmark.metrics.sdmetrics.html#deepecho.benchmark.metrics.sdmetrics.sdmetrics_score">(in module deepecho.benchmark.metrics.sdmetrics)</a>
 </li>
       </ul></li>
+      <li><a href="api/deepecho.sequences.html#deepecho.sequences.segment_by_size">segment_by_size() (in module deepecho.sequences)</a>
+</li>
+      <li><a href="api/deepecho.sequences.html#deepecho.sequences.segment_by_time">segment_by_time() (in module deepecho.sequences)</a>
+</li>
+      <li><a href="api/deepecho.sequences.html#deepecho.sequences.segment_sequence">segment_sequence() (in module deepecho.sequences)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -436,18 +445,10 @@
 <h2 id="V">V</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/deepecho.base.html#deepecho.base.DeepEcho.validate">validate() (deepecho.base.DeepEcho static method)</a>
+      <li><a href="api/deepecho.benchmark.html#deepecho.benchmark.Dataset.VERSION">VERSION (deepecho.benchmark.Dataset attribute)</a>
 
       <ul>
-        <li><a href="api/deepecho.html#deepecho.DeepEcho.validate">(deepecho.DeepEcho static method)</a>
-</li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/deepecho.base.html#deepecho.base.DeepEcho.verbose">verbose (deepecho.base.DeepEcho attribute)</a>
-
-      <ul>
-        <li><a href="api/deepecho.html#deepecho.DeepEcho.verbose">(deepecho.DeepEcho attribute)</a>
+        <li><a href="api/deepecho.benchmark.dataset.html#deepecho.benchmark.dataset.Dataset.VERSION">(deepecho.benchmark.dataset.Dataset attribute)</a>
 </li>
       </ul></li>
   </ul></td>
