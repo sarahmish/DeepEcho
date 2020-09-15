@@ -1,0 +1,16 @@
+deepecho.models package
+=======================
+
+.. automodule:: deepecho.models
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+
+   deepecho.models.base
+   deepecho.models.basic_gan
+   deepecho.models.par

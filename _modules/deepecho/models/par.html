@@ -8,36 +8,36 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho.par &mdash; DeepEcho 0.1.1 documentation</title>
+  <title>deepecho.models.par &mdash; DeepEcho 0.1.2 documentation</title>
   
 
   
   
-    <link rel="shortcut icon" href="../../_static/deepecho.ico"/>
+    <link rel="shortcut icon" href="../../../_static/deepecho.ico"/>
   
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
   
     
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -51,12 +51,12 @@
           
 
           
-            <a href="../../index.html">
+            <a href="../../../index.html">
           
 
           
             
-            <img src="../../_static/DeepEcho-Logo-White-Small.png" class="logo" alt="Logo"/>
+            <img src="../../../_static/DeepEcho-Logo-White-Small.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -64,7 +64,7 @@
 
           
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -82,14 +82,15 @@
             
             
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../readme.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../readme.html#installation">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../tutorials/01_Getting_Started.html">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#DeepEcho-Overview">DeepEcho Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Load-the-demo-dataset">Load the demo dataset</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Context">Context</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Data-Types">Data Types</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/01_Getting_Started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/01_Getting_Started.html#DeepEcho-Overview">DeepEcho Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/01_Getting_Started.html#Load-the-demo-dataset">Load the demo dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/01_Getting_Started.html#Context">Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/01_Getting_Started.html#Data-Types">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/01_Getting_Started.html#Sequence-Index">Sequence Index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
 </ul>
 </li>
 </ul>
@@ -97,39 +98,45 @@
 </ul>
 <p class="caption"><span class="caption-text">Resources</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../api/deepecho.html">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../api/deepecho.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../api/deepecho.base.html">deepecho.base module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/deepecho.demo.html">deepecho.demo module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/deepecho.par.html">deepecho.par module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/deepecho.sequences.html">deepecho.sequences module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/deepecho.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/deepecho.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/deepecho.models.html">deepecho.models package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/deepecho.models.html#submodules">Submodules</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#types-of-contributions">Types of Contributions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../contributing.html#report-bugs">Report Bugs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../contributing.html#fix-bugs">Fix Bugs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../contributing.html#implement-features">Implement Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../contributing.html#write-documentation">Write Documentation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../contributing.html#submit-feedback">Submit Feedback</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#get-started">Get Started!</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#pull-request-guidelines">Pull Request Guidelines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#unit-testing-guidelines">Unit Testing Guidelines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#tips">Tips</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#release-workflow">Release Workflow</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../contributing.html#release-candidates">Release Candidates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/deepecho.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/deepecho.demo.html">deepecho.demo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/deepecho.sequences.html">deepecho.sequences module</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Credits</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../history.html#id1">0.1.1 (2020-08-15)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../history.html#id2">0.1.0 (2020-08-11)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#types-of-contributions">Types of Contributions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#report-bugs">Report Bugs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#fix-bugs">Fix Bugs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#implement-features">Implement Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#write-documentation">Write Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#submit-feedback">Submit Feedback</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#get-started">Get Started!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#pull-request-guidelines">Pull Request Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#unit-testing-guidelines">Unit Testing Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#tips">Tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#release-workflow">Release Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#release-candidates">Release Candidates</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../history.html">History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id1">0.1.2 (2020-09-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id2">0.1.1 (2020-08-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id3">0.1.0 (2020-08-11)</a></li>
 </ul>
 </li>
 </ul>
@@ -146,7 +153,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">DeepEcho</a>
+          <a href="../../../index.html">DeepEcho</a>
         
       </nav>
 
@@ -175,11 +182,11 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../index.html">Module code</a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
         
-      <li>deepecho.par</li>
+      <li>deepecho.models.par</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -194,7 +201,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for deepecho.par</h1><div class="highlight"><pre>
+  <h1>Source code for deepecho.models.par</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Probabilistic autoregressive model.&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">logging</span>
@@ -203,12 +210,12 @@
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 
-<span class="kn">from</span> <span class="nn">deepecho.base</span> <span class="kn">import</span> <span class="n">DeepEcho</span>
+<span class="kn">from</span> <span class="nn">deepecho.models.base</span> <span class="kn">import</span> <span class="n">DeepEcho</span>
 
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="PARNet"><a class="viewcode-back" href="../../api/deepecho.par.html#deepecho.PARNet">[docs]</a><span class="k">class</span> <span class="nc">PARNet</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<div class="viewcode-block" id="PARNet"><a class="viewcode-back" href="../../../api/deepecho.models.par.html#deepecho.PARNet">[docs]</a><span class="k">class</span> <span class="nc">PARNet</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;PARModel ANN model.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_size</span><span class="p">,</span> <span class="n">context_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="o">=</span><span class="mi">32</span><span class="p">):</span>
@@ -218,7 +225,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">rnn</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">GRU</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">up</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">data_size</span><span class="p">)</span>
 
-<div class="viewcode-block" id="PARNet.forward"><a class="viewcode-back" href="../../api/deepecho.par.html#deepecho.PARNet.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+<div class="viewcode-block" id="PARNet.forward"><a class="viewcode-back" href="../../../api/deepecho.models.par.html#deepecho.PARNet.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Forward passing computation.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">rnn</span><span class="o">.</span><span class="n">PackedSequence</span><span class="p">):</span>
             <span class="n">x</span><span class="p">,</span> <span class="n">lengths</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">rnn</span><span class="o">.</span><span class="n">pad_packed_sequence</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -249,7 +256,7 @@
         <span class="k">return</span> <span class="n">x</span></div></div>
 
 
-<div class="viewcode-block" id="PARModel"><a class="viewcode-back" href="../../api/deepecho.par.html#deepecho.PARModel">[docs]</a><span class="k">class</span> <span class="nc">PARModel</span><span class="p">(</span><span class="n">DeepEcho</span><span class="p">):</span>
+<div class="viewcode-block" id="PARModel"><a class="viewcode-back" href="../../../api/deepecho.models.par.html#deepecho.PARModel">[docs]</a><span class="k">class</span> <span class="nc">PARModel</span><span class="p">(</span><span class="n">DeepEcho</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Probabilistic autoregressive model.</span>
 
 <span class="sd">    1. Analyze data types.</span>
@@ -287,6 +294,8 @@
 <span class="sd">            Whether to attempt to use cuda for GPU computation.</span>
 <span class="sd">            If this is False or CUDA is not available, CPU will be used.</span>
 <span class="sd">            Defaults to ``True``.</span>
+<span class="sd">        verbose (bool):</span>
+<span class="sd">            Whether to print progress to console or not.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">max_seq_len</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">sample_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cuda</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
@@ -457,7 +466,7 @@
 
         <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
 
-<div class="viewcode-block" id="PARModel.fit_sequences"><a class="viewcode-back" href="../../api/deepecho.par.html#deepecho.PARModel.fit_sequences">[docs]</a>    <span class="k">def</span> <span class="nf">fit_sequences</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequences</span><span class="p">,</span> <span class="n">context_types</span><span class="p">,</span> <span class="n">data_types</span><span class="p">):</span>
+<div class="viewcode-block" id="PARModel.fit_sequences"><a class="viewcode-back" href="../../../api/deepecho.models.par.html#deepecho.PARModel.fit_sequences">[docs]</a>    <span class="k">def</span> <span class="nf">fit_sequences</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequences</span><span class="p">,</span> <span class="n">context_types</span><span class="p">,</span> <span class="n">data_types</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fit a model to the specified sequences.</span>
 
 <span class="sd">        Args:</span>
@@ -639,7 +648,7 @@
 
         <span class="k">return</span> <span class="n">data</span>
 
-<div class="viewcode-block" id="PARModel.sample_sequence"><a class="viewcode-back" href="../../api/deepecho.par.html#deepecho.PARModel.sample_sequence">[docs]</a>    <span class="k">def</span> <span class="nf">sample_sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">sequence_length</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="PARModel.sample_sequence"><a class="viewcode-back" href="../../../api/deepecho.models.par.html#deepecho.PARModel.sample_sequence">[docs]</a>    <span class="k">def</span> <span class="nf">sample_sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">sequence_length</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sample a single sequence conditioned on context.</span>
 
 <span class="sd">        Args:</span>

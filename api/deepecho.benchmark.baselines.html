@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho.benchmark.evaluation module &mdash; DeepEcho 0.1.2 documentation</title>
+  <title>deepecho.benchmark.baselines module &mdash; DeepEcho 0.1.2 documentation</title>
   
 
   
@@ -184,14 +184,14 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>deepecho.benchmark.evaluation module</li>
+      <li>deepecho.benchmark.baselines module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/k15z/DeepEcho/blob/master/docs/api/deepecho.benchmark.evaluation.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/k15z/DeepEcho/blob/master/docs/api/deepecho.benchmark.baselines.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -229,9 +229,9 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="module-deepecho.benchmark.evaluation">
-<span id="deepecho-benchmark-evaluation-module"></span><h1>deepecho.benchmark.evaluation module<a class="headerlink" href="#module-deepecho.benchmark.evaluation" title="Permalink to this headline">¶</a></h1>
-<p>Top-level package for DeepEcho Benchmarking.</p>
+<div class="section" id="module-deepecho.benchmark.baselines">
+<span id="deepecho-benchmark-baselines-module"></span><h1>deepecho.benchmark.baselines module<a class="headerlink" href="#module-deepecho.benchmark.baselines" title="Permalink to this headline">¶</a></h1>
+<p>Dummy models used as baselines for the benchmarking.</p>
 <p><strong>Classes:</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -239,54 +239,100 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Dataset</span></code>(dataset[, table_name, max_entities, …])</p></td>
-<td><p>Dataset abstraction for benchmarking.</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeepEcho</span></code></p></td>
+<td><p>The base class for DeepEcho models.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">datetime</span></code>(year, month, day[, hour[, minute[, …)</p></td>
-<td><p>The year, month and day arguments are required.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.benchmark.baselines.RealDataBaseline" title="deepecho.benchmark.baselines.RealDataBaseline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RealDataBaseline</span></code></a></p></td>
+<td><p>Dummy model that always returns the real data seen during training.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.baselines.UniformBaseline" title="deepecho.benchmark.baselines.UniformBaseline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UniformBaseline</span></code></a></p></td>
+<td><p>Model that samples each variable using a uniform distribution.</p></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Functions:</strong></p>
+<dl class="class">
+<dt id="deepecho.benchmark.baselines.RealDataBaseline">
+<em class="property">class </em><code class="sig-prename descclassname">deepecho.benchmark.baselines.</code><code class="sig-name descname">RealDataBaseline</code><a class="reference internal" href="../_modules/deepecho/benchmark/baselines.html#RealDataBaseline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.baselines.RealDataBaseline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="deepecho.models.base.html#deepecho.models.base.DeepEcho" title="deepecho.models.base.DeepEcho"><code class="xref py py-class docutils literal notranslate"><span class="pre">deepecho.models.base.DeepEcho</span></code></a></p>
+<p>Dummy model that always returns the real data seen during training.</p>
+<p>This model ignores all the inputs and always returns the dataframe
+that it was given during training, independently on the amount
+of entities requested or the context values passed.</p>
+<p>This is used during the benchmarking to emulate a “perfect” model.</p>
+<p><strong>Methods:</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.evaluation.evaluate_model_on_datasets" title="deepecho.benchmark.evaluation.evaluate_model_on_datasets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">evaluate_model_on_datasets</span></code></a>(name, model, …)</p></td>
-<td><p>Evaluate the given model on a list of datasets.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.baselines.RealDataBaseline.fit" title="deepecho.benchmark.baselines.RealDataBaseline.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(data[, entity_columns, context_columns, …])</p></td>
+<td><p>Store the data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.benchmark.baselines.RealDataBaseline.sample" title="deepecho.benchmark.baselines.RealDataBaseline.sample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample</span></code></a>([num_entities, context, sequence_length])</p></td>
+<td><p>Return a copy of the stored data.</p></td>
 </tr>
 </tbody>
 </table>
-<dl class="function">
-<dt id="deepecho.benchmark.evaluation.evaluate_model_on_datasets">
-<code class="sig-prename descclassname">deepecho.benchmark.evaluation.</code><code class="sig-name descname">evaluate_model_on_datasets</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">model</em>, <em class="sig-param">datasets</em>, <em class="sig-param">metrics</em>, <em class="sig-param">max_entities=None</em>, <em class="sig-param">segment_size=None</em>, <em class="sig-param">distributed=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/evaluation.html#evaluate_model_on_datasets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.evaluation.evaluate_model_on_datasets" title="Permalink to this definition">¶</a></dt>
-<dd><p>Evaluate the given model on a list of datasets.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>model</strong> (<em>class</em>) – Class of the model to evaluate or tuple containing the model
-class and the keyword arguments to use to initialize it.</p></li>
-<li><p><strong>datasets</strong> (<em>list</em>) – List of datasets in which to evaluate the model.</p></li>
-<li><p><strong>metrics</strong> (<em>dict</em>) – Dict of metrics to use for the evaluation.</p></li>
-<li><p><strong>max_entities</strong> (<em>int</em>) – Max number of entities to load per dataset.
-Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
-<li><p><strong>segment_size</strong> (<em>int</em>) – If specified, cut each training sequence in several segments of the
-indicated size.</p></li>
-<li><p><strong>distributed</strong> (<em>bool</em>) – Whether to use dask for distributed computing.
-Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<dl class="method">
+<dt id="deepecho.benchmark.baselines.RealDataBaseline.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">entity_columns=None</em>, <em class="sig-param">context_columns=None</em>, <em class="sig-param">data_types=None</em>, <em class="sig-param">segment_size=None</em>, <em class="sig-param">sequence_index=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/baselines.html#RealDataBaseline.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.baselines.RealDataBaseline.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Store the data.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="deepecho.benchmark.baselines.RealDataBaseline.sample">
+<code class="sig-name descname">sample</code><span class="sig-paren">(</span><em class="sig-param">num_entities=None</em>, <em class="sig-param">context=None</em>, <em class="sig-param">sequence_length=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/baselines.html#RealDataBaseline.sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.baselines.RealDataBaseline.sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a copy of the stored data.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="deepecho.benchmark.baselines.UniformBaseline">
+<em class="property">class </em><code class="sig-prename descclassname">deepecho.benchmark.baselines.</code><code class="sig-name descname">UniformBaseline</code><a class="reference internal" href="../_modules/deepecho/benchmark/baselines.html#UniformBaseline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.baselines.UniformBaseline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="deepecho.models.base.html#deepecho.models.base.DeepEcho" title="deepecho.models.base.DeepEcho"><code class="xref py py-class docutils literal notranslate"><span class="pre">deepecho.models.base.DeepEcho</span></code></a></p>
+<p>Model that samples each variable using a uniform distribution.</p>
+<dl class="simple">
+<dt>This model learns a few simple properties from the input data:</dt><dd><ul class="simple">
+<li><p>The average sequence length</p></li>
+<li><p>The list of unique values in the categorical variables</p></li>
+<li><p>The min and max values in the numerical variables</p></li>
+<li><p>Whether each numerical variable is integer or float</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Table containing the model name, the dataset name the scores
-obtained and the time elapsed during each stage for each one
-of the given datasets.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>pandas.DataFrame</p>
-</dd>
 </dl>
+<p>Then, when sampling, it generates it variable independently using
+a uniform distribution with the learned min/max, choices and type
+properties.</p>
+<p>This model exists as a lower bound, purely random baseline.</p>
+<p><strong>Methods:</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.baselines.UniformBaseline.fit_sequences" title="deepecho.benchmark.baselines.UniformBaseline.fit_sequences"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_sequences</span></code></a>(sequences, context_types, …)</p></td>
+<td><p>Learn basic properties from the data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.benchmark.baselines.UniformBaseline.sample_sequence" title="deepecho.benchmark.baselines.UniformBaseline.sample_sequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample_sequence</span></code></a>(context[, sequence_length])</p></td>
+<td><p>Sample a sequence using a uniform distribution for each variable.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="deepecho.benchmark.baselines.UniformBaseline.fit_sequences">
+<code class="sig-name descname">fit_sequences</code><span class="sig-paren">(</span><em class="sig-param">sequences</em>, <em class="sig-param">context_types</em>, <em class="sig-param">data_types</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/baselines.html#UniformBaseline.fit_sequences"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.baselines.UniformBaseline.fit_sequences" title="Permalink to this definition">¶</a></dt>
+<dd><p>Learn basic properties from the data.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="deepecho.benchmark.baselines.UniformBaseline.sample_sequence">
+<code class="sig-name descname">sample_sequence</code><span class="sig-paren">(</span><em class="sig-param">context</em>, <em class="sig-param">sequence_length=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/benchmark/baselines.html#UniformBaseline.sample_sequence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.benchmark.baselines.UniformBaseline.sample_sequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample a sequence using a uniform distribution for each variable.</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>

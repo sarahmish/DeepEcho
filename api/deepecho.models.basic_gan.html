@@ -1,0 +1,569 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>deepecho.models.basic_gan module &mdash; DeepEcho 0.1.2 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/deepecho.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="deepecho.models.par module" href="deepecho.models.par.html" />
+    <link rel="prev" title="deepecho.models.base module" href="deepecho.models.base.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0095B2" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/DeepEcho-Logo-White-Small.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/01_Getting_Started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#DeepEcho-Overview">DeepEcho Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Load-the-demo-dataset">Load the demo dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Context">Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Data-Types">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Sequence-Index">Sequence Index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Resources</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="deepecho.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="deepecho.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="deepecho.models.html">deepecho.models package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="deepecho.models.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="deepecho.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="deepecho.demo.html">deepecho.demo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deepecho.sequences.html">deepecho.sequences module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#types-of-contributions">Types of Contributions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#report-bugs">Report Bugs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#fix-bugs">Fix Bugs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#implement-features">Implement Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#write-documentation">Write Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#submit-feedback">Submit Feedback</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#get-started">Get Started!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#pull-request-guidelines">Pull Request Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#unit-testing-guidelines">Unit Testing Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#tips">Tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#release-workflow">Release Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#release-candidates">Release Candidates</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../history.html">History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.1.2 (2020-09-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.1.1 (2020-08-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id3">0.1.0 (2020-08-11)</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DeepEcho</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="deepecho.html">deepecho package</a> &raquo;</li>
+        
+          <li><a href="deepecho.models.html">deepecho.models package</a> &raquo;</li>
+        
+      <li>deepecho.models.basic_gan module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/k15z/DeepEcho/blob/master/docs/api/deepecho.models.basic_gan.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="module-deepecho.models.basic_gan">
+<span id="deepecho-models-basic-gan-module"></span><h1>deepecho.models.basic_gan module<a class="headerlink" href="#module-deepecho.models.basic_gan" title="Permalink to this headline">¶</a></h1>
+<p>BasicGAN Model.</p>
+<p><strong>Classes:</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.models.basic_gan.BasicDiscriminator" title="deepecho.models.basic_gan.BasicDiscriminator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BasicDiscriminator</span></code></a>(context_size, data_size, …)</p></td>
+<td><p>Discriminator for the BasicGAN model.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.models.basic_gan.BasicGANModel" title="deepecho.models.basic_gan.BasicGANModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BasicGANModel</span></code></a>([epochs, latent_size, …])</p></td>
+<td><p>Basic GAN model.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.models.basic_gan.BasicGenerator" title="deepecho.models.basic_gan.BasicGenerator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BasicGenerator</span></code></a>(context_size, latent_size, …)</p></td>
+<td><p>Generator for the BasicGAN model.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeepEcho</span></code></p></td>
+<td><p>The base class for DeepEcho models.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">tqdm</span></code>([iterable, desc, total, leave, file, …])</p></td>
+<td><p>Decorate an iterable object, returning an iterator which acts exactly like the original iterable, but prints a dynamically updating progressbar every time a value is requested.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="deepecho.models.basic_gan.BasicDiscriminator">
+<em class="property">class </em><code class="sig-prename descclassname">deepecho.models.basic_gan.</code><code class="sig-name descname">BasicDiscriminator</code><span class="sig-paren">(</span><em class="sig-param">context_size</em>, <em class="sig-param">data_size</em>, <em class="sig-param">hidden_size</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/models/basic_gan.html#BasicDiscriminator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.models.basic_gan.BasicDiscriminator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Discriminator for the BasicGAN model.</p>
+<p>This discriminator consist on a RNN layer followed by a Linear layer with
+the following schema:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The Discriminator takes as input a collection of sequences that include
+both the data and the context columns.</p></li>
+<li><p>RNN takes as input a tensor with shape
+<code class="docutils literal notranslate"><span class="pre">(sequence_length,</span> <span class="pre">number_of_sequences,</span> <span class="pre">context_size</span> <span class="pre">+</span> <span class="pre">data_size)</span></code> and
+generates an output of shape <code class="docutils literal notranslate"><span class="pre">(sequence_length,</span> <span class="pre">num_sequences,</span> <span class="pre">hidden_size)</span></code>.</p></li>
+<li><p>The RNN output is passed to the Linear layer that outputs a single value.</p></li>
+</ul>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>context_size</strong> (<em>int</em>) – Number of values in the contextual arrays.</p></li>
+<li><p><strong>data_size</strong> (<em>int</em>) – Number of variables in the input data sequences.</p></li>
+<li><p><strong>hidden_size</strong> (<em>int</em>) – Size of the communication between the RNN and the Linear layer.</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Methods:</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.models.basic_gan.BasicDiscriminator.forward" title="deepecho.models.basic_gan.BasicDiscriminator.forward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code></a>(sequences)</p></td>
+<td><p>Forward computation.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Attributes:</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.models.basic_gan.BasicDiscriminator.training" title="deepecho.models.basic_gan.BasicDiscriminator.training"><code class="xref py py-obj docutils literal notranslate"><span class="pre">deepecho.models.basic_gan.BasicDiscriminator.training</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="deepecho.models.basic_gan.BasicDiscriminator.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">sequences</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/models/basic_gan.html#BasicDiscriminator.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.models.basic_gan.BasicDiscriminator.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forward computation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sequences</strong> (<em>tensor</em>) – Sequences of values with their context.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="deepecho.models.basic_gan.BasicDiscriminator.training">
+<code class="sig-name descname">training</code><em class="property"> = None</em><a class="headerlink" href="#deepecho.models.basic_gan.BasicDiscriminator.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="deepecho.models.basic_gan.BasicGANModel">
+<em class="property">class </em><code class="sig-prename descclassname">deepecho.models.basic_gan.</code><code class="sig-name descname">BasicGANModel</code><span class="sig-paren">(</span><em class="sig-param">epochs=1024</em>, <em class="sig-param">latent_size=32</em>, <em class="sig-param">hidden_size=16</em>, <em class="sig-param">gen_lr=0.001</em>, <em class="sig-param">dis_lr=0.001</em>, <em class="sig-param">cuda=True</em>, <em class="sig-param">verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/models/basic_gan.html#BasicGANModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.models.basic_gan.BasicGANModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="deepecho.models.base.html#deepecho.models.base.DeepEcho" title="deepecho.models.base.DeepEcho"><code class="xref py py-class docutils literal notranslate"><span class="pre">deepecho.models.base.DeepEcho</span></code></a></p>
+<p>Basic GAN model.</p>
+<ol class="arabic simple" start="0">
+<li><p>Normalize continuous values to [-1.0, 1.0].</p></li>
+<li><p>Map categorical values to one-hot.</p></li>
+<li><p>Define a generator that takes context vector -&gt; new sequence.</p></li>
+<li><dl class="simple">
+<dt>Transforms</dt><dd><ul class="simple">
+<li><p>apply sigmoid to continuous/count/datetime</p></li>
+<li><p>apply softmax to categorical/ordinal</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Define a discriminator that takes sequence + context -&gt; score.</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>epochs</strong> (<em>int</em>) – Number of training epochs. Defaults to 1024.</p></li>
+<li><p><strong>latent_size</strong> (<em>int</em>) – Size of the random vector to use for generation. Defaults to 32.</p></li>
+<li><p><strong>hidden_size</strong> (<em>int</em>) – Size of the hidden Linear layer. Defaults to 16.</p></li>
+<li><p><strong>gen_lr</strong> (<em>float</em>) – Generator learning rate. Defaults to 1e-3.</p></li>
+<li><p><strong>dis_lr</strong> (<em>float</em>) – Discriminator learning rate. Defaults to 1e-3.</p></li>
+<li><p><strong>cuda</strong> (<em>bool</em>) – Whether to attempt to use cuda for GPU computation.
+If this is False or CUDA is not available, CPU will be used.
+Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – Whether to print progress to console or not.</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Methods:</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.models.basic_gan.BasicGANModel.fit_sequences" title="deepecho.models.basic_gan.BasicGANModel.fit_sequences"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_sequences</span></code></a>(sequences, context_types, …)</p></td>
+<td><p>Fit a model to the specified sequences.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.models.basic_gan.BasicGANModel.sample_sequence" title="deepecho.models.basic_gan.BasicGANModel.sample_sequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample_sequence</span></code></a>(context[, sequence_length])</p></td>
+<td><p>Sample a single sequence conditioned on context.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="deepecho.models.basic_gan.BasicGANModel.fit_sequences">
+<code class="sig-name descname">fit_sequences</code><span class="sig-paren">(</span><em class="sig-param">sequences</em>, <em class="sig-param">context_types</em>, <em class="sig-param">data_types</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/models/basic_gan.html#BasicGANModel.fit_sequences"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.models.basic_gan.BasicGANModel.fit_sequences" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit a model to the specified sequences.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sequences</strong> – <p>List of sequences. Each sequence is a single training example
+(i.e. an example of a multivariate time series with some context).
+For example, a sequence might look something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;context&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The “context” attribute maps to a list of variables which
+should be used for conditioning. These are variables which
+do not change over time.</p>
+<p>The “data” attribute contains a list of lists corrsponding
+to the actual time series data such that <cite>data[i][j]</cite> contains
+the value at the jth time step of the ith channel of the
+multivariate time series.</p>
+</p></li>
+<li><p><strong>context_types</strong> – List of strings indicating the type of each value in context.
+he value at <cite>context[i]</cite> must match the type specified by
+<cite>context_types[i]</cite>. Valid types include the following: <cite>categorical</cite>,
+<cite>continuous</cite>, <cite>ordinal</cite>, <cite>count</cite>, and <cite>datetime</cite>.</p></li>
+<li><p><strong>data_types</strong> – List of strings indicating the type of each channel in data.
+Each value in the list at data[i] must match the type specified by
+<cite>data_types[i]</cite>. The valid types are the same as for <cite>context_types</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="deepecho.models.basic_gan.BasicGANModel.sample_sequence">
+<code class="sig-name descname">sample_sequence</code><span class="sig-paren">(</span><em class="sig-param">context</em>, <em class="sig-param">sequence_length=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/models/basic_gan.html#BasicGANModel.sample_sequence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.models.basic_gan.BasicGANModel.sample_sequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample a single sequence conditioned on context.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>context</strong> (<em>list</em>) – The list of values to condition on. It must match
+the types specified in context_types when fit was called.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of lists (data) corresponding to the types specified
+in data_types when fit was called.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list[list]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="deepecho.models.basic_gan.BasicGenerator">
+<em class="property">class </em><code class="sig-prename descclassname">deepecho.models.basic_gan.</code><code class="sig-name descname">BasicGenerator</code><span class="sig-paren">(</span><em class="sig-param">context_size</em>, <em class="sig-param">latent_size</em>, <em class="sig-param">hidden_size</em>, <em class="sig-param">data_size</em>, <em class="sig-param">device</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/models/basic_gan.html#BasicGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.models.basic_gan.BasicGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Generator for the BasicGAN model.</p>
+<p>This generator consist on a RNN layer followed by a Linear layer with
+the following schema:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The Generator takes as input a <code class="docutils literal notranslate"><span class="pre">sequence_length</span></code> and a <code class="docutils literal notranslate"><span class="pre">context</span></code> vector.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">context</span></code> vector is expanded over the <code class="docutils literal notranslate"><span class="pre">sequence_lenght</span></code> and padded with
+<code class="docutils literal notranslate"><span class="pre">latent_size</span></code> random noise.</p></li>
+<li><p>RNN takes as input a tensor with shape
+<code class="docutils literal notranslate"><span class="pre">(sequence_length,</span> <span class="pre">context_length,</span> <span class="pre">context_size</span> <span class="pre">+</span> <span class="pre">latent_size)</span></code> and
+generates an output of shape <code class="docutils literal notranslate"><span class="pre">(sequence_length,</span> <span class="pre">context_length,</span> <span class="pre">hidden_size)</span></code>.</p></li>
+<li><p>The RNN output is passed to the Linear layer that outputs a tensor of size
+<code class="docutils literal notranslate"><span class="pre">(sequence_length,</span> <span class="pre">context_length,</span> <span class="pre">output_size)</span></code></p></li>
+</ul>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>context_size</strong> (<em>int</em>) – Size of the contextual arrays.</p></li>
+<li><p><strong>latent_size</strong> (<em>int</em>) – Size of the random input vector.</p></li>
+<li><p><strong>hidden_size</strong> (<em>int</em>) – Size of the communication between the RNN and the Linear layer.</p></li>
+<li><p><strong>data_size</strong> (<em>int</em>) – Size of the output layer.</p></li>
+<li><p><strong>device</strong> (<em>torch.device</em>) – Device to which this Module is associated to.</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Methods:</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.models.basic_gan.BasicGenerator.forward" title="deepecho.models.basic_gan.BasicGenerator.forward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code></a>([context, sequence_length])</p></td>
+<td><p>Forward computation.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Attributes:</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.models.basic_gan.BasicGenerator.training" title="deepecho.models.basic_gan.BasicGenerator.training"><code class="xref py py-obj docutils literal notranslate"><span class="pre">deepecho.models.basic_gan.BasicGenerator.training</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="deepecho.models.basic_gan.BasicGenerator.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">context=None</em>, <em class="sig-param">sequence_length=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/models/basic_gan.html#BasicGenerator.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.models.basic_gan.BasicGenerator.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forward computation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>context</strong> (<em>tensor</em>) – Context values to use for each generated sequence.</p></li>
+<li><p><strong>sequence_length</strong> (<em>int</em>) – Amount of data points to generate for each sequence.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="deepecho.models.basic_gan.BasicGenerator.training">
+<code class="sig-name descname">training</code><em class="property"> = None</em><a class="headerlink" href="#deepecho.models.basic_gan.BasicGenerator.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="deepecho.models.par.html" class="btn btn-neutral float-right" title="deepecho.models.par module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="deepecho.models.base.html" class="btn btn-neutral float-left" title="deepecho.models.base module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Kevin Alex Zhang
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

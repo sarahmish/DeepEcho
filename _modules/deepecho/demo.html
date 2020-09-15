@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho.demo &mdash; DeepEcho 0.1.1 documentation</title>
+  <title>deepecho.demo &mdash; DeepEcho 0.1.2 documentation</title>
   
 
   
@@ -89,6 +89,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Load-the-demo-dataset">Load the demo dataset</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Context">Context</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Data-Types">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Sequence-Index">Sequence Index</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
 </ul>
 </li>
@@ -98,10 +99,15 @@
 <p class="caption"><span class="caption-text">Resources</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../api/deepecho.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/deepecho.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/deepecho.models.html">deepecho.models package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/deepecho.models.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../api/deepecho.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../api/deepecho.base.html">deepecho.base module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api/deepecho.demo.html">deepecho.demo module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/deepecho.par.html">deepecho.par module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api/deepecho.sequences.html">deepecho.sequences module</a></li>
 </ul>
 </li>
@@ -128,8 +134,9 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../history.html#id1">0.1.1 (2020-08-15)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../history.html#id2">0.1.0 (2020-08-11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id1">0.1.2 (2020-09-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id2">0.1.1 (2020-08-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id3">0.1.0 (2020-08-11)</a></li>
 </ul>
 </li>
 </ul>
@@ -204,7 +211,7 @@
 <span class="n">_DATA_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="load_demo"><a class="viewcode-back" href="../../api/deepecho.demo.html#deepecho.demo.load_demo">[docs]</a><span class="k">def</span> <span class="nf">load_demo</span><span class="p">():</span>
+<div class="viewcode-block" id="load_demo"><a class="viewcode-back" href="../../api/deepecho.demo.html#deepecho.load_demo">[docs]</a><span class="k">def</span> <span class="nf">load_demo</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Load the demo DataFrame.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_DATA_PATH</span><span class="p">,</span> <span class="s1">&#39;demo.csv&#39;</span><span class="p">))</span></div>
 </pre></div>

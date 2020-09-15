@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho.benchmark &mdash; DeepEcho 0.1.1 documentation</title>
+  <title>deepecho.benchmark &mdash; DeepEcho 0.1.2 documentation</title>
   
 
   
@@ -89,6 +89,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Load-the-demo-dataset">Load the demo dataset</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Context">Context</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Data-Types">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Sequence-Index">Sequence Index</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
 </ul>
 </li>
@@ -98,10 +99,15 @@
 <p class="caption"><span class="caption-text">Resources</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../api/deepecho.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/deepecho.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/deepecho.models.html">deepecho.models package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/deepecho.models.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../api/deepecho.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../api/deepecho.base.html">deepecho.base module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api/deepecho.demo.html">deepecho.demo module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/deepecho.par.html">deepecho.par module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api/deepecho.sequences.html">deepecho.sequences module</a></li>
 </ul>
 </li>
@@ -128,8 +134,9 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../history.html#id1">0.1.1 (2020-08-15)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../history.html#id2">0.1.0 (2020-08-11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id1">0.1.2 (2020-09-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id2">0.1.1 (2020-08-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id3">0.1.0 (2020-08-11)</a></li>
 </ul>
 </li>
 </ul>
@@ -202,10 +209,13 @@
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="kn">from</span> <span class="nn">deepecho</span> <span class="kn">import</span> <span class="n">DeepEcho</span><span class="p">,</span> <span class="n">PARModel</span>
+<span class="kn">from</span> <span class="nn">deepecho.benchmark.baselines</span> <span class="kn">import</span> <span class="n">RealDataBaseline</span><span class="p">,</span> <span class="n">UniformBaseline</span>
 <span class="kn">from</span> <span class="nn">deepecho.benchmark.dataset</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">get_datasets_list</span>
 <span class="kn">from</span> <span class="nn">deepecho.benchmark.evaluation</span> <span class="kn">import</span> <span class="n">evaluate_model_on_datasets</span>
 <span class="kn">from</span> <span class="nn">deepecho.benchmark.metrics</span> <span class="kn">import</span> <span class="n">METRICS</span>
+<span class="kn">from</span> <span class="nn">deepecho.models.base</span> <span class="kn">import</span> <span class="n">DeepEcho</span>
+<span class="kn">from</span> <span class="nn">deepecho.models.basic_gan</span> <span class="kn">import</span> <span class="n">BasicGANModel</span>
+<span class="kn">from</span> <span class="nn">deepecho.models.par</span> <span class="kn">import</span> <span class="n">PARModel</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;Dataset&#39;</span><span class="p">,</span>
@@ -215,7 +225,10 @@
 
 
 <span class="n">DEFAULT_MODELS</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;PARModel&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">PARModel</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;epochs&#39;</span><span class="p">:</span> <span class="mi">1024</span><span class="p">,</span> <span class="s1">&#39;cuda&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
+    <span class="s1">&#39;RealDataBaseline&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">RealDataBaseline</span><span class="p">,</span> <span class="p">{}),</span>
+    <span class="s1">&#39;UniformBaseline&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">UniformBaseline</span><span class="p">,</span> <span class="p">{}),</span>
+    <span class="s1">&#39;BasicGANModel&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">BasicGANModel</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;epochs&#39;</span><span class="p">:</span> <span class="mi">1024</span><span class="p">}),</span>
+    <span class="s1">&#39;PARModel&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">PARModel</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;epochs&#39;</span><span class="p">:</span> <span class="mi">1024</span><span class="p">,</span> <span class="s1">&#39;cuda&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}),</span>
 <span class="p">}</span>
 
 

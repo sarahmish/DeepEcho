@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho.benchmark.dataset module &mdash; DeepEcho 0.1.1 documentation</title>
+  <title>deepecho.benchmark.dataset module &mdash; DeepEcho 0.1.2 documentation</title>
   
 
   
@@ -89,6 +89,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Load-the-demo-dataset">Load the demo dataset</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Context">Context</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Data-Types">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Sequence-Index">Sequence Index</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
 </ul>
 </li>
@@ -98,10 +99,15 @@
 <p class="caption"><span class="caption-text">Resources</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="deepecho.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="deepecho.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="deepecho.models.html">deepecho.models package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="deepecho.models.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="deepecho.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="deepecho.base.html">deepecho.base module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deepecho.demo.html">deepecho.demo module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="deepecho.par.html">deepecho.par module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deepecho.sequences.html">deepecho.sequences module</a></li>
 </ul>
 </li>
@@ -128,8 +134,9 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.1.1 (2020-08-15)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.1.0 (2020-08-11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.1.2 (2020-09-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.1.1 (2020-08-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id3">0.1.0 (2020-08-11)</a></li>
 </ul>
 </li>
 </ul>
@@ -225,30 +232,48 @@
 <div class="section" id="module-deepecho.benchmark.dataset">
 <span id="deepecho-benchmark-dataset-module"></span><h1>deepecho.benchmark.dataset module<a class="headerlink" href="#module-deepecho.benchmark.dataset" title="Permalink to this headline">¶</a></h1>
 <p>Dataset abstraction for benchmarking.</p>
-<p><strong>Classes</strong></p>
+<p><strong>Classes:</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.dataset.Dataset" title="deepecho.benchmark.dataset.Dataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Dataset</span></code></a>(dataset[, table_name, max_entities, …])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">BytesIO</span></code></p></td>
+<td><p>Buffered I/O implementation using an in-memory bytes buffer.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.benchmark.dataset.Dataset" title="deepecho.benchmark.dataset.Dataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Dataset</span></code></a>(dataset[, table_name, max_entities, …])</p></td>
 <td><p>Dataset abstraction for benchmarking.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Metadata</span></code>([metadata, root_path])</p></td>
+<td><p>Dataset Metadata.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ZipFile</span></code>(file[, mode, compression, …])</p></td>
+<td><p>Class with methods to open, read, write, close, list zip files.</p></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Functions</strong></p>
+<p><strong>Functions:</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.dataset.get_datasets_list" title="deepecho.benchmark.dataset.get_datasets_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_datasets_list</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assemble_sequences</span></code>(data, entity_columns, …)</p></td>
+<td><p>Build sequences from the data, grouping first by entity and then segmenting by size.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.benchmark.dataset.get_datasets_list" title="deepecho.benchmark.dataset.get_datasets_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_datasets_list</span></code></a>()</p></td>
 <td><p>Get a list with the names and details of all the availale datasets.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.benchmark.dataset.make_dataset" title="deepecho.benchmark.dataset.make_dataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_dataset</span></code></a>(name, data[, table_name, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.dataset.make_dataset" title="deepecho.benchmark.dataset.make_dataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_dataset</span></code></a>(name, data[, table_name, …])</p></td>
 <td><p>Make a Dataset from a DataFrame.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">urljoin</span></code>(base, url[, allow_fragments])</p></td>
+<td><p>Join a base URL and a possibly relative URL to form an absolute interpretation of the latter.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">urlopen</span></code>(url[, data, timeout, cafile, …])</p></td>
+<td><p>Open the URL url, which can be either a string or a Request object.</p></td>
 </tr>
 </tbody>
 </table>
@@ -278,7 +303,7 @@ segment sizes can only be used with sequence indexes of type datetime.</p></li>
 </ul>
 </dd>
 </dl>
-<p><strong>Attributes</strong></p>
+<p><strong>Attributes:</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -286,11 +311,11 @@ segment sizes can only be used with sequence indexes of type datetime.</p></li>
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.dataset.Dataset.VERSION" title="deepecho.benchmark.dataset.Dataset.VERSION"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VERSION</span></code></a></p></td>
-<td><p>str(object=’’) -&gt; str</p></td>
+<td><p></p></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Methods</strong></p>
+<p><strong>Methods:</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />

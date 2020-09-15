@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Getting Started &mdash; DeepEcho 0.1.1 documentation</title>
+  <title>Getting Started &mdash; DeepEcho 0.1.2 documentation</title>
   
 
   
@@ -91,6 +91,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#Load-the-demo-dataset">Load the demo dataset</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Context">Context</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Data-Types">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Sequence-Index">Sequence Index</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Using-the-PAR-Model">Using the PAR Model</a></li>
 </ul>
 </li>
@@ -100,10 +101,15 @@
 <p class="caption"><span class="caption-text">Resources</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../api/deepecho.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/deepecho.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/deepecho.models.html">deepecho.models package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/deepecho.models.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../api/deepecho.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api/deepecho.base.html">deepecho.base module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/deepecho.demo.html">deepecho.demo module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/deepecho.par.html">deepecho.par module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/deepecho.sequences.html">deepecho.sequences module</a></li>
 </ul>
 </li>
@@ -130,8 +136,9 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.1.1 (2020-08-15)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.1.0 (2020-08-11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.1.2 (2020-09-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.1.1 (2020-08-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id3">0.1.0 (2020-08-11)</a></li>
 </ul>
 </li>
 </ul>
@@ -488,8 +495,9 @@ div.rendered_html tbody tr:hover {
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>id</th>
-      <th>season</th>
+      <th>date</th>
+      <th>store_id</th>
+      <th>region</th>
       <th>day_of_week</th>
       <th>total_sales</th>
       <th>nb_customers</th>
@@ -498,97 +506,107 @@ div.rendered_html tbody tr:hover {
   <tbody>
     <tr>
       <th>0</th>
+      <td>2020-06-01</td>
+      <td>68608</td>
+      <td>New York</td>
       <td>0</td>
-      <td>winter</td>
-      <td>0</td>
-      <td>736.192546</td>
+      <td>736.19</td>
       <td>43</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0</td>
-      <td>winter</td>
+      <td>2020-06-02</td>
+      <td>68608</td>
+      <td>New York</td>
       <td>1</td>
-      <td>777.309789</td>
+      <td>777.31</td>
       <td>45</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0</td>
-      <td>winter</td>
+      <td>2020-06-03</td>
+      <td>68608</td>
+      <td>New York</td>
       <td>2</td>
-      <td>921.220142</td>
+      <td>921.22</td>
       <td>54</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0</td>
-      <td>winter</td>
+      <td>2020-06-04</td>
+      <td>68608</td>
+      <td>New York</td>
       <td>3</td>
-      <td>1085.689116</td>
+      <td>1085.69</td>
       <td>63</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0</td>
-      <td>winter</td>
+      <td>2020-06-05</td>
+      <td>68608</td>
+      <td>New York</td>
       <td>4</td>
-      <td>1476.302930</td>
+      <td>1476.30</td>
       <td>86</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0</td>
-      <td>winter</td>
+      <td>2020-06-06</td>
+      <td>68608</td>
+      <td>New York</td>
       <td>5</td>
-      <td>2463.116775</td>
+      <td>2463.12</td>
       <td>144</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0</td>
-      <td>winter</td>
+      <td>2020-06-07</td>
+      <td>68608</td>
+      <td>New York</td>
       <td>6</td>
-      <td>1579.096039</td>
+      <td>1579.10</td>
       <td>92</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>1</td>
-      <td>summer</td>
+      <td>2020-06-01</td>
+      <td>47226</td>
+      <td>California</td>
       <td>0</td>
-      <td>2750.937480</td>
+      <td>2750.94</td>
       <td>161</td>
     </tr>
     <tr>
       <th>8</th>
+      <td>2020-06-02</td>
+      <td>47226</td>
+      <td>California</td>
       <td>1</td>
-      <td>summer</td>
-      <td>1</td>
-      <td>2853.730589</td>
+      <td>2853.73</td>
       <td>167</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>1</td>
-      <td>summer</td>
+      <td>2020-06-03</td>
+      <td>47226</td>
+      <td>California</td>
       <td>2</td>
-      <td>2915.406454</td>
+      <td>2915.41</td>
       <td>171</td>
     </tr>
   </tbody>
 </table>
 </div></div>
 </div>
-<p>The output of this call is a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> which simulates a table with the sales and number of customers that a business had across multiple days.</p>
-<p>The first thing we observe is that there is an <code class="docutils literal notranslate"><span class="pre">id</span></code> value which repeats itself multiple times. This is because this <code class="docutils literal notranslate"><span class="pre">id</span></code> column which acts as the <code class="docutils literal notranslate"><span class="pre">entity_id</span></code> of our dataset: The table contains time series that belong to multiple entities, each one identified by the value in the <code class="docutils literal notranslate"><span class="pre">id</span></code> column. We could think, for example, that each <code class="docutils literal notranslate"><span class="pre">entity</span></code> corresponds to a different week of the year.</p>
-<p>Let’s group the table by the <code class="docutils literal notranslate"><span class="pre">id</span></code> value and see what the results look like:</p>
+<p>The output of this call is a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> which simulates a table with the sales and number of customers that multiple sunglasses stores had across multiple days.</p>
+<p>The first thing we observe is that there is a <code class="docutils literal notranslate"><span class="pre">store_id</span></code> value which repeats itself multiple times. This is because this <code class="docutils literal notranslate"><span class="pre">store_id</span></code> column which acts as the <code class="docutils literal notranslate"><span class="pre">entity_id</span></code> of our dataset: The table contains time series that belong to multiple stores, each one identified by the value in the <code class="docutils literal notranslate"><span class="pre">store_id</span></code> column.</p>
+<p>Let’s group the table by the <code class="docutils literal notranslate"><span class="pre">store_id</span></code> value and see what the results look like:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">entity_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+<span></span><span class="n">entity_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;store_id&#39;</span><span class="p">]</span>
 
 <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">entity_columns</span><span class="p">))[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]:</span>
     <span class="n">display</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
@@ -617,8 +635,9 @@ div.rendered_html tbody tr:hover {
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>id</th>
-      <th>season</th>
+      <th>date</th>
+      <th>store_id</th>
+      <th>region</th>
       <th>day_of_week</th>
       <th>total_sales</th>
       <th>nb_customers</th>
@@ -626,60 +645,67 @@ div.rendered_html tbody tr:hover {
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
+      <th>91</th>
+      <td>2020-06-01</td>
+      <td>10149</td>
+      <td>California</td>
       <td>0</td>
-      <td>winter</td>
-      <td>0</td>
-      <td>736.192546</td>
-      <td>43</td>
+      <td>2750.94</td>
+      <td>161</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>0</td>
-      <td>winter</td>
+      <th>92</th>
+      <td>2020-06-02</td>
+      <td>10149</td>
+      <td>California</td>
       <td>1</td>
-      <td>777.309789</td>
-      <td>45</td>
+      <td>2833.17</td>
+      <td>166</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>0</td>
-      <td>winter</td>
+      <th>93</th>
+      <td>2020-06-03</td>
+      <td>10149</td>
+      <td>California</td>
       <td>2</td>
-      <td>921.220142</td>
-      <td>54</td>
+      <td>3120.99</td>
+      <td>183</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>0</td>
-      <td>winter</td>
+      <th>94</th>
+      <td>2020-06-04</td>
+      <td>10149</td>
+      <td>California</td>
       <td>3</td>
-      <td>1085.689116</td>
-      <td>63</td>
+      <td>3141.55</td>
+      <td>184</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>0</td>
-      <td>winter</td>
+      <th>95</th>
+      <td>2020-06-05</td>
+      <td>10149</td>
+      <td>California</td>
       <td>4</td>
-      <td>1476.302930</td>
-      <td>86</td>
+      <td>3449.93</td>
+      <td>202</td>
     </tr>
     <tr>
-      <th>5</th>
-      <td>0</td>
-      <td>winter</td>
+      <th>96</th>
+      <td>2020-06-06</td>
+      <td>10149</td>
+      <td>California</td>
       <td>5</td>
-      <td>2463.116775</td>
-      <td>144</td>
+      <td>4560.10</td>
+      <td>268</td>
     </tr>
     <tr>
-      <th>6</th>
-      <td>0</td>
-      <td>winter</td>
+      <th>97</th>
+      <td>2020-06-07</td>
+      <td>10149</td>
+      <td>California</td>
       <td>6</td>
-      <td>1579.096039</td>
-      <td>92</td>
+      <td>3470.49</td>
+      <td>204</td>
     </tr>
   </tbody>
 </table>
@@ -707,8 +733,9 @@ div.rendered_html tbody tr:hover {
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>id</th>
-      <th>season</th>
+      <th>date</th>
+      <th>store_id</th>
+      <th>region</th>
       <th>day_of_week</th>
       <th>total_sales</th>
       <th>nb_customers</th>
@@ -716,60 +743,67 @@ div.rendered_html tbody tr:hover {
   </thead>
   <tbody>
     <tr>
-      <th>7</th>
-      <td>1</td>
-      <td>summer</td>
+      <th>238</th>
+      <td>2020-06-01</td>
+      <td>10279</td>
+      <td>New York</td>
       <td>0</td>
-      <td>2750.937480</td>
-      <td>161</td>
+      <td>756.75</td>
+      <td>44</td>
     </tr>
     <tr>
-      <th>8</th>
+      <th>239</th>
+      <td>2020-06-02</td>
+      <td>10279</td>
+      <td>New York</td>
       <td>1</td>
-      <td>summer</td>
-      <td>1</td>
-      <td>2853.730589</td>
-      <td>167</td>
+      <td>921.22</td>
+      <td>54</td>
     </tr>
     <tr>
-      <th>9</th>
-      <td>1</td>
-      <td>summer</td>
+      <th>240</th>
+      <td>2020-06-03</td>
+      <td>10279</td>
+      <td>New York</td>
       <td>2</td>
-      <td>2915.406454</td>
-      <td>171</td>
+      <td>921.22</td>
+      <td>54</td>
     </tr>
     <tr>
-      <th>10</th>
-      <td>1</td>
-      <td>summer</td>
+      <th>241</th>
+      <td>2020-06-04</td>
+      <td>10279</td>
+      <td>New York</td>
       <td>3</td>
-      <td>3120.992672</td>
-      <td>183</td>
+      <td>1167.92</td>
+      <td>68</td>
     </tr>
     <tr>
-      <th>11</th>
-      <td>1</td>
-      <td>summer</td>
+      <th>242</th>
+      <td>2020-06-05</td>
+      <td>10279</td>
+      <td>New York</td>
       <td>4</td>
-      <td>3429.371998</td>
-      <td>201</td>
+      <td>1558.54</td>
+      <td>91</td>
     </tr>
     <tr>
-      <th>12</th>
-      <td>1</td>
-      <td>summer</td>
+      <th>243</th>
+      <td>2020-06-06</td>
+      <td>10279</td>
+      <td>New York</td>
       <td>5</td>
-      <td>4560.096196</td>
-      <td>268</td>
+      <td>2401.44</td>
+      <td>141</td>
     </tr>
     <tr>
-      <th>13</th>
-      <td>1</td>
-      <td>summer</td>
+      <th>244</th>
+      <td>2020-06-07</td>
+      <td>10279</td>
+      <td>New York</td>
       <td>6</td>
-      <td>3573.282351</td>
-      <td>210</td>
+      <td>1517.42</td>
+      <td>89</td>
     </tr>
   </tbody>
 </table>
@@ -777,19 +811,20 @@ div.rendered_html tbody tr:hover {
 </div>
 <p>Here we observe a few properties of the dataset:</p>
 <ol class="arabic simple">
-<li><p>Each <code class="docutils literal notranslate"><span class="pre">id</span></code> is associated with a 7 rows long time series.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">season</span></code> column is constant within each time series; this is because in this particular dataset, each 7-day window comes from either the summer sales event or the winter sales event at a retail outlet.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">day_of_week</span></code> column is categorical and represents Monday through Sunday.</p></li>
+<li><p>Each <code class="docutils literal notranslate"><span class="pre">store_id</span></code> is associated with a 7 rows long time series.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">date</span></code> column works as the time series index and goes from <code class="docutils literal notranslate"><span class="pre">2020-06-01</span></code> to <code class="docutils literal notranslate"><span class="pre">2020-06-07</span></code> in each time series.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">region</span></code> column is constant within each time series; this is because the <code class="docutils literal notranslate"><span class="pre">region</span></code> is a property of each store, and therefore the value does not change over time.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">day_of_week</span></code> column is a categorical column that indicates the weekday, Monday to Sunday associated to the correponding date.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">total_sales</span></code> column is continuous and is correlated with the number of customers.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">nb_customers</span></code> column is count-valued (i.e. non-negative integers).</p></li>
 </ol>
-<p>Base on the previous points, we could think about <code class="docutils literal notranslate"><span class="pre">season</span></code> is acting as the context Let’s also try to group the data by <code class="docutils literal notranslate"><span class="pre">season</span></code> and `</p>
+<p>Base on the previous points, we could think about <code class="docutils literal notranslate"><span class="pre">region</span></code> as contextual information about each store, so let’s also try to group the data by this column and observe how the <code class="docutils literal notranslate"><span class="pre">total_sales</span></code> and <code class="docutils literal notranslate"><span class="pre">nb_customers</span></code> evolve over the different week days.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;season&#39;</span><span class="p">,</span> <span class="s1">&#39;day_of_week&#39;</span><span class="p">])[[</span><span class="s1">&#39;total_sales&#39;</span><span class="p">,</span> <span class="s1">&#39;nb_customers&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span></span><span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;region&#39;</span><span class="p">,</span> <span class="s1">&#39;day_of_week&#39;</span><span class="p">])[[</span><span class="s1">&#39;total_sales&#39;</span><span class="p">,</span> <span class="s1">&#39;nb_customers&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -821,7 +856,7 @@ div.rendered_html tbody tr:hover {
       <th>nb_customers</th>
     </tr>
     <tr>
-      <th>season</th>
+      <th>region</th>
       <th>day_of_week</th>
       <th></th>
       <th></th>
@@ -829,75 +864,75 @@ div.rendered_html tbody tr:hover {
   </thead>
   <tbody>
     <tr>
-      <th rowspan="7" valign="top">summer</th>
+      <th rowspan="7" valign="top">California</th>
       <th>0</th>
-      <td>2835.639002</td>
+      <td>2835.6402</td>
       <td>166.36</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>2918.284661</td>
+      <td>2918.2846</td>
       <td>171.16</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>3003.808528</td>
+      <td>3003.8084</td>
       <td>176.20</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>3202.404814</td>
+      <td>3202.4036</td>
       <td>187.96</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>3516.540555</td>
+      <td>3516.5420</td>
       <td>206.26</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>4568.730817</td>
+      <td>4568.7304</td>
       <td>268.32</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>3535.454487</td>
+      <td>3535.4548</td>
       <td>207.40</td>
     </tr>
     <tr>
-      <th rowspan="7" valign="top">winter</th>
+      <th rowspan="7" valign="top">New York</th>
       <th>0</th>
-      <td>772.375720</td>
+      <td>772.3762</td>
       <td>44.94</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>834.051585</td>
+      <td>834.0516</td>
       <td>48.48</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>974.672558</td>
+      <td>974.6712</td>
       <td>56.86</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>1121.461118</td>
+      <td>1121.4600</td>
       <td>65.48</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>1476.714102</td>
+      <td>1476.7146</td>
       <td>86.32</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>2506.289881</td>
+      <td>2506.2906</td>
       <td>146.90</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>1493.572172</td>
+      <td>1493.5728</td>
       <td>87.34</td>
     </tr>
   </tbody>
@@ -906,19 +941,18 @@ div.rendered_html tbody tr:hover {
 </div>
 <p>Then, we make some additional observations about the dataset:</p>
 <ol class="arabic simple">
-<li><p>The day of the week is always ascending from 0 to 6.</p></li>
-<li><p>The number of customers always peaks on Saturday.</p></li>
-<li><p>The average number of customers is higher in summer than winter.</p></li>
+<li><p>Number of customers and sales are significantly higher in <code class="docutils literal notranslate"><span class="pre">California</span></code> than in <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">York</span></code>, as one would expect considering the wheather differences between one state and the other one.</p></li>
+<li><p>The number of customers and total sals always peaks on Saturday, probably due to more people going out after a hard week of work.</p></li>
 </ol>
 <div class="section" id="Context">
 <h3>Context<a class="headerlink" href="#Context" title="Permalink to this headline">¶</a></h3>
-<p>As we observed, the <code class="docutils literal notranslate"><span class="pre">season</span></code> column is constant within each time series. This is what we call a <em>context</em> variable, which is what we will use later on to condition what the sampled time series look like once we learn their conditional distribution.</p>
+<p>As we observed, the <code class="docutils literal notranslate"><span class="pre">region</span></code> column is constant within each time series. This is what we call a <em>context</em> variable, which is what we will use later on to condition what the sampled time series look like once we learn their conditional distribution.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">context_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;season&#39;</span><span class="p">]</span>
+<span></span><span class="n">context_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -933,7 +967,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">data_types</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;season&#39;</span><span class="p">:</span> <span class="s1">&#39;categorical&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;region&#39;</span><span class="p">:</span> <span class="s1">&#39;categorical&#39;</span><span class="p">,</span>
     <span class="s1">&#39;day_of_week&#39;</span><span class="p">:</span> <span class="s1">&#39;categorical&#39;</span><span class="p">,</span>
     <span class="s1">&#39;total_sales&#39;</span><span class="p">:</span> <span class="s1">&#39;continuous&#39;</span><span class="p">,</span>
     <span class="s1">&#39;nb_customers&#39;</span><span class="p">:</span> <span class="s1">&#39;count&#39;</span><span class="p">,</span>
@@ -942,11 +976,24 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 </div>
+<div class="section" id="Sequence-Index">
+<h3>Sequence Index<a class="headerlink" href="#Sequence-Index" title="Permalink to this headline">¶</a></h3>
+<p>Finally, we observed that the time index of our time series is the column date, which indicates us in which order the rows of each time series happen.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sequence_index</span> <span class="o">=</span> <span class="s1">&#39;date&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="section" id="Using-the-PAR-Model">
 <h3>Using the PAR Model<a class="headerlink" href="#Using-the-PAR-Model" title="Permalink to this headline">¶</a></h3>
 <p>Now let’s apply the probabilistic autoregressive model to learn the time series distributions.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -958,6 +1005,7 @@ div.rendered_html tbody tr:hover {
     <span class="n">entity_columns</span><span class="o">=</span><span class="n">entity_columns</span><span class="p">,</span>
     <span class="n">context_columns</span><span class="o">=</span><span class="n">context_columns</span><span class="p">,</span>
     <span class="n">data_types</span><span class="o">=</span><span class="n">data_types</span><span class="p">,</span>
+    <span class="n">sequence_index</span><span class="o">=</span><span class="n">sequence_index</span>
 <span class="p">)</span>
 <span class="n">model</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
@@ -968,7 +1016,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-08-14 15:45:48,659 - INFO - deepecho.par - PARModel(epochs=1024, max_seq_len=100, sample_size=1, cuda=&#39;cpu&#39;, verbose=True) instance created
+2020-08-31 14:48:41,516 - INFO - deepecho.models.par - PARModel(epochs=1024, max_seq_len=100, sample_size=1, cuda=&#39;cpu&#39;, verbose=True) instance created
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -984,12 +1032,12 @@ PARModel(epochs=1024, max_seq_len=100, sample_size=1, cuda=&#39;cpu&#39;, verbos
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-Epoch 1024 | Loss 0.028885547071695328: 100%|██████████| 1024/1024 [01:51&lt;00:00,  9.16it/s]
-100%|██████████| 5/5 [00:00&lt;00:00, 81.85it/s]
+Epoch 1024 | Loss 0.024657899513840675: 100%|██████████| 1024/1024 [01:49&lt;00:00,  9.33it/s]
+100%|██████████| 5/5 [00:00&lt;00:00, 78.61it/s]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1011,8 +1059,8 @@ Epoch 1024 | Loss 0.028885547071695328: 100%|██████████| 102
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>id</th>
-      <th>season</th>
+      <th>store_id</th>
+      <th>region</th>
       <th>day_of_week</th>
       <th>total_sales</th>
       <th>nb_customers</th>
@@ -1022,282 +1070,282 @@ Epoch 1024 | Loss 0.028885547071695328: 100%|██████████| 102
     <tr>
       <th>0</th>
       <td>0</td>
-      <td>winter</td>
-      <td>0.0</td>
-      <td>800.112230</td>
+      <td>New York</td>
+      <td>0</td>
+      <td>802.512064</td>
+      <td>41</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>New York</td>
+      <td>1</td>
+      <td>902.553494</td>
       <td>48</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>0</td>
-      <td>winter</td>
-      <td>1.0</td>
-      <td>936.029513</td>
-      <td>48</td>
-    </tr>
-    <tr>
       <th>2</th>
       <td>0</td>
-      <td>winter</td>
-      <td>2.0</td>
-      <td>911.075088</td>
-      <td>54</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0</td>
-      <td>winter</td>
-      <td>3.0</td>
-      <td>1173.235468</td>
-      <td>65</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0</td>
-      <td>winter</td>
-      <td>4.0</td>
-      <td>1442.998136</td>
-      <td>86</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>0</td>
-      <td>winter</td>
-      <td>5.0</td>
-      <td>2388.721954</td>
-      <td>158</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>0</td>
-      <td>winter</td>
-      <td>6.0</td>
-      <td>1501.160620</td>
-      <td>89</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>winter</td>
-      <td>0.0</td>
-      <td>709.996819</td>
-      <td>46</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1</td>
-      <td>winter</td>
-      <td>1.0</td>
-      <td>781.464579</td>
-      <td>53</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1</td>
-      <td>winter</td>
-      <td>2.0</td>
-      <td>1075.851116</td>
-      <td>57</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1</td>
-      <td>winter</td>
-      <td>3.0</td>
-      <td>1184.642839</td>
-      <td>53</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>1</td>
-      <td>winter</td>
-      <td>4.0</td>
-      <td>1357.385741</td>
-      <td>81</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>1</td>
-      <td>winter</td>
-      <td>5.0</td>
-      <td>2354.729583</td>
-      <td>140</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>1</td>
-      <td>winter</td>
-      <td>6.0</td>
-      <td>1414.937257</td>
-      <td>84</td>
-    </tr>
-    <tr>
-      <th>0</th>
+      <td>New York</td>
       <td>2</td>
-      <td>winter</td>
-      <td>0.0</td>
-      <td>761.394982</td>
-      <td>42</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>winter</td>
-      <td>1.0</td>
-      <td>624.162033</td>
-      <td>44</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2</td>
-      <td>winter</td>
-      <td>2.0</td>
-      <td>840.425627</td>
-      <td>54</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2</td>
-      <td>winter</td>
-      <td>3.0</td>
-      <td>983.358636</td>
-      <td>60</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2</td>
-      <td>winter</td>
-      <td>4.0</td>
-      <td>1460.013303</td>
-      <td>76</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>2</td>
-      <td>winter</td>
-      <td>5.0</td>
-      <td>2344.490916</td>
-      <td>141</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>2</td>
-      <td>winter</td>
-      <td>6.0</td>
-      <td>1442.061144</td>
-      <td>78</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>3</td>
-      <td>winter</td>
-      <td>0.0</td>
-      <td>741.269038</td>
-      <td>48</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>3</td>
-      <td>winter</td>
-      <td>1.0</td>
-      <td>781.220638</td>
-      <td>46</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>winter</td>
-      <td>2.0</td>
-      <td>895.938159</td>
-      <td>57</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>3</td>
-      <td>winter</td>
-      <td>3.0</td>
-      <td>977.839755</td>
+      <td>920.184932</td>
       <td>61</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>3</th>
+      <td>0</td>
+      <td>New York</td>
       <td>3</td>
-      <td>winter</td>
-      <td>4.0</td>
-      <td>1314.589621</td>
-      <td>84</td>
+      <td>1081.714005</td>
+      <td>62</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>New York</td>
+      <td>4</td>
+      <td>1402.645716</td>
+      <td>95</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>3</td>
-      <td>winter</td>
-      <td>5.0</td>
-      <td>2431.130927</td>
-      <td>130</td>
+      <td>0</td>
+      <td>New York</td>
+      <td>5</td>
+      <td>2520.183718</td>
+      <td>136</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>3</td>
-      <td>winter</td>
-      <td>6.0</td>
-      <td>1338.636205</td>
+      <td>0</td>
+      <td>New York</td>
+      <td>6</td>
+      <td>1520.201774</td>
+      <td>75</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>1</td>
+      <td>New York</td>
+      <td>0</td>
+      <td>686.503549</td>
+      <td>39</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1</td>
+      <td>New York</td>
+      <td>1</td>
+      <td>896.953437</td>
+      <td>53</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1</td>
+      <td>New York</td>
+      <td>1</td>
+      <td>1045.773419</td>
+      <td>62</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>1</td>
+      <td>New York</td>
+      <td>2</td>
+      <td>1192.191224</td>
       <td>92</td>
     </tr>
     <tr>
-      <th>0</th>
+      <th>11</th>
+      <td>1</td>
+      <td>New York</td>
       <td>4</td>
-      <td>summer</td>
-      <td>0.0</td>
-      <td>2735.687483</td>
-      <td>190</td>
+      <td>1525.217500</td>
+      <td>75</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>4</td>
-      <td>summer</td>
-      <td>1.0</td>
-      <td>2859.243876</td>
-      <td>151</td>
+      <th>12</th>
+      <td>1</td>
+      <td>New York</td>
+      <td>5</td>
+      <td>2426.323658</td>
+      <td>158</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>4</td>
-      <td>summer</td>
-      <td>2.0</td>
-      <td>3112.899985</td>
-      <td>141</td>
+      <th>13</th>
+      <td>1</td>
+      <td>New York</td>
+      <td>6</td>
+      <td>1510.210142</td>
+      <td>87</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>4</td>
-      <td>summer</td>
-      <td>3.0</td>
-      <td>2983.540950</td>
+      <th>14</th>
+      <td>2</td>
+      <td>California</td>
+      <td>0</td>
+      <td>2815.773906</td>
+      <td>161</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>2</td>
+      <td>California</td>
+      <td>1</td>
+      <td>2920.025629</td>
+      <td>171</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>2</td>
+      <td>California</td>
+      <td>2</td>
+      <td>2897.736566</td>
       <td>178</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>4</td>
-      <td>summer</td>
-      <td>4.0</td>
-      <td>3448.492350</td>
-      <td>180</td>
+      <th>17</th>
+      <td>2</td>
+      <td>California</td>
+      <td>3</td>
+      <td>3165.451983</td>
+      <td>193</td>
     </tr>
     <tr>
-      <th>5</th>
+      <th>18</th>
+      <td>2</td>
+      <td>California</td>
       <td>4</td>
-      <td>summer</td>
-      <td>5.0</td>
-      <td>4587.416582</td>
-      <td>284</td>
+      <td>3499.966247</td>
+      <td>193</td>
     </tr>
     <tr>
-      <th>6</th>
+      <th>19</th>
+      <td>2</td>
+      <td>California</td>
+      <td>5</td>
+      <td>4517.284483</td>
+      <td>235</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>2</td>
+      <td>California</td>
+      <td>6</td>
+      <td>3597.010222</td>
+      <td>232</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>3</td>
+      <td>New York</td>
+      <td>0</td>
+      <td>810.530893</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>3</td>
+      <td>New York</td>
+      <td>1</td>
+      <td>817.311604</td>
+      <td>46</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>3</td>
+      <td>New York</td>
+      <td>2</td>
+      <td>991.766233</td>
+      <td>52</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>3</td>
+      <td>New York</td>
+      <td>3</td>
+      <td>1162.852124</td>
+      <td>67</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>3</td>
+      <td>New York</td>
       <td>4</td>
-      <td>summer</td>
-      <td>6.0</td>
-      <td>3480.014577</td>
-      <td>200</td>
+      <td>1397.482495</td>
+      <td>81</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>3</td>
+      <td>New York</td>
+      <td>5</td>
+      <td>2578.626537</td>
+      <td>136</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>3</td>
+      <td>New York</td>
+      <td>6</td>
+      <td>1477.256969</td>
+      <td>84</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>4</td>
+      <td>New York</td>
+      <td>0</td>
+      <td>858.858941</td>
+      <td>46</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>4</td>
+      <td>New York</td>
+      <td>1</td>
+      <td>933.816092</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>4</td>
+      <td>New York</td>
+      <td>2</td>
+      <td>1022.042883</td>
+      <td>52</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>4</td>
+      <td>New York</td>
+      <td>3</td>
+      <td>1080.011295</td>
+      <td>64</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>4</td>
+      <td>New York</td>
+      <td>4</td>
+      <td>1426.642509</td>
+      <td>73</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>4</td>
+      <td>New York</td>
+      <td>5</td>
+      <td>2461.994465</td>
+      <td>121</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>4</td>
+      <td>New York</td>
+      <td>6</td>
+      <td>1536.159444</td>
+      <td>95</td>
     </tr>
   </tbody>
 </table>

@@ -1,0 +1,7 @@
+deepecho.models.basic\_gan module
+=================================
+
+.. automodule:: deepecho.models.basic_gan
+   :members:
+   :undoc-members:
+   :show-inheritance:

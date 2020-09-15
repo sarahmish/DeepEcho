@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Benchmark Datasets &mdash; DeepEcho 0.1.1 documentation</title>
+  <title>Benchmark Datasets &mdash; DeepEcho 0.1.2 documentation</title>
   
 
   
@@ -89,6 +89,7 @@
 <li class="toctree-l2"><a class="reference internal" href="01_Getting_Started.html#Load-the-demo-dataset">Load the demo dataset</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="01_Getting_Started.html#Context">Context</a></li>
 <li class="toctree-l3"><a class="reference internal" href="01_Getting_Started.html#Data-Types">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="01_Getting_Started.html#Sequence-Index">Sequence Index</a></li>
 <li class="toctree-l3"><a class="reference internal" href="01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
 </ul>
 </li>
@@ -98,10 +99,15 @@
 <p class="caption"><span class="caption-text">Resources</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../api/deepecho.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/deepecho.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/deepecho.models.html">deepecho.models package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/deepecho.models.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../api/deepecho.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api/deepecho.base.html">deepecho.base module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/deepecho.demo.html">deepecho.demo module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/deepecho.par.html">deepecho.par module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/deepecho.sequences.html">deepecho.sequences module</a></li>
 </ul>
 </li>
@@ -128,8 +134,9 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.1.1 (2020-08-15)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.1.0 (2020-08-11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.1.2 (2020-09-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.1.1 (2020-08-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id3">0.1.0 (2020-08-11)</a></li>
 </ul>
 </li>
 </ul>
@@ -593,8 +600,9 @@ div.rendered_html tbody tr:hover {
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>id</th>
-      <th>season</th>
+      <th>date</th>
+      <th>store_id</th>
+      <th>region</th>
       <th>day_of_week</th>
       <th>total_sales</th>
       <th>nb_customers</th>
@@ -603,92 +611,103 @@ div.rendered_html tbody tr:hover {
   <tbody>
     <tr>
       <th>0</th>
+      <td>2020-06-01</td>
+      <td>68608</td>
+      <td>New York</td>
       <td>0</td>
-      <td>winter</td>
-      <td>0</td>
-      <td>736.192546</td>
+      <td>736.19</td>
       <td>43</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0</td>
-      <td>winter</td>
+      <td>2020-06-02</td>
+      <td>68608</td>
+      <td>New York</td>
       <td>1</td>
-      <td>777.309789</td>
+      <td>777.31</td>
       <td>45</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0</td>
-      <td>winter</td>
+      <td>2020-06-03</td>
+      <td>68608</td>
+      <td>New York</td>
       <td>2</td>
-      <td>921.220142</td>
+      <td>921.22</td>
       <td>54</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0</td>
-      <td>winter</td>
+      <td>2020-06-04</td>
+      <td>68608</td>
+      <td>New York</td>
       <td>3</td>
-      <td>1085.689116</td>
+      <td>1085.69</td>
       <td>63</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0</td>
-      <td>winter</td>
+      <td>2020-06-05</td>
+      <td>68608</td>
+      <td>New York</td>
       <td>4</td>
-      <td>1476.302930</td>
+      <td>1476.30</td>
       <td>86</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0</td>
-      <td>winter</td>
+      <td>2020-06-06</td>
+      <td>68608</td>
+      <td>New York</td>
       <td>5</td>
-      <td>2463.116775</td>
+      <td>2463.12</td>
       <td>144</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0</td>
-      <td>winter</td>
+      <td>2020-06-07</td>
+      <td>68608</td>
+      <td>New York</td>
       <td>6</td>
-      <td>1579.096039</td>
+      <td>1579.10</td>
       <td>92</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>1</td>
-      <td>summer</td>
+      <td>2020-06-01</td>
+      <td>47226</td>
+      <td>California</td>
       <td>0</td>
-      <td>2750.937480</td>
+      <td>2750.94</td>
       <td>161</td>
     </tr>
     <tr>
       <th>8</th>
+      <td>2020-06-02</td>
+      <td>47226</td>
+      <td>California</td>
       <td>1</td>
-      <td>summer</td>
-      <td>1</td>
-      <td>2853.730589</td>
+      <td>2853.73</td>
       <td>167</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>1</td>
-      <td>summer</td>
+      <td>2020-06-03</td>
+      <td>47226</td>
+      <td>California</td>
       <td>2</td>
-      <td>2915.406454</td>
+      <td>2915.41</td>
       <td>171</td>
     </tr>
   </tbody>
 </table>
 </div></div>
 </div>
-<p>This table has 5 columns:</p>
+<p>This table has 6 columns:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: Column that acts as <code class="docutils literal notranslate"><span class="pre">entity_id</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">season</span></code>: Column that acts as <code class="docutils literal notranslate"><span class="pre">context</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">date</span></code>: Column that acts the time series index.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">store_id</span></code>: Column that acts as <code class="docutils literal notranslate"><span class="pre">entity_id</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">region</span></code>: Column that acts as <code class="docutils literal notranslate"><span class="pre">context</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">day_of_week</span></code>, <code class="docutils literal notranslate"><span class="pre">total_sales</span></code> and <code class="docutils literal notranslate"><span class="pre">nb_customers</span></code>: Columns that we want to learn and replicate.</p></li>
 </ul>
 <p>In order to create a valid DeepEcho Dataset with this data, we can use the <code class="docutils literal notranslate"><span class="pre">deepecho.benchmark.dataset.make_dataset</span></code> function, passing the name of the dataset, the data, the <code class="docutils literal notranslate"><span class="pre">entity_columns</span></code> and the <code class="docutils literal notranslate"><span class="pre">sequence_index</span></code>, which in this case is <code class="docutils literal notranslate"><span class="pre">None</span></code>:</p>
@@ -703,9 +722,9 @@ div.rendered_html tbody tr:hover {
 <span class="n">make_dataset</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Demo&#39;</span><span class="p">,</span>
     <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
-    <span class="n">entity_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span>
-    <span class="n">sequence_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>   <span class="c1"># This is actually the default value.</span>
-    <span class="n">datasets_path</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span>    <span class="c1"># This is actually the default value.</span>
+    <span class="n">entity_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;store_id&#39;</span><span class="p">],</span>
+    <span class="n">sequence_index</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span>
+    <span class="n">datasets_path</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -715,7 +734,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-08-14 15:42:58,507 - INFO - deepecho.benchmark.dataset - Dataset Demo generated in folder ./Demo
+2020-08-31 14:50:01,318 - INFO - deepecho.benchmark.dataset - Dataset Demo generated in folder ./Demo
 </pre></div></div>
 </div>
 <p>As we can see, the a <code class="docutils literal notranslate"><span class="pre">Demo</span></code> folder has been generated in our current working directory, containing both the <code class="docutils literal notranslate"><span class="pre">Demo.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">metadata.json</span></code> files explained above:</p>
@@ -759,31 +778,34 @@ div.rendered_html tbody tr:hover {
     &#34;tables&#34;: {
         &#34;Demo&#34;: {
             &#34;fields&#34;: {
-                &#34;nb_customers&#34;: {
-                    &#34;type&#34;: &#34;numerical&#34;,
-                    &#34;subtype&#34;: &#34;integer&#34;
-                },
                 &#34;total_sales&#34;: {
                     &#34;type&#34;: &#34;numerical&#34;,
                     &#34;subtype&#34;: &#34;float&#34;
+                },
+                &#34;region&#34;: {
+                    &#34;type&#34;: &#34;categorical&#34;
                 },
                 &#34;day_of_week&#34;: {
                     &#34;type&#34;: &#34;numerical&#34;,
                     &#34;subtype&#34;: &#34;integer&#34;
                 },
-                &#34;season&#34;: {
+                &#34;date&#34;: {
                     &#34;type&#34;: &#34;categorical&#34;
                 },
-                &#34;id&#34;: {
+                &#34;nb_customers&#34;: {
+                    &#34;type&#34;: &#34;numerical&#34;,
+                    &#34;subtype&#34;: &#34;integer&#34;
+                },
+                &#34;store_id&#34;: {
                     &#34;type&#34;: &#34;numerical&#34;,
                     &#34;subtype&#34;: &#34;integer&#34;
                 }
             },
             &#34;path&#34;: &#34;Demo.csv&#34;,
             &#34;entity_columns&#34;: [
-                &#34;id&#34;
+                &#34;store_id&#34;
             ],
-            &#34;sequence_index&#34;: null,
+            &#34;sequence_index&#34;: &#34;date&#34;,
             &#34;deepecho_version&#34;: &#34;0.1.1&#34;
         }
     }
@@ -812,7 +834,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-08-14 15:43:02,035 - INFO - sdv.metadata - Loading table Demo
+2020-08-31 14:50:03,946 - INFO - sdv.metadata - Loading table Demo
 </pre></div></div>
 </div>
 <p>This will load the data and its properties and have it ready to use by DeepEcho in the following attributes:</p>
@@ -873,53 +895,59 @@ Dataset(&#39;Demo&#39;)
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>nb_customers</th>
       <th>total_sales</th>
+      <th>region</th>
       <th>day_of_week</th>
-      <th>season</th>
-      <th>id</th>
+      <th>date</th>
+      <th>nb_customers</th>
+      <th>store_id</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
+      <td>736.19</td>
+      <td>New York</td>
+      <td>0</td>
+      <td>2020-06-01</td>
       <td>43</td>
-      <td>736.192546</td>
-      <td>0</td>
-      <td>winter</td>
-      <td>0</td>
+      <td>68608</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>45</td>
-      <td>777.309789</td>
+      <td>777.31</td>
+      <td>New York</td>
       <td>1</td>
-      <td>winter</td>
-      <td>0</td>
+      <td>2020-06-02</td>
+      <td>45</td>
+      <td>68608</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>54</td>
-      <td>921.220142</td>
+      <td>921.22</td>
+      <td>New York</td>
       <td>2</td>
-      <td>winter</td>
-      <td>0</td>
+      <td>2020-06-03</td>
+      <td>54</td>
+      <td>68608</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>63</td>
-      <td>1085.689116</td>
+      <td>1085.69</td>
+      <td>New York</td>
       <td>3</td>
-      <td>winter</td>
-      <td>0</td>
+      <td>2020-06-04</td>
+      <td>63</td>
+      <td>68608</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>86</td>
-      <td>1476.302930</td>
+      <td>1476.30</td>
+      <td>New York</td>
       <td>4</td>
-      <td>winter</td>
-      <td>0</td>
+      <td>2020-06-05</td>
+      <td>86</td>
+      <td>68608</td>
     </tr>
   </tbody>
 </table>
@@ -940,7 +968,7 @@ Dataset(&#39;Demo&#39;)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[&#39;id&#39;]
+[&#39;store_id&#39;]
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -958,10 +986,10 @@ Dataset(&#39;Demo&#39;)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[&#39;season&#39;]
+[&#39;region&#39;]
 </pre></div></div>
 </div>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
@@ -969,6 +997,15 @@ Dataset(&#39;Demo&#39;)
 <span></span><span class="n">dataset</span><span class="o">.</span><span class="n">sequence_index</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;date&#39;
+</pre></div></div>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
@@ -985,7 +1022,7 @@ Dataset(&#39;Demo&#39;)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[&#39;nb_customers&#39;, &#39;total_sales&#39;, &#39;day_of_week&#39;]
+[&#39;total_sales&#39;, &#39;day_of_week&#39;, &#39;nb_customers&#39;]
 </pre></div></div>
 </div>
 <p>Additionally, it provides a <code class="docutils literal notranslate"><span class="pre">describe</span></code> method that will return some basic information about the dataset characteristics.</p>
@@ -1138,8 +1175,7 @@ dtype: int64
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-08-14 15:43:19,071 - INFO - deepecho.benchmark.dataset - Downloading dataset Libras from http://deepecho-data.s3.amazonaws.com/Libras_v0.1.1.zip
-2020-08-14 15:43:19,746 - INFO - sdv.metadata - Loading table Libras
+2020-08-31 14:50:12,339 - INFO - sdv.metadata - Loading table Libras
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -1266,7 +1302,7 @@ dtype: int64
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-08-14 15:43:25,172 - INFO - deepecho.par - PARModel(epochs=512, max_seq_len=100, sample_size=1, cuda=&#39;cuda&#39;, verbose=True) instance created
+2020-08-31 14:50:14,855 - INFO - deepecho.models.par - PARModel(epochs=512, max_seq_len=100, sample_size=1, cuda=&#39;cuda&#39;, verbose=True) instance created
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">

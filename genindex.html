@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; DeepEcho 0.1.1 documentation</title>
+  <title>Index &mdash; DeepEcho 0.1.2 documentation</title>
   
 
   
@@ -90,6 +90,7 @@
 <li class="toctree-l2"><a class="reference internal" href="tutorials/01_Getting_Started.html#Load-the-demo-dataset">Load the demo dataset</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="tutorials/01_Getting_Started.html#Context">Context</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tutorials/01_Getting_Started.html#Data-Types">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/01_Getting_Started.html#Sequence-Index">Sequence Index</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
 </ul>
 </li>
@@ -99,10 +100,15 @@
 <p class="caption"><span class="caption-text">Resources</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/deepecho.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/deepecho.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/deepecho.models.html">deepecho.models package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/deepecho.models.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="api/deepecho.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/deepecho.base.html">deepecho.base module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/deepecho.demo.html">deepecho.demo module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/deepecho.par.html">deepecho.par module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/deepecho.sequences.html">deepecho.sequences module</a></li>
 </ul>
 </li>
@@ -129,8 +135,9 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="history.html#id1">0.1.1 (2020-08-15)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="history.html#id2">0.1.0 (2020-08-11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id1">0.1.2 (2020-09-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id2">0.1.1 (2020-08-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id3">0.1.0 (2020-08-11)</a></li>
 </ul>
 </li>
 </ul>
@@ -204,6 +211,7 @@
 
 <div class="genindex-jumpbox">
  <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
  | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
@@ -215,6 +223,7 @@
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
  | <a href="#V"><strong>V</strong></a>
  
 </div>
@@ -222,6 +231,26 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/deepecho.sequences.html#deepecho.sequences.assemble_sequences">assemble_sequences() (in module deepecho.sequences)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/deepecho.models.basic_gan.html#deepecho.models.basic_gan.BasicDiscriminator">BasicDiscriminator (class in deepecho.models.basic_gan)</a>
+</li>
+      <li><a href="api/deepecho.html#deepecho.BasicGANModel">BasicGANModel (class in deepecho)</a>
+
+      <ul>
+        <li><a href="api/deepecho.models.html#deepecho.models.BasicGANModel">(class in deepecho.models)</a>
+</li>
+        <li><a href="api/deepecho.models.basic_gan.html#deepecho.models.basic_gan.BasicGANModel">(class in deepecho.models.basic_gan)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/deepecho.models.basic_gan.html#deepecho.models.basic_gan.BasicGenerator">BasicGenerator (class in deepecho.models.basic_gan)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -247,35 +276,37 @@
         <li><a href="api/deepecho.benchmark.dataset.html#deepecho.benchmark.dataset.Dataset">(class in deepecho.benchmark.dataset)</a>
 </li>
       </ul></li>
-      <li><a href="api/deepecho.html#deepecho.DeepEcho">DeepEcho (class in deepecho)</a>
-
-      <ul>
-        <li><a href="api/deepecho.base.html#deepecho.base.DeepEcho">(class in deepecho.base)</a>
+      <li><a href="api/deepecho.models.base.html#deepecho.models.base.DeepEcho">DeepEcho (class in deepecho.models.base)</a>
 </li>
-      </ul></li>
       <li><a href="api/deepecho.html#module-deepecho">deepecho (module)</a>
 </li>
-      <li><a href="api/deepecho.base.html#module-deepecho.base">deepecho.base (module)</a>
-</li>
       <li><a href="api/deepecho.benchmark.html#module-deepecho.benchmark">deepecho.benchmark (module)</a>
+</li>
+      <li><a href="api/deepecho.benchmark.baselines.html#module-deepecho.benchmark.baselines">deepecho.benchmark.baselines (module)</a>
 </li>
       <li><a href="api/deepecho.benchmark.dataset.html#module-deepecho.benchmark.dataset">deepecho.benchmark.dataset (module)</a>
 </li>
       <li><a href="api/deepecho.benchmark.evaluation.html#module-deepecho.benchmark.evaluation">deepecho.benchmark.evaluation (module)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/deepecho.benchmark.kubernetes.html#module-deepecho.benchmark.kubernetes">deepecho.benchmark.kubernetes (module)</a>
 </li>
       <li><a href="api/deepecho.benchmark.metrics.html#module-deepecho.benchmark.metrics">deepecho.benchmark.metrics (module)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/deepecho.benchmark.metrics.classification.html#module-deepecho.benchmark.metrics.classification">deepecho.benchmark.metrics.classification (module)</a>
 </li>
       <li><a href="api/deepecho.benchmark.metrics.sdmetrics.html#module-deepecho.benchmark.metrics.sdmetrics">deepecho.benchmark.metrics.sdmetrics (module)</a>
 </li>
       <li><a href="api/deepecho.demo.html#module-deepecho.demo">deepecho.demo (module)</a>
 </li>
-      <li><a href="api/deepecho.par.html#module-deepecho.par">deepecho.par (module)</a>
+      <li><a href="api/deepecho.models.html#module-deepecho.models">deepecho.models (module)</a>
+</li>
+      <li><a href="api/deepecho.models.base.html#module-deepecho.models.base">deepecho.models.base (module)</a>
+</li>
+      <li><a href="api/deepecho.models.basic_gan.html#module-deepecho.models.basic_gan">deepecho.models.basic_gan (module)</a>
+</li>
+      <li><a href="api/deepecho.models.par.html#module-deepecho.models.par">deepecho.models.par (module)</a>
 </li>
       <li><a href="api/deepecho.sequences.html#module-deepecho.sequences">deepecho.sequences (module)</a>
 </li>
@@ -299,26 +330,40 @@
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/deepecho.base.html#deepecho.base.DeepEcho.fit">fit() (deepecho.base.DeepEcho method)</a>
+      <li><a href="api/deepecho.benchmark.baselines.html#deepecho.benchmark.baselines.RealDataBaseline.fit">fit() (deepecho.benchmark.baselines.RealDataBaseline method)</a>
 
       <ul>
-        <li><a href="api/deepecho.html#deepecho.DeepEcho.fit">(deepecho.DeepEcho method)</a>
+        <li><a href="api/deepecho.models.base.html#deepecho.models.base.DeepEcho.fit">(deepecho.models.base.DeepEcho method)</a>
 </li>
       </ul></li>
-      <li><a href="api/deepecho.base.html#deepecho.base.DeepEcho.fit_sequences">fit_sequences() (deepecho.base.DeepEcho method)</a>
+      <li><a href="api/deepecho.html#deepecho.BasicGANModel.fit_sequences">fit_sequences() (deepecho.BasicGANModel method)</a>
 
       <ul>
-        <li><a href="api/deepecho.html#deepecho.DeepEcho.fit_sequences">(deepecho.DeepEcho method)</a>
+        <li><a href="api/deepecho.benchmark.baselines.html#deepecho.benchmark.baselines.UniformBaseline.fit_sequences">(deepecho.benchmark.baselines.UniformBaseline method)</a>
 </li>
-        <li><a href="api/deepecho.par.html#deepecho.par.PARModel.fit_sequences">(deepecho.par.PARModel method)</a>
+        <li><a href="api/deepecho.models.base.html#deepecho.models.base.DeepEcho.fit_sequences">(deepecho.models.base.DeepEcho method)</a>
+</li>
+        <li><a href="api/deepecho.models.basic_gan.html#deepecho.models.basic_gan.BasicGANModel.fit_sequences">(deepecho.models.basic_gan.BasicGANModel method)</a>
+</li>
+        <li><a href="api/deepecho.models.html#deepecho.models.BasicGANModel.fit_sequences">(deepecho.models.BasicGANModel method)</a>
+</li>
+        <li><a href="api/deepecho.models.par.html#deepecho.models.par.PARModel.fit_sequences">(deepecho.models.par.PARModel method)</a>
+</li>
+        <li><a href="api/deepecho.models.html#deepecho.models.PARModel.fit_sequences">(deepecho.models.PARModel method)</a>
 </li>
         <li><a href="api/deepecho.html#deepecho.PARModel.fit_sequences">(deepecho.PARModel method)</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/deepecho.par.html#deepecho.par.PARNet.forward">forward() (deepecho.par.PARNet method)</a>
+      <li><a href="api/deepecho.models.basic_gan.html#deepecho.models.basic_gan.BasicDiscriminator.forward">forward() (deepecho.models.basic_gan.BasicDiscriminator method)</a>
+
+      <ul>
+        <li><a href="api/deepecho.models.basic_gan.html#deepecho.models.basic_gan.BasicGenerator.forward">(deepecho.models.basic_gan.BasicGenerator method)</a>
 </li>
+        <li><a href="api/deepecho.models.par.html#deepecho.models.par.PARNet.forward">(deepecho.models.par.PARNet method)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -337,8 +382,12 @@
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/deepecho.demo.html#deepecho.demo.load_demo">load_demo() (in module deepecho.demo)</a>
+      <li><a href="api/deepecho.html#deepecho.load_demo">load_demo() (in module deepecho)</a>
+
+      <ul>
+        <li><a href="api/deepecho.demo.html#deepecho.demo.load_demo">(in module deepecho.demo)</a>
 </li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/deepecho.benchmark.metrics.html#deepecho.benchmark.metrics.lstm_detection_score">lstm_detection_score() (in module deepecho.benchmark.metrics)</a>
@@ -368,12 +417,14 @@
       <li><a href="api/deepecho.html#deepecho.PARModel">PARModel (class in deepecho)</a>
 
       <ul>
-        <li><a href="api/deepecho.par.html#deepecho.par.PARModel">(class in deepecho.par)</a>
+        <li><a href="api/deepecho.models.html#deepecho.models.PARModel">(class in deepecho.models)</a>
+</li>
+        <li><a href="api/deepecho.models.par.html#deepecho.models.par.PARModel">(class in deepecho.models.par)</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/deepecho.par.html#deepecho.par.PARNet">PARNet (class in deepecho.par)</a>
+      <li><a href="api/deepecho.models.par.html#deepecho.models.par.PARNet">PARNet (class in deepecho.models.par)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -381,6 +432,8 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/deepecho.benchmark.baselines.html#deepecho.benchmark.baselines.RealDataBaseline">RealDataBaseline (class in deepecho.benchmark.baselines)</a>
+</li>
       <li><a href="api/deepecho.benchmark.metrics.html#deepecho.benchmark.metrics.rf_detection_score">rf_detection_score() (in module deepecho.benchmark.metrics)</a>
 
       <ul>
@@ -401,18 +454,26 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/deepecho.base.html#deepecho.base.DeepEcho.sample">sample() (deepecho.base.DeepEcho method)</a>
+      <li><a href="api/deepecho.benchmark.baselines.html#deepecho.benchmark.baselines.RealDataBaseline.sample">sample() (deepecho.benchmark.baselines.RealDataBaseline method)</a>
 
       <ul>
-        <li><a href="api/deepecho.html#deepecho.DeepEcho.sample">(deepecho.DeepEcho method)</a>
+        <li><a href="api/deepecho.models.base.html#deepecho.models.base.DeepEcho.sample">(deepecho.models.base.DeepEcho method)</a>
 </li>
       </ul></li>
-      <li><a href="api/deepecho.base.html#deepecho.base.DeepEcho.sample_sequence">sample_sequence() (deepecho.base.DeepEcho method)</a>
+      <li><a href="api/deepecho.html#deepecho.BasicGANModel.sample_sequence">sample_sequence() (deepecho.BasicGANModel method)</a>
 
       <ul>
-        <li><a href="api/deepecho.html#deepecho.DeepEcho.sample_sequence">(deepecho.DeepEcho method)</a>
+        <li><a href="api/deepecho.benchmark.baselines.html#deepecho.benchmark.baselines.UniformBaseline.sample_sequence">(deepecho.benchmark.baselines.UniformBaseline method)</a>
 </li>
-        <li><a href="api/deepecho.par.html#deepecho.par.PARModel.sample_sequence">(deepecho.par.PARModel method)</a>
+        <li><a href="api/deepecho.models.base.html#deepecho.models.base.DeepEcho.sample_sequence">(deepecho.models.base.DeepEcho method)</a>
+</li>
+        <li><a href="api/deepecho.models.basic_gan.html#deepecho.models.basic_gan.BasicGANModel.sample_sequence">(deepecho.models.basic_gan.BasicGANModel method)</a>
+</li>
+        <li><a href="api/deepecho.models.html#deepecho.models.BasicGANModel.sample_sequence">(deepecho.models.BasicGANModel method)</a>
+</li>
+        <li><a href="api/deepecho.models.par.html#deepecho.models.par.PARModel.sample_sequence">(deepecho.models.par.PARModel method)</a>
+</li>
+        <li><a href="api/deepecho.models.html#deepecho.models.PARModel.sample_sequence">(deepecho.models.PARModel method)</a>
 </li>
         <li><a href="api/deepecho.html#deepecho.PARModel.sample_sequence">(deepecho.PARModel method)</a>
 </li>
@@ -437,7 +498,21 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/deepecho.par.html#deepecho.par.PARNet.training">training (deepecho.par.PARNet attribute)</a>
+      <li><a href="api/deepecho.models.basic_gan.html#deepecho.models.basic_gan.BasicDiscriminator.training">training (deepecho.models.basic_gan.BasicDiscriminator attribute)</a>
+
+      <ul>
+        <li><a href="api/deepecho.models.basic_gan.html#deepecho.models.basic_gan.BasicGenerator.training">(deepecho.models.basic_gan.BasicGenerator attribute)</a>
+</li>
+        <li><a href="api/deepecho.models.par.html#deepecho.models.par.PARNet.training">(deepecho.models.par.PARNet attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/deepecho.benchmark.baselines.html#deepecho.benchmark.baselines.UniformBaseline">UniformBaseline (class in deepecho.benchmark.baselines)</a>
 </li>
   </ul></td>
 </tr></table>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho.par module &mdash; DeepEcho 0.1.1 documentation</title>
+  <title>deepecho.models package &mdash; DeepEcho 0.1.2 documentation</title>
   
 
   
@@ -38,8 +38,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="deepecho.sequences module" href="deepecho.sequences.html" />
-    <link rel="prev" title="deepecho.demo module" href="deepecho.demo.html" /> 
+    <link rel="next" title="deepecho.models.base module" href="deepecho.models.base.html" />
+    <link rel="prev" title="deepecho package" href="deepecho.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -91,6 +91,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Load-the-demo-dataset">Load the demo dataset</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Context">Context</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Data-Types">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Sequence-Index">Sequence Index</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
 </ul>
 </li>
@@ -100,10 +101,15 @@
 <p class="caption"><span class="caption-text">Resources</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="deepecho.html">API Reference</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="deepecho.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="deepecho.base.html">deepecho.base module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="deepecho.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">deepecho.models package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="deepecho.html#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="deepecho.demo.html">deepecho.demo module</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">deepecho.par module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deepecho.sequences.html">deepecho.sequences module</a></li>
 </ul>
 </li>
@@ -130,8 +136,9 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.1.1 (2020-08-15)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.1.0 (2020-08-11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.1.2 (2020-09-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.1.1 (2020-08-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id3">0.1.0 (2020-08-11)</a></li>
 </ul>
 </li>
 </ul>
@@ -181,14 +188,14 @@
         
           <li><a href="deepecho.html">deepecho package</a> &raquo;</li>
         
-      <li>deepecho.par module</li>
+      <li>deepecho.models package</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/k15z/DeepEcho/blob/master/docs/api/deepecho.par.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/k15z/DeepEcho/blob/master/docs/api/deepecho.models.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -226,28 +233,28 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="module-deepecho.par">
-<span id="deepecho-par-module"></span><h1>deepecho.par module<a class="headerlink" href="#module-deepecho.par" title="Permalink to this headline">¶</a></h1>
-<p>Probabilistic autoregressive model.</p>
-<p><strong>Classes</strong></p>
+<div class="section" id="module-deepecho.models">
+<span id="deepecho-models-package"></span><h1>deepecho.models package<a class="headerlink" href="#module-deepecho.models" title="Permalink to this headline">¶</a></h1>
+<p>DeepEcho Models package.</p>
+<p><strong>Classes:</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.par.PARModel" title="deepecho.par.PARModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PARModel</span></code></a>([epochs, max_seq_len, sample_size, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.models.PARModel" title="deepecho.models.PARModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PARModel</span></code></a>([epochs, max_seq_len, sample_size, …])</p></td>
 <td><p>Probabilistic autoregressive model.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.par.PARNet" title="deepecho.par.PARNet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PARNet</span></code></a>(data_size, context_size[, hidden_size])</p></td>
-<td><p>PARModel ANN model.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.models.BasicGANModel" title="deepecho.models.BasicGANModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BasicGANModel</span></code></a>([epochs, latent_size, …])</p></td>
+<td><p>Basic GAN model.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="class">
-<dt id="deepecho.par.PARModel">
-<em class="property">class </em><code class="sig-prename descclassname">deepecho.par.</code><code class="sig-name descname">PARModel</code><span class="sig-paren">(</span><em class="sig-param">epochs=128</em>, <em class="sig-param">max_seq_len=100</em>, <em class="sig-param">sample_size=1</em>, <em class="sig-param">cuda=True</em>, <em class="sig-param">verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/par.html#PARModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.par.PARModel" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="deepecho.base.html#deepecho.base.DeepEcho" title="deepecho.base.DeepEcho"><code class="xref py py-class docutils literal notranslate"><span class="pre">deepecho.base.DeepEcho</span></code></a></p>
+<dt id="deepecho.models.PARModel">
+<em class="property">class </em><code class="sig-prename descclassname">deepecho.models.</code><code class="sig-name descname">PARModel</code><span class="sig-paren">(</span><em class="sig-param">epochs=128</em>, <em class="sig-param">max_seq_len=100</em>, <em class="sig-param">sample_size=1</em>, <em class="sig-param">cuda=True</em>, <em class="sig-param">verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/models/par.html#PARModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.models.PARModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="deepecho.models.base.html#deepecho.models.base.DeepEcho" title="deepecho.models.base.DeepEcho"><code class="xref py py-class docutils literal notranslate"><span class="pre">deepecho.models.base.DeepEcho</span></code></a></p>
 <p>Probabilistic autoregressive model.</p>
 <ol class="arabic simple">
 <li><dl class="simple">
@@ -296,21 +303,6 @@
 </dl>
 </li>
 </ol>
-<p><strong>Methods</strong></p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.par.PARModel.fit_sequences" title="deepecho.par.PARModel.fit_sequences"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_sequences</span></code></a>(sequences, context_types, …)</p></td>
-<td><p>Fit a model to the specified sequences.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.par.PARModel.sample_sequence" title="deepecho.par.PARModel.sample_sequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample_sequence</span></code></a>(context[, sequence_length])</p></td>
-<td><p>Sample a single sequence conditioned on context.</p></td>
-</tr>
-</tbody>
-</table>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -323,12 +315,28 @@ Defaults to 1.</p></li>
 <li><p><strong>cuda</strong> (<em>bool</em>) – Whether to attempt to use cuda for GPU computation.
 If this is False or CUDA is not available, CPU will be used.
 Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – Whether to print progress to console or not.</p></li>
 </ul>
 </dd>
 </dl>
+<p><strong>Methods:</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.models.PARModel.fit_sequences" title="deepecho.models.PARModel.fit_sequences"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_sequences</span></code></a>(sequences, context_types, …)</p></td>
+<td><p>Fit a model to the specified sequences.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.models.PARModel.sample_sequence" title="deepecho.models.PARModel.sample_sequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample_sequence</span></code></a>(context[, sequence_length])</p></td>
+<td><p>Sample a single sequence conditioned on context.</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
-<dt id="deepecho.par.PARModel.fit_sequences">
-<code class="sig-name descname">fit_sequences</code><span class="sig-paren">(</span><em class="sig-param">sequences</em>, <em class="sig-param">context_types</em>, <em class="sig-param">data_types</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/par.html#PARModel.fit_sequences"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.par.PARModel.fit_sequences" title="Permalink to this definition">¶</a></dt>
+<dt id="deepecho.models.PARModel.fit_sequences">
+<code class="sig-name descname">fit_sequences</code><span class="sig-paren">(</span><em class="sig-param">sequences</em>, <em class="sig-param">context_types</em>, <em class="sig-param">data_types</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/models/par.html#PARModel.fit_sequences"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.models.PARModel.fit_sequences" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit a model to the specified sequences.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -367,8 +375,8 @@ Each value in the list at data[i] must match the type specified by
 </dd></dl>
 
 <dl class="method">
-<dt id="deepecho.par.PARModel.sample_sequence">
-<code class="sig-name descname">sample_sequence</code><span class="sig-paren">(</span><em class="sig-param">context</em>, <em class="sig-param">sequence_length=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/par.html#PARModel.sample_sequence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.par.PARModel.sample_sequence" title="Permalink to this definition">¶</a></dt>
+<dt id="deepecho.models.PARModel.sample_sequence">
+<code class="sig-name descname">sample_sequence</code><span class="sig-paren">(</span><em class="sig-param">context</em>, <em class="sig-param">sequence_length=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/models/par.html#PARModel.sample_sequence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.models.PARModel.sample_sequence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sample a single sequence conditioned on context.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -393,35 +401,125 @@ in data_types when fit was called.</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="deepecho.par.PARNet">
-<em class="property">class </em><code class="sig-prename descclassname">deepecho.par.</code><code class="sig-name descname">PARNet</code><span class="sig-paren">(</span><em class="sig-param">data_size</em>, <em class="sig-param">context_size</em>, <em class="sig-param">hidden_size=32</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/par.html#PARNet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.par.PARNet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
-<p>PARModel ANN model.</p>
-<p><strong>Methods</strong></p>
+<dt id="deepecho.models.BasicGANModel">
+<em class="property">class </em><code class="sig-prename descclassname">deepecho.models.</code><code class="sig-name descname">BasicGANModel</code><span class="sig-paren">(</span><em class="sig-param">epochs=1024</em>, <em class="sig-param">latent_size=32</em>, <em class="sig-param">hidden_size=16</em>, <em class="sig-param">gen_lr=0.001</em>, <em class="sig-param">dis_lr=0.001</em>, <em class="sig-param">cuda=True</em>, <em class="sig-param">verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/models/basic_gan.html#BasicGANModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.models.BasicGANModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="deepecho.models.base.html#deepecho.models.base.DeepEcho" title="deepecho.models.base.DeepEcho"><code class="xref py py-class docutils literal notranslate"><span class="pre">deepecho.models.base.DeepEcho</span></code></a></p>
+<p>Basic GAN model.</p>
+<ol class="arabic simple" start="0">
+<li><p>Normalize continuous values to [-1.0, 1.0].</p></li>
+<li><p>Map categorical values to one-hot.</p></li>
+<li><p>Define a generator that takes context vector -&gt; new sequence.</p></li>
+<li><dl class="simple">
+<dt>Transforms</dt><dd><ul class="simple">
+<li><p>apply sigmoid to continuous/count/datetime</p></li>
+<li><p>apply softmax to categorical/ordinal</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Define a discriminator that takes sequence + context -&gt; score.</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>epochs</strong> (<em>int</em>) – Number of training epochs. Defaults to 1024.</p></li>
+<li><p><strong>latent_size</strong> (<em>int</em>) – Size of the random vector to use for generation. Defaults to 32.</p></li>
+<li><p><strong>hidden_size</strong> (<em>int</em>) – Size of the hidden Linear layer. Defaults to 16.</p></li>
+<li><p><strong>gen_lr</strong> (<em>float</em>) – Generator learning rate. Defaults to 1e-3.</p></li>
+<li><p><strong>dis_lr</strong> (<em>float</em>) – Discriminator learning rate. Defaults to 1e-3.</p></li>
+<li><p><strong>cuda</strong> (<em>bool</em>) – Whether to attempt to use cuda for GPU computation.
+If this is False or CUDA is not available, CPU will be used.
+Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – Whether to print progress to console or not.</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Methods:</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.par.PARNet.forward" title="deepecho.par.PARNet.forward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code></a>(x, c)</p></td>
-<td><p>Forward passing computation.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.models.BasicGANModel.fit_sequences" title="deepecho.models.BasicGANModel.fit_sequences"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_sequences</span></code></a>(sequences, context_types, …)</p></td>
+<td><p>Fit a model to the specified sequences.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.models.BasicGANModel.sample_sequence" title="deepecho.models.BasicGANModel.sample_sequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample_sequence</span></code></a>(context[, sequence_length])</p></td>
+<td><p>Sample a single sequence conditioned on context.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="method">
-<dt id="deepecho.par.PARNet.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">c</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/par.html#PARNet.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.par.PARNet.forward" title="Permalink to this definition">¶</a></dt>
-<dd><p>Forward passing computation.</p>
+<dt id="deepecho.models.BasicGANModel.fit_sequences">
+<code class="sig-name descname">fit_sequences</code><span class="sig-paren">(</span><em class="sig-param">sequences</em>, <em class="sig-param">context_types</em>, <em class="sig-param">data_types</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/models/basic_gan.html#BasicGANModel.fit_sequences"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.models.BasicGANModel.fit_sequences" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit a model to the specified sequences.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sequences</strong> – <p>List of sequences. Each sequence is a single training example
+(i.e. an example of a multivariate time series with some context).
+For example, a sequence might look something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;context&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The “context” attribute maps to a list of variables which
+should be used for conditioning. These are variables which
+do not change over time.</p>
+<p>The “data” attribute contains a list of lists corrsponding
+to the actual time series data such that <cite>data[i][j]</cite> contains
+the value at the jth time step of the ith channel of the
+multivariate time series.</p>
+</p></li>
+<li><p><strong>context_types</strong> – List of strings indicating the type of each value in context.
+he value at <cite>context[i]</cite> must match the type specified by
+<cite>context_types[i]</cite>. Valid types include the following: <cite>categorical</cite>,
+<cite>continuous</cite>, <cite>ordinal</cite>, <cite>count</cite>, and <cite>datetime</cite>.</p></li>
+<li><p><strong>data_types</strong> – List of strings indicating the type of each channel in data.
+Each value in the list at data[i] must match the type specified by
+<cite>data_types[i]</cite>. The valid types are the same as for <cite>context_types</cite>.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="deepecho.par.PARNet.training">
-<code class="sig-name descname">training</code><em class="property"> = None</em><a class="headerlink" href="#deepecho.par.PARNet.training" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dl class="method">
+<dt id="deepecho.models.BasicGANModel.sample_sequence">
+<code class="sig-name descname">sample_sequence</code><span class="sig-paren">(</span><em class="sig-param">context</em>, <em class="sig-param">sequence_length=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/models/basic_gan.html#BasicGANModel.sample_sequence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.models.BasicGANModel.sample_sequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample a single sequence conditioned on context.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>context</strong> (<em>list</em>) – The list of values to condition on. It must match
+the types specified in context_types when fit was called.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of lists (data) corresponding to the types specified
+in data_types when fit was called.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list[list]</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="deepecho.models.base.html">deepecho.models.base module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deepecho.models.basic_gan.html">deepecho.models.basic_gan module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deepecho.models.par.html">deepecho.models.par module</a></li>
+</ul>
+</div>
+</div>
 </div>
 
 
@@ -432,10 +530,10 @@ in data_types when fit was called.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="deepecho.sequences.html" class="btn btn-neutral float-right" title="deepecho.sequences module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="deepecho.models.base.html" class="btn btn-neutral float-right" title="deepecho.models.base module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="deepecho.demo.html" class="btn btn-neutral float-left" title="deepecho.demo module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="deepecho.html" class="btn btn-neutral float-left" title="deepecho package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

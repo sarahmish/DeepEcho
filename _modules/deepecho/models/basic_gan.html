@@ -1,0 +1,823 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>deepecho.models.basic_gan &mdash; DeepEcho 0.1.2 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/deepecho.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0095B2" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/DeepEcho-Logo-White-Small.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/01_Getting_Started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/01_Getting_Started.html#DeepEcho-Overview">DeepEcho Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/01_Getting_Started.html#Load-the-demo-dataset">Load the demo dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/01_Getting_Started.html#Context">Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/01_Getting_Started.html#Data-Types">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/01_Getting_Started.html#Sequence-Index">Sequence Index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/deepecho.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/deepecho.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/deepecho.models.html">deepecho.models package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/deepecho.models.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/deepecho.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/deepecho.demo.html">deepecho.demo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/deepecho.sequences.html">deepecho.sequences module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#types-of-contributions">Types of Contributions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#report-bugs">Report Bugs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#fix-bugs">Fix Bugs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#implement-features">Implement Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#write-documentation">Write Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#submit-feedback">Submit Feedback</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#get-started">Get Started!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#pull-request-guidelines">Pull Request Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#unit-testing-guidelines">Unit Testing Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#tips">Tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#release-workflow">Release Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#release-candidates">Release Candidates</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../history.html">History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id1">0.1.2 (2020-09-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id2">0.1.1 (2020-08-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id3">0.1.0 (2020-08-11)</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">DeepEcho</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>deepecho.models.basic_gan</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for deepecho.models.basic_gan</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;BasicGAN Model.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="kn">from</span> <span class="nn">deepecho.models.base</span> <span class="kn">import</span> <span class="n">DeepEcho</span>
+
+<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_expand_context</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span>
+        <span class="n">data</span><span class="p">,</span>
+        <span class="n">context</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">context</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">context</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="BasicGenerator"><a class="viewcode-back" href="../../../api/deepecho.models.basic_gan.html#deepecho.BasicGenerator">[docs]</a><span class="k">class</span> <span class="nc">BasicGenerator</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generator for the BasicGAN model.</span>
+
+<span class="sd">    This generator consist on a RNN layer followed by a Linear layer with</span>
+<span class="sd">    the following schema:</span>
+
+<span class="sd">        - The Generator takes as input a ``sequence_length`` and a ``context`` vector.</span>
+<span class="sd">        - The ``context`` vector is expanded over the ``sequence_lenght`` and padded with</span>
+<span class="sd">          ``latent_size`` random noise.</span>
+<span class="sd">        - RNN takes as input a tensor with shape</span>
+<span class="sd">          ``(sequence_length, context_length, context_size + latent_size)`` and</span>
+<span class="sd">          generates an output of shape ``(sequence_length, context_length, hidden_size)``.</span>
+<span class="sd">        - The RNN output is passed to the Linear layer that outputs a tensor of size</span>
+<span class="sd">          ``(sequence_length, context_length, output_size)``</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        context_size (int):</span>
+<span class="sd">            Size of the contextual arrays.</span>
+<span class="sd">        latent_size (int):</span>
+<span class="sd">            Size of the random input vector.</span>
+<span class="sd">        hidden_size (int):</span>
+<span class="sd">            Size of the communication between the RNN and the Linear layer.</span>
+<span class="sd">        data_size (int):</span>
+<span class="sd">            Size of the output layer.</span>
+<span class="sd">        device (torch.device):</span>
+<span class="sd">            Device to which this Module is associated to.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context_size</span><span class="p">,</span> <span class="n">latent_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">,</span> <span class="n">data_size</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">latent_size</span> <span class="o">=</span> <span class="n">latent_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rnn</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">GRU</span><span class="p">(</span><span class="n">context_size</span> <span class="o">+</span> <span class="n">latent_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">data_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">device</span>
+
+<div class="viewcode-block" id="BasicGenerator.forward"><a class="viewcode-back" href="../../../api/deepecho.models.basic_gan.html#deepecho.BasicGenerator.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sequence_length</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Forward computation.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            context (tensor):</span>
+<span class="sd">                Context values to use for each generated sequence.</span>
+<span class="sd">            sequence_length (int):</span>
+<span class="sd">                Amount of data points to generate for each sequence.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">latent</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span>
+            <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">sequence_length</span><span class="p">,</span> <span class="n">context</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">latent_size</span><span class="p">),</span>
+            <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span>
+        <span class="p">)</span>
+        <span class="n">latent</span> <span class="o">=</span> <span class="n">_expand_context</span><span class="p">(</span><span class="n">latent</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+
+        <span class="n">rnn_out</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rnn</span><span class="p">(</span><span class="n">latent</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear</span><span class="p">(</span><span class="n">rnn_out</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="BasicDiscriminator"><a class="viewcode-back" href="../../../api/deepecho.models.basic_gan.html#deepecho.BasicDiscriminator">[docs]</a><span class="k">class</span> <span class="nc">BasicDiscriminator</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Discriminator for the BasicGAN model.</span>
+
+<span class="sd">    This discriminator consist on a RNN layer followed by a Linear layer with</span>
+<span class="sd">    the following schema:</span>
+
+<span class="sd">        - The Discriminator takes as input a collection of sequences that include</span>
+<span class="sd">          both the data and the context columns.</span>
+<span class="sd">        - RNN takes as input a tensor with shape</span>
+<span class="sd">          ``(sequence_length, number_of_sequences, context_size + data_size)`` and</span>
+<span class="sd">          generates an output of shape ``(sequence_length, num_sequences, hidden_size)``.</span>
+<span class="sd">        - The RNN output is passed to the Linear layer that outputs a single value.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        context_size (int):</span>
+<span class="sd">            Number of values in the contextual arrays.</span>
+<span class="sd">        data_size (int):</span>
+<span class="sd">            Number of variables in the input data sequences.</span>
+<span class="sd">        hidden_size (int):</span>
+<span class="sd">            Size of the communication between the RNN and the Linear layer.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context_size</span><span class="p">,</span> <span class="n">data_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rnn</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">GRU</span><span class="p">(</span><span class="n">context_size</span> <span class="o">+</span> <span class="n">data_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BasicDiscriminator.forward"><a class="viewcode-back" href="../../../api/deepecho.models.basic_gan.html#deepecho.BasicDiscriminator.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequences</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Forward computation.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            sequences (tensor):</span>
+<span class="sd">                Sequences of values with their context.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rnn_out</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rnn</span><span class="p">(</span><span class="n">sequences</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear</span><span class="p">(</span><span class="n">rnn_out</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:])</span></div></div>
+
+
+<div class="viewcode-block" id="BasicGANModel"><a class="viewcode-back" href="../../../api/deepecho.models.basic_gan.html#deepecho.BasicGANModel">[docs]</a><span class="k">class</span> <span class="nc">BasicGANModel</span><span class="p">(</span><span class="n">DeepEcho</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Basic GAN model.</span>
+
+<span class="sd">    0. Normalize continuous values to [-1.0, 1.0].</span>
+<span class="sd">    1. Map categorical values to one-hot.</span>
+<span class="sd">    2. Define a generator that takes context vector -&gt; new sequence.</span>
+<span class="sd">    3. Transforms</span>
+<span class="sd">        - apply sigmoid to continuous/count/datetime</span>
+<span class="sd">        - apply softmax to categorical/ordinal</span>
+<span class="sd">    4. Define a discriminator that takes sequence + context -&gt; score.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        epochs (int):</span>
+<span class="sd">            Number of training epochs. Defaults to 1024.</span>
+<span class="sd">        latent_size (int):</span>
+<span class="sd">            Size of the random vector to use for generation. Defaults to 32.</span>
+<span class="sd">        hidden_size (int):</span>
+<span class="sd">            Size of the hidden Linear layer. Defaults to 16.</span>
+<span class="sd">        gen_lr (float):</span>
+<span class="sd">            Generator learning rate. Defaults to 1e-3.</span>
+<span class="sd">        dis_lr (float):</span>
+<span class="sd">            Discriminator learning rate. Defaults to 1e-3.</span>
+<span class="sd">        cuda (bool):</span>
+<span class="sd">            Whether to attempt to use cuda for GPU computation.</span>
+<span class="sd">            If this is False or CUDA is not available, CPU will be used.</span>
+<span class="sd">            Defaults to ``True``.</span>
+<span class="sd">        verbose (bool):</span>
+<span class="sd">            Whether to print progress to console or not.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_max_sequence_length</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_fixed_length</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_context_map</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_context_size</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_data_map</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_data_size</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_model_data_size</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_generator</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">latent_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">hidden_size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+                 <span class="n">gen_lr</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">dis_lr</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">cuda</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_epochs</span> <span class="o">=</span> <span class="n">epochs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_gen_lr</span> <span class="o">=</span> <span class="n">gen_lr</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dis_lr</span> <span class="o">=</span> <span class="n">dis_lr</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_latent_size</span> <span class="o">=</span> <span class="n">latent_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hidden_size</span> <span class="o">=</span> <span class="n">hidden_size</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">cuda</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+            <span class="n">device</span> <span class="o">=</span> <span class="s1">&#39;cpu&#39;</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cuda</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">device</span> <span class="o">=</span> <span class="n">cuda</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">device</span> <span class="o">=</span> <span class="s1">&#39;cuda&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> instance created&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;instance created&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">(epochs=</span><span class="si">{}</span><span class="s2">, latent_size=</span><span class="si">{}</span><span class="s2">, hidden_size=</span><span class="si">{}</span><span class="s2">, &quot;</span>
+            <span class="s2">&quot;gen_lr=</span><span class="si">{}</span><span class="s2">, dis_lr=</span><span class="si">{}</span><span class="s2">, cuda=&#39;</span><span class="si">{}</span><span class="s2">&#39;, verbose=</span><span class="si">{}</span><span class="s2">)&quot;</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_epochs</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_latent_size</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_hidden_size</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_gen_lr</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_dis_lr</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_verbose</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="c1"># ########################### #</span>
+    <span class="c1"># Preprocessing and preparing #</span>
+    <span class="c1"># ########################### #</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_index_map</span><span class="p">(</span><span class="n">columns</span><span class="p">,</span> <span class="n">types</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Decide which dimension will store which column information in the tensor.</span>
+
+<span class="sd">        The output of this function has two elements:</span>
+
+<span class="sd">            - An idx_map, which is a dict that indicates the indexes at which</span>
+<span class="sd">              the list of tensor dimensions associated with each input column starts,</span>
+<span class="sd">              and the properties of such columns.</span>
+<span class="sd">            - An integer that indicates how many dimensions the tensor will have.</span>
+
+<span class="sd">        In order to decide this, the following process is followed for each column:</span>
+
+<span class="sd">            - If the column is numerical (continuous or count), 2 dimensions are created</span>
+<span class="sd">              for it. These will contain information about the value itself, as well</span>
+<span class="sd">              as information about whether the value should be NaN or not.</span>
+<span class="sd">            - If the column is categorical or ordinal, 1 dimentions is created for</span>
+<span class="sd">              each possible value, which will be later on used to hold one-hot encoding</span>
+<span class="sd">              information about the values.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">dimensions</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">mapping</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">column</span><span class="p">,</span> <span class="n">column_type</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">types</span><span class="p">):</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="n">columns</span><span class="p">[</span><span class="n">column</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">column_type</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;continuous&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">):</span>
+                <span class="n">mapping</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="n">column_type</span><span class="p">,</span>
+                    <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">values</span><span class="p">),</span>
+                    <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">values</span><span class="p">),</span>
+                    <span class="s1">&#39;indices&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">dimensions</span><span class="p">,</span> <span class="n">dimensions</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="p">}</span>
+                <span class="n">dimensions</span> <span class="o">+=</span> <span class="mi">2</span>
+
+            <span class="k">elif</span> <span class="n">column_type</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;categorical&#39;</span><span class="p">,</span> <span class="s1">&#39;ordinal&#39;</span><span class="p">):</span>
+                <span class="n">indices</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
+                    <span class="n">indices</span><span class="p">[</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="n">dimensions</span>
+                    <span class="n">dimensions</span> <span class="o">+=</span> <span class="mi">1</span>
+
+                <span class="n">mapping</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="n">column_type</span><span class="p">,</span>
+                    <span class="s1">&#39;indices&#39;</span><span class="p">:</span> <span class="n">indices</span>
+                <span class="p">}</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Unsupported type: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">column_type</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">mapping</span><span class="p">,</span> <span class="n">dimensions</span>
+
+    <span class="k">def</span> <span class="nf">_analyze_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequences</span><span class="p">,</span> <span class="n">context_types</span><span class="p">,</span> <span class="n">data_types</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Extract information about the context and data that will be used later.</span>
+
+<span class="sd">        The following information is stored:</span>
+<span class="sd">            - Length of the sequences.</span>
+<span class="sd">            - Index map and dimensions for the context.</span>
+<span class="sd">            - Index map and dimensions for the data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">sequence_lengths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">sequence</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">sequences</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_max_sequence_length</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">sequence_lengths</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fixed_length</span> <span class="o">=</span> <span class="p">(</span><span class="n">sequence_lengths</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_sequence_length</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+
+        <span class="c1"># Concatenate all the context sequences together</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">context_types</span><span class="p">)):</span>
+            <span class="n">context</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">sequence</span><span class="p">[</span><span class="s1">&#39;context&#39;</span><span class="p">][</span><span class="n">column</span><span class="p">]</span> <span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">sequences</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_context_map</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_context_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index_map</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">context_types</span><span class="p">)</span>
+
+        <span class="c1"># Concatenate all the data sequences together</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_types</span><span class="p">)):</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">sum</span><span class="p">([</span><span class="n">sequence</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="n">column</span><span class="p">]</span> <span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">sequences</span><span class="p">],</span> <span class="p">[]))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_map</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index_map</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">data_types</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_model_data_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_size</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fixed_length</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_normalize</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">properties</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Normalize the value between 0 and 1 and flag nans.&quot;&quot;&quot;</span>
+        <span class="n">value_idx</span><span class="p">,</span> <span class="n">missing_idx</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;indices&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+            <span class="n">tensor</span><span class="p">[</span><span class="n">value_idx</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="n">tensor</span><span class="p">[</span><span class="n">missing_idx</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">column_min</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">]</span>
+            <span class="n">column_range</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">column_min</span>
+            <span class="n">offset</span> <span class="o">=</span> <span class="n">value</span> <span class="o">-</span> <span class="n">column_min</span>
+            <span class="n">tensor</span><span class="p">[</span><span class="n">value_idx</span><span class="p">]</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">offset</span> <span class="o">/</span> <span class="n">column_range</span> <span class="o">-</span> <span class="mf">1.0</span>
+            <span class="n">tensor</span><span class="p">[</span><span class="n">missing_idx</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_denormalize</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">properties</span><span class="p">,</span> <span class="n">round_value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Denormalize previously normalized values, setting NaN values if necessary.&quot;&quot;&quot;</span>
+        <span class="n">value_idx</span><span class="p">,</span> <span class="n">missing_idx</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;indices&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">tensor</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">missing_idx</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">normalized</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">value_idx</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+        <span class="n">column_min</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">]</span>
+        <span class="n">column_range</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">column_min</span>
+
+        <span class="n">denormalized</span> <span class="o">=</span> <span class="p">(</span><span class="n">normalized</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">column_range</span> <span class="o">/</span> <span class="mf">2.0</span> <span class="o">+</span> <span class="n">column_min</span>
+        <span class="k">if</span> <span class="n">round_value</span><span class="p">:</span>
+            <span class="n">denormalized</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">denormalized</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">denormalized</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_one_hot_encode</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">properties</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Update the index that corresponds to the value to 1.0.&quot;&quot;&quot;</span>
+        <span class="n">value_index</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;indices&#39;</span><span class="p">][</span><span class="n">value</span><span class="p">]</span>
+        <span class="n">tensor</span><span class="p">[</span><span class="n">value_index</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_one_hot_decode</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">properties</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtain the category that corresponds to the highest one-hot value.&quot;&quot;&quot;</span>
+        <span class="n">max_value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;-inf&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">category</span><span class="p">,</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;indices&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">idx</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="n">max_value</span><span class="p">:</span>
+                <span class="n">max_value</span> <span class="o">=</span> <span class="n">value</span>
+                <span class="n">selected</span> <span class="o">=</span> <span class="n">category</span>
+
+        <span class="k">return</span> <span class="n">selected</span>
+
+    <span class="k">def</span> <span class="nf">_value_to_tensor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tensor</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">properties</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Update the tensor according to the value and properties.&quot;&quot;&quot;</span>
+        <span class="n">column_type</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">column_type</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;continuous&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_normalize</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">properties</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">column_type</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;categorical&#39;</span><span class="p">,</span> <span class="s1">&#39;ordinal&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_one_hot_encode</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">properties</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">()</span>   <span class="c1"># Theoretically unreachable</span>
+
+    <span class="k">def</span> <span class="nf">_data_to_tensor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Convert the input data to the corresponding tensor.</span>
+
+<span class="sd">        If ``self._fixed_length`` is ``False``, add a 1.0 to indicate</span>
+<span class="sd">        the sequence end and pad the rest of the sequence with 0.0s.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tensors</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">num_rows</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_rows</span><span class="p">):</span>
+            <span class="n">tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_data_size</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">column</span><span class="p">,</span> <span class="n">properties</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">column</span><span class="p">][</span><span class="n">row</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_value_to_tensor</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">properties</span><span class="p">)</span>
+
+            <span class="n">tensors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tensor</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fixed_length</span><span class="p">:</span>
+            <span class="n">tensors</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_max_sequence_length</span> <span class="o">-</span> <span class="n">num_rows</span><span class="p">):</span>
+            <span class="n">tensors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_data_size</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">tensors</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_context_to_tensor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Convert the input context to the corresponding tensor.&quot;&quot;&quot;</span>
+        <span class="n">tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_context_size</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">column</span><span class="p">,</span> <span class="n">properties</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_context_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">context</span><span class="p">[</span><span class="n">column</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_value_to_tensor</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">properties</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">tensor</span>
+
+    <span class="k">def</span> <span class="nf">_tensor_to_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tensor</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Rebuild a valid sequence from the given tensor.&quot;&quot;&quot;</span>
+        <span class="n">sequence_length</span><span class="p">,</span> <span class="n">num_sequences</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">tensor</span><span class="o">.</span><span class="n">shape</span>
+        <span class="k">assert</span> <span class="n">num_sequences</span> <span class="o">==</span> <span class="mi">1</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_map</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">column</span><span class="p">,</span> <span class="n">properties</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">column_type</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span>
+
+            <span class="n">column_data</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="n">column_data</span>
+            <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sequence_length</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">column_type</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;continuous&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">):</span>
+                    <span class="n">round_value</span> <span class="o">=</span> <span class="n">column_type</span> <span class="o">==</span> <span class="s1">&#39;count&#39;</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_denormalize</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">properties</span><span class="p">,</span> <span class="n">round_value</span><span class="o">=</span><span class="n">round_value</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">column_type</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;categorical&#39;</span><span class="p">,</span> <span class="s1">&#39;ordinal&#39;</span><span class="p">):</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_one_hot_decode</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">properties</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">()</span>   <span class="c1"># Theoretically unreachable</span>
+
+                <span class="n">column_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">data</span>
+
+    <span class="k">def</span> <span class="nf">_build_tensor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transform</span><span class="p">,</span> <span class="n">sequences</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">dim</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Convert input sequences to tensors.&quot;&quot;&quot;</span>
+        <span class="n">tensors</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">sequences</span><span class="p">:</span>
+            <span class="n">tensors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">transform</span><span class="p">(</span><span class="n">sequence</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span>
+
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">tensors</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="n">dim</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="p">)</span>
+
+    <span class="c1"># ################## #</span>
+    <span class="c1"># GAN Training steps #</span>
+    <span class="c1"># ################## #</span>
+
+    <span class="k">def</span> <span class="nf">_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">properties</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_map</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">column_type</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">column_type</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;continuous&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">):</span>
+                <span class="n">value_idx</span><span class="p">,</span> <span class="n">missing_idx</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;indices&#39;</span><span class="p">]</span>
+                <span class="n">data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">value_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">value_idx</span><span class="p">])</span>
+                <span class="n">data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">missing_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">missing_idx</span><span class="p">])</span>
+            <span class="k">elif</span> <span class="n">column_type</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;categorical&#39;</span><span class="p">,</span> <span class="s1">&#39;ordinal&#39;</span><span class="p">):</span>
+                <span class="n">indices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">properties</span><span class="p">[</span><span class="s1">&#39;indices&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+                <span class="n">data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">indices</span><span class="p">]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">indices</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">data</span>
+
+    <span class="k">def</span> <span class="nf">_truncate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">generated</span><span class="p">):</span>
+        <span class="n">end_flag</span> <span class="o">=</span> <span class="p">(</span><span class="n">generated</span><span class="p">[:,</span> <span class="p">:,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_size</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">()</span>
+        <span class="n">generated</span><span class="p">[:,</span> <span class="p">:,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_size</span><span class="p">]</span> <span class="o">=</span> <span class="n">end_flag</span>
+
+        <span class="k">for</span> <span class="n">sequence_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">generated</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="c1"># Pad with zeroes after end_flag == 1</span>
+            <span class="n">sequence</span> <span class="o">=</span> <span class="n">generated</span><span class="p">[:,</span> <span class="n">sequence_idx</span><span class="p">]</span>
+            <span class="n">end_flag</span> <span class="o">=</span> <span class="n">sequence</span><span class="p">[:,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_size</span><span class="p">]</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">end_flag</span> <span class="o">==</span> <span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+                <span class="n">cut_idx</span> <span class="o">=</span> <span class="n">end_flag</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span>
+                <span class="n">sequence</span><span class="p">[</span><span class="n">cut_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="k">def</span> <span class="nf">_generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">sequence_length</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">generated</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generator</span><span class="p">(</span>
+            <span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">,</span>
+            <span class="n">sequence_length</span><span class="o">=</span><span class="n">sequence_length</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_sequence_length</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">generated</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transform</span><span class="p">(</span><span class="n">generated</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fixed_length</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_truncate</span><span class="p">(</span><span class="n">generated</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">generated</span>
+
+    <span class="k">def</span> <span class="nf">_discriminator_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">discriminator</span><span class="p">,</span> <span class="n">discriminator_opt</span><span class="p">,</span> <span class="n">data_context</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+        <span class="n">real_scores</span> <span class="o">=</span> <span class="n">discriminator</span><span class="p">(</span><span class="n">data_context</span><span class="p">)</span>
+
+        <span class="n">fake</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+        <span class="n">fake_context</span> <span class="o">=</span> <span class="n">_expand_context</span><span class="p">(</span><span class="n">fake</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+        <span class="n">fake_scores</span> <span class="o">=</span> <span class="n">discriminator</span><span class="p">(</span><span class="n">fake_context</span><span class="p">)</span>
+
+        <span class="n">discriminator_score</span> <span class="o">=</span> <span class="o">-</span><span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">real_scores</span> <span class="o">-</span> <span class="n">fake_scores</span><span class="p">)</span>
+
+        <span class="n">discriminator_opt</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="n">discriminator_score</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+        <span class="n">discriminator_opt</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="n">discriminator</span><span class="o">.</span><span class="n">parameters</span><span class="p">():</span>
+            <span class="n">parameter</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">clamp_</span><span class="p">(</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">discriminator_score</span>
+
+    <span class="k">def</span> <span class="nf">_generator_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">discriminator</span><span class="p">,</span> <span class="n">generator_opt</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+        <span class="n">fake</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+        <span class="n">fake_context</span> <span class="o">=</span> <span class="n">_expand_context</span><span class="p">(</span><span class="n">fake</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+        <span class="n">generator_score</span> <span class="o">=</span> <span class="o">-</span><span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">discriminator</span><span class="p">(</span><span class="n">fake_context</span><span class="p">))</span>
+
+        <span class="n">generator_opt</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="n">generator_score</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+        <span class="n">generator_opt</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">generator_score</span>
+
+    <span class="k">def</span> <span class="nf">_build_fit_artifacts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_generator</span> <span class="o">=</span> <span class="n">BasicGenerator</span><span class="p">(</span>
+            <span class="n">context_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_context_size</span><span class="p">,</span>
+            <span class="n">latent_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_latent_size</span><span class="p">,</span>
+            <span class="n">hidden_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_hidden_size</span><span class="p">,</span>
+            <span class="n">data_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_data_size</span><span class="p">,</span>
+            <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="p">,</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="p">)</span>
+
+        <span class="n">discriminator</span> <span class="o">=</span> <span class="n">BasicDiscriminator</span><span class="p">(</span>
+            <span class="n">context_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_context_size</span><span class="p">,</span>
+            <span class="n">data_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_data_size</span><span class="p">,</span>
+            <span class="n">hidden_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_hidden_size</span><span class="p">,</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="p">)</span>
+
+        <span class="n">generator_opt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_generator</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_gen_lr</span><span class="p">)</span>
+        <span class="n">discriminator_opt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">discriminator</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_dis_lr</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">discriminator</span><span class="p">,</span> <span class="n">generator_opt</span><span class="p">,</span> <span class="n">discriminator_opt</span>
+
+<div class="viewcode-block" id="BasicGANModel.fit_sequences"><a class="viewcode-back" href="../../../api/deepecho.models.basic_gan.html#deepecho.BasicGANModel.fit_sequences">[docs]</a>    <span class="k">def</span> <span class="nf">fit_sequences</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequences</span><span class="p">,</span> <span class="n">context_types</span><span class="p">,</span> <span class="n">data_types</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fit a model to the specified sequences.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            sequences:</span>
+<span class="sd">                List of sequences. Each sequence is a single training example</span>
+<span class="sd">                (i.e. an example of a multivariate time series with some context).</span>
+<span class="sd">                For example, a sequence might look something like::</span>
+
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;context&quot;: [1],</span>
+<span class="sd">                        &quot;data&quot;: [</span>
+<span class="sd">                            [1, 3, 4, 5, 11, 3, 4],</span>
+<span class="sd">                            [2, 2, 3, 4,  5, 1, 2],</span>
+<span class="sd">                            [1, 3, 4, 5,  2, 3, 1]</span>
+<span class="sd">                        ]</span>
+<span class="sd">                    }</span>
+
+<span class="sd">                The &quot;context&quot; attribute maps to a list of variables which</span>
+<span class="sd">                should be used for conditioning. These are variables which</span>
+<span class="sd">                do not change over time.</span>
+
+<span class="sd">                The &quot;data&quot; attribute contains a list of lists corrsponding</span>
+<span class="sd">                to the actual time series data such that `data[i][j]` contains</span>
+<span class="sd">                the value at the jth time step of the ith channel of the</span>
+<span class="sd">                multivariate time series.</span>
+<span class="sd">            context_types:</span>
+<span class="sd">                List of strings indicating the type of each value in context.</span>
+<span class="sd">                he value at `context[i]` must match the type specified by</span>
+<span class="sd">                `context_types[i]`. Valid types include the following: `categorical`,</span>
+<span class="sd">                `continuous`, `ordinal`, `count`, and `datetime`.</span>
+<span class="sd">            data_types:</span>
+<span class="sd">                List of strings indicating the type of each channel in data.</span>
+<span class="sd">                Each value in the list at data[i] must match the type specified by</span>
+<span class="sd">                `data_types[i]`. The valid types are the same as for `context_types`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_analyze_data</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">context_types</span><span class="p">,</span> <span class="n">data_types</span><span class="p">)</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_to_tensor</span><span class="p">,</span> <span class="n">sequences</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_context_to_tensor</span><span class="p">,</span> <span class="n">sequences</span><span class="p">,</span> <span class="s1">&#39;context&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">data_context</span> <span class="o">=</span> <span class="n">_expand_context</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+
+        <span class="n">discriminator</span><span class="p">,</span> <span class="n">generator_opt</span><span class="p">,</span> <span class="n">discriminator_opt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_fit_artifacts</span><span class="p">()</span>
+
+        <span class="n">iterator</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_epochs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_verbose</span><span class="p">:</span>
+            <span class="n">iterator</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">iterator</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="n">iterator</span><span class="p">:</span>
+            <span class="n">discriminator_score</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_discriminator_step</span><span class="p">(</span>
+                <span class="n">discriminator</span><span class="o">=</span><span class="n">discriminator</span><span class="p">,</span>
+                <span class="n">discriminator_opt</span><span class="o">=</span><span class="n">discriminator_opt</span><span class="p">,</span>
+                <span class="n">data_context</span><span class="o">=</span><span class="n">data_context</span><span class="p">,</span>
+                <span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">generator_score</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generator_step</span><span class="p">(</span>
+                <span class="n">discriminator</span><span class="o">=</span><span class="n">discriminator</span><span class="p">,</span>
+                <span class="n">generator_opt</span><span class="o">=</span><span class="n">generator_opt</span><span class="p">,</span>
+                <span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_verbose</span><span class="p">:</span>
+                <span class="n">iterator</span><span class="o">.</span><span class="n">set_description</span><span class="p">(</span>
+                    <span class="s1">&#39;Epoch </span><span class="si">{}</span><span class="s1"> | D Loss </span><span class="si">{}</span><span class="s1"> | G Loss </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">discriminator_score</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="n">generator_score</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+                    <span class="p">)</span>
+                <span class="p">)</span></div>
+
+<div class="viewcode-block" id="BasicGANModel.sample_sequence"><a class="viewcode-back" href="../../../api/deepecho.models.basic_gan.html#deepecho.BasicGANModel.sample_sequence">[docs]</a>    <span class="k">def</span> <span class="nf">sample_sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">sequence_length</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sample a single sequence conditioned on context.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            context (list):</span>
+<span class="sd">                The list of values to condition on. It must match</span>
+<span class="sd">                the types specified in context_types when fit was called.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list[list]:</span>
+<span class="sd">                A list of lists (data) corresponding to the types specified</span>
+<span class="sd">                in data_types when fit was called.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_context_to_tensor</span><span class="p">(</span><span class="n">context</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="n">generated</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">sequence_length</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">sequence_length</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">end_flag</span> <span class="o">=</span> <span class="n">generated</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">end_flag</span> <span class="o">==</span> <span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+                    <span class="n">cut_index</span> <span class="o">=</span> <span class="n">end_flag</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span>
+                    <span class="n">generated</span> <span class="o">=</span> <span class="n">generated</span><span class="p">[:</span><span class="n">cut_index</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
+
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tensor_to_data</span><span class="p">(</span><span class="n">generated</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Kevin Alex Zhang
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

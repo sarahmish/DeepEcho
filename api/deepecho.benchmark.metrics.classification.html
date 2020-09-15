@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho.benchmark.metrics.classification module &mdash; DeepEcho 0.1.1 documentation</title>
+  <title>deepecho.benchmark.metrics.classification module &mdash; DeepEcho 0.1.2 documentation</title>
   
 
   
@@ -89,6 +89,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Load-the-demo-dataset">Load the demo dataset</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Context">Context</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Data-Types">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Sequence-Index">Sequence Index</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/01_Getting_Started.html#Using-the-PAR-Model">Using the PAR Model</a></li>
 </ul>
 </li>
@@ -98,10 +99,15 @@
 <p class="caption"><span class="caption-text">Resources</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="deepecho.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="deepecho.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="deepecho.models.html">deepecho.models package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="deepecho.models.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="deepecho.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="deepecho.base.html">deepecho.base module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deepecho.demo.html">deepecho.demo module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="deepecho.par.html">deepecho.par module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deepecho.sequences.html">deepecho.sequences module</a></li>
 </ul>
 </li>
@@ -128,8 +134,9 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.1.1 (2020-08-15)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.1.0 (2020-08-11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.1.2 (2020-09-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.1.1 (2020-08-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id3">0.1.0 (2020-08-11)</a></li>
 </ul>
 </li>
 </ul>
@@ -225,7 +232,25 @@
 <div class="section" id="module-deepecho.benchmark.metrics.classification">
 <span id="deepecho-benchmark-metrics-classification-module"></span><h1>deepecho.benchmark.metrics.classification module<a class="headerlink" href="#module-deepecho.benchmark.metrics.classification" title="Permalink to this headline">¶</a></h1>
 <p>Time Series Classification based metrics.</p>
-<p><strong>Functions</strong></p>
+<p><strong>Classes:</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ColumnConcatenator</span></code>()</p></td>
+<td><p>Transformer that concatenates multivariate time series/panel data into long univiariate time series/panel     data by simply concatenating times series in time.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Pipeline</span></code>(steps, *[, memory, verbose])</p></td>
+<td><p>Pipeline of transforms with a final estimator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimeSeriesForestClassifier</span></code>([estimator, …])</p></td>
+<td><p>Time-Series Forest Classifier.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Functions:</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -238,8 +263,14 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#deepecho.benchmark.metrics.classification.lstm_detection_score" title="deepecho.benchmark.metrics.classification.lstm_detection_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lstm_detection_score</span></code></a>(dataset, synthetic)</p></td>
 <td><p>Try to detect whether a sequence is synthetic or not using an lstm classifier.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.benchmark.metrics.classification.rf_detection_score" title="deepecho.benchmark.metrics.classification.rf_detection_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rf_detection_score</span></code></a>(dataset, synthetic)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pack_sequence</span></code>(sequences[, enforce_sorted])</p></td>
+<td><p>Packs a list of variable length Tensors</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.benchmark.metrics.classification.rf_detection_score" title="deepecho.benchmark.metrics.classification.rf_detection_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rf_detection_score</span></code></a>(dataset, synthetic)</p></td>
 <td><p>Try to detect whether a sequence is synthetic or not using a random forest classifier.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">train_test_split</span></code>(*arrays, **options)</p></td>
+<td><p>Split arrays or matrices into random train and test subsets</p></td>
 </tr>
 </tbody>
 </table>

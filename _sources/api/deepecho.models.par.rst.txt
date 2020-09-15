@@ -1,0 +1,7 @@
+deepecho.models.par module
+==========================
+
+.. automodule:: deepecho.models.par
+   :members:
+   :undoc-members:
+   :show-inheritance:

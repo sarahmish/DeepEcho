@@ -6,12 +6,17 @@ deepecho package
    :undoc-members:
    :show-inheritance:
 
+Subpackages
+-----------
+
+.. toctree::
+
+   deepecho.models
+
 Submodules
 ----------
 
 .. toctree::
 
-   deepecho.base
    deepecho.demo
-   deepecho.par
    deepecho.sequences
