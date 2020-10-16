@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho package &mdash; DeepEcho 0.1.2 documentation</title>
+  <title>deepecho package &mdash; DeepEcho 0.1.3 documentation</title>
   
 
   
@@ -136,9 +136,10 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.1.2 (2020-09-15)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.1.1 (2020-08-15)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id3">0.1.0 (2020-08-11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.1.3 (2020-10-16)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.1.2 (2020-09-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id3">0.1.1 (2020-08-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id4">0.1.0 (2020-08-11)</a></li>
 </ul>
 </li>
 </ul>
@@ -256,7 +257,7 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#deepecho.BasicGANModel" title="deepecho.BasicGANModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BasicGANModel</span></code></a>([epochs, latent_size, …])</p></td>
 <td><p>Basic GAN model.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.PARModel" title="deepecho.PARModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PARModel</span></code></a>([epochs, max_seq_len, sample_size, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#deepecho.PARModel" title="deepecho.PARModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PARModel</span></code></a>([epochs, sample_size, cuda, verbose])</p></td>
 <td><p>Probabilistic autoregressive model.</p></td>
 </tr>
 </tbody>
@@ -379,7 +380,7 @@ in data_types when fit was called.</p>
 
 <dl class="class">
 <dt id="deepecho.PARModel">
-<em class="property">class </em><code class="sig-prename descclassname">deepecho.</code><code class="sig-name descname">PARModel</code><span class="sig-paren">(</span><em class="sig-param">epochs=128</em>, <em class="sig-param">max_seq_len=100</em>, <em class="sig-param">sample_size=1</em>, <em class="sig-param">cuda=True</em>, <em class="sig-param">verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/models/par.html#PARModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.PARModel" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">deepecho.</code><code class="sig-name descname">PARModel</code><span class="sig-paren">(</span><em class="sig-param">epochs=128</em>, <em class="sig-param">sample_size=1</em>, <em class="sig-param">cuda=True</em>, <em class="sig-param">verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/models/par.html#PARModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.PARModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="deepecho.models.base.html#deepecho.models.base.DeepEcho" title="deepecho.models.base.DeepEcho"><code class="xref py py-class docutils literal notranslate"><span class="pre">deepecho.models.base.DeepEcho</span></code></a></p>
 <p>Probabilistic autoregressive model.</p>
 <ol class="arabic simple">
@@ -433,8 +434,6 @@ in data_types when fit was called.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>epochs</strong> (<em>int</em>) – The number of epochs to train for. Defaults to 128.</p></li>
-<li><p><strong>max_seq_len</strong> (<em>int</em>) – The maximum length of the sequence (if variable).
-Defaults to 100.</p></li>
 <li><p><strong>sample_size</strong> (<em>int</em>) – The number of times to sample (before choosing and
 returning the sample which maximizes the likelihood).
 Defaults to 1.</p></li>

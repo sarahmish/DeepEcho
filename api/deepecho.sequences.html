@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho.sequences module &mdash; DeepEcho 0.1.2 documentation</title>
+  <title>deepecho.sequences module &mdash; DeepEcho 0.1.3 documentation</title>
   
 
   
@@ -136,9 +136,10 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.1.2 (2020-09-15)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.1.1 (2020-08-15)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id3">0.1.0 (2020-08-11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.1.3 (2020-10-16)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.1.2 (2020-09-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id3">0.1.1 (2020-08-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id4">0.1.0 (2020-08-11)</a></li>
 </ul>
 </li>
 </ul>
@@ -259,7 +260,7 @@
 </table>
 <dl class="function">
 <dt id="deepecho.sequences.assemble_sequences">
-<code class="sig-prename descclassname">deepecho.sequences.</code><code class="sig-name descname">assemble_sequences</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">entity_columns</em>, <em class="sig-param">context_columns</em>, <em class="sig-param">segment_size</em>, <em class="sig-param">sequence_index</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/sequences.html#assemble_sequences"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.sequences.assemble_sequences" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">deepecho.sequences.</code><code class="sig-name descname">assemble_sequences</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">entity_columns</em>, <em class="sig-param">context_columns</em>, <em class="sig-param">segment_size</em>, <em class="sig-param">sequence_index</em>, <em class="sig-param">drop_sequence_index=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/sequences.html#assemble_sequences"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.sequences.assemble_sequences" title="Permalink to this definition">¶</a></dt>
 <dd><p>Build sequences from the data, grouping first by entity and then segmenting by size.</p>
 <p>Input is a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> containing all the data, lists of entity and context
 columns and instructions about how to segment each entity sequence.</p>
@@ -292,6 +293,7 @@ given, or within each segment otherwise.</p></li>
 object.</p></li>
 <li><p><strong>sequence_index</strong> (<em>str</em>) – Name of the column that will be used as the time index for the
 segmentation. Required if a timedelta <code class="docutils literal notranslate"><span class="pre">segment_size</span></code> is passed.</p></li>
+<li><p><strong>drop_sequence_index</strong> (<em>bool</em>) – Whether to drop the sequence index after sorting. Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises</dt>
@@ -356,7 +358,7 @@ segmentation.</p></li>
 
 <dl class="function">
 <dt id="deepecho.sequences.segment_sequence">
-<code class="sig-prename descclassname">deepecho.sequences.</code><code class="sig-name descname">segment_sequence</code><span class="sig-paren">(</span><em class="sig-param">sequence</em>, <em class="sig-param">segment_size</em>, <em class="sig-param">sequence_index</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/sequences.html#segment_sequence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.sequences.segment_sequence" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">deepecho.sequences.</code><code class="sig-name descname">segment_sequence</code><span class="sig-paren">(</span><em class="sig-param">sequence</em>, <em class="sig-param">segment_size</em>, <em class="sig-param">sequence_index</em>, <em class="sig-param">drop_sequence_index=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/deepecho/sequences.html#segment_sequence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#deepecho.sequences.segment_sequence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Segment the sequence in segments of the indicated time length or size.</p>
 <p>If a <code class="docutils literal notranslate"><span class="pre">sequence_index</span></code> is given, data will be sorted by it first.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">segment_size</span></code> is not passed, the whole sequence will be returned
@@ -369,6 +371,7 @@ as a single segment.</p>
 object.</p></li>
 <li><p><strong>sequence_index</strong> (<em>str</em>) – Name of the column that will be used as the time index for the
 segmentation. Required if a timedelta <code class="docutils literal notranslate"><span class="pre">segment_size</span></code> is passed.</p></li>
+<li><p><strong>drop_sequence_index</strong> (<em>bool</em>) – Whether to drop the sequence index after sorting. Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>

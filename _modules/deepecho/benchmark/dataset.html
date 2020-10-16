@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho.benchmark.dataset &mdash; DeepEcho 0.1.2 documentation</title>
+  <title>deepecho.benchmark.dataset &mdash; DeepEcho 0.1.3 documentation</title>
   
 
   
@@ -134,9 +134,10 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id1">0.1.2 (2020-09-15)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id2">0.1.1 (2020-08-15)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id3">0.1.0 (2020-08-11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id1">0.1.3 (2020-10-16)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id2">0.1.2 (2020-09-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id3">0.1.1 (2020-08-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id4">0.1.0 (2020-08-11)</a></li>
 </ul>
 </li>
 </ul>
@@ -371,7 +372,11 @@
         <span class="n">table_meta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get_table_meta</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">table_name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">entity_columns</span> <span class="o">=</span> <span class="n">table_meta</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;entity_columns&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sequence_index</span> <span class="o">=</span> <span class="n">table_meta</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;sequence_index&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">context_columns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_context_columns</span><span class="p">()</span>
+        <span class="k">if</span> <span class="s1">&#39;context_columns&#39;</span> <span class="ow">in</span> <span class="n">table_meta</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">context_columns</span> <span class="o">=</span> <span class="n">table_meta</span><span class="p">[</span><span class="s1">&#39;context_columns&#39;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">context_columns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_context_columns</span><span class="p">()</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">model_columns</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">column</span> <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span>
             <span class="k">if</span> <span class="n">column</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">entity_columns</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">context_columns</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence_index</span><span class="p">]</span>

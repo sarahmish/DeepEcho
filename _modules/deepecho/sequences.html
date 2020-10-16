@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho.sequences &mdash; DeepEcho 0.1.2 documentation</title>
+  <title>deepecho.sequences &mdash; DeepEcho 0.1.3 documentation</title>
   
 
   
@@ -134,9 +134,10 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../history.html#id1">0.1.2 (2020-09-15)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../history.html#id2">0.1.1 (2020-08-15)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../history.html#id3">0.1.0 (2020-08-11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id1">0.1.3 (2020-10-16)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id2">0.1.2 (2020-09-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id3">0.1.1 (2020-08-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id4">0.1.0 (2020-08-11)</a></li>
 </ul>
 </li>
 </ul>
@@ -269,7 +270,7 @@
     <span class="k">return</span> <span class="n">sequences</span></div>
 
 
-<div class="viewcode-block" id="segment_sequence"><a class="viewcode-back" href="../../api/deepecho.sequences.html#deepecho.sequences.segment_sequence">[docs]</a><span class="k">def</span> <span class="nf">segment_sequence</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">segment_size</span><span class="p">,</span> <span class="n">sequence_index</span><span class="p">):</span>
+<div class="viewcode-block" id="segment_sequence"><a class="viewcode-back" href="../../api/deepecho.sequences.html#deepecho.sequences.segment_sequence">[docs]</a><span class="k">def</span> <span class="nf">segment_sequence</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">segment_size</span><span class="p">,</span> <span class="n">sequence_index</span><span class="p">,</span> <span class="n">drop_sequence_index</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Segment the sequence in segments of the indicated time length or size.</span>
 
 <span class="sd">    If a ``sequence_index`` is given, data will be sorted by it first.</span>
@@ -286,6 +287,8 @@
 <span class="sd">        sequence_index (str):</span>
 <span class="sd">            Name of the column that will be used as the time index for the</span>
 <span class="sd">            segmentation. Required if a timedelta ``segment_size`` is passed.</span>
+<span class="sd">        drop_sequence_index (bool):</span>
+<span class="sd">            Whether to drop the sequence index after sorting. Defaults to ``True``.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        list:</span>
@@ -293,7 +296,9 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">sequence_index</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">sequence</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">sequence_index</span><span class="p">)</span>
-        <span class="n">sequence_index</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">sequence_index</span><span class="p">)</span>
+        <span class="n">sequence_index_values</span> <span class="o">=</span> <span class="n">sequence</span><span class="p">[</span><span class="n">sequence_index</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">drop_sequence_index</span><span class="p">:</span>
+            <span class="k">del</span> <span class="n">sequence</span><span class="p">[</span><span class="n">sequence_index</span><span class="p">]</span>
 
     <span class="k">if</span> <span class="n">segment_size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">sequence</span><span class="p">]</span>
@@ -301,10 +306,36 @@
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">segment_size</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">segment_by_size</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">segment_size</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">segment_by_time</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">segment_size</span><span class="p">,</span> <span class="n">sequence_index</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">segment_by_time</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">segment_size</span><span class="p">,</span> <span class="n">sequence_index_values</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="assemble_sequences"><a class="viewcode-back" href="../../api/deepecho.sequences.html#deepecho.sequences.assemble_sequences">[docs]</a><span class="k">def</span> <span class="nf">assemble_sequences</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">entity_columns</span><span class="p">,</span> <span class="n">context_columns</span><span class="p">,</span> <span class="n">segment_size</span><span class="p">,</span> <span class="n">sequence_index</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_convert_to_dicts</span><span class="p">(</span><span class="n">segments</span><span class="p">,</span> <span class="n">context_columns</span><span class="p">):</span>
+    <span class="n">sequences</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">segment</span> <span class="ow">in</span> <span class="n">segments</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">context_columns</span><span class="p">:</span>
+            <span class="n">context</span> <span class="o">=</span> <span class="n">segment</span><span class="p">[</span><span class="n">context_columns</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Context columns are not constant within each segment.&#39;</span><span class="p">)</span>
+
+            <span class="n">context</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+            <span class="n">segment</span> <span class="o">=</span> <span class="n">segment</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">context_columns</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">context</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">lists</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="nb">list</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">segment</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">]</span>
+        <span class="n">sequences</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s1">&#39;context&#39;</span><span class="p">:</span> <span class="n">context</span><span class="p">,</span>
+            <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="n">lists</span>
+        <span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">sequences</span>
+
+
+<div class="viewcode-block" id="assemble_sequences"><a class="viewcode-back" href="../../api/deepecho.sequences.html#deepecho.sequences.assemble_sequences">[docs]</a><span class="k">def</span> <span class="nf">assemble_sequences</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">entity_columns</span><span class="p">,</span> <span class="n">context_columns</span><span class="p">,</span> <span class="n">segment_size</span><span class="p">,</span>
+                       <span class="n">sequence_index</span><span class="p">,</span> <span class="n">drop_sequence_index</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Build sequences from the data, grouping first by entity and then segmenting by size.</span>
 
 <span class="sd">    Input is a ``pandas.DataFrame`` containing all the data, lists of entity and context</span>
@@ -337,6 +368,8 @@
 <span class="sd">        sequence_index (str):</span>
 <span class="sd">            Name of the column that will be used as the time index for the</span>
 <span class="sd">            segmentation. Required if a timedelta ``segment_size`` is passed.</span>
+<span class="sd">        drop_sequence_index (bool):</span>
+<span class="sd">            Whether to drop the sequence index after sorting. Defaults to ``True``.</span>
 
 <span class="sd">    Raises:</span>
 <span class="sd">        ValueError:</span>
@@ -347,7 +380,7 @@
 <span class="sd">            List of ``pandas.DataFrames`` containing each segment.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">entity_columns</span><span class="p">:</span>
-        <span class="n">segments</span> <span class="o">=</span> <span class="n">segment_sequence</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">segment_size</span><span class="p">,</span> <span class="n">sequence_index</span><span class="p">)</span>
+        <span class="n">segments</span> <span class="o">=</span> <span class="n">segment_sequence</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">segment_size</span><span class="p">,</span> <span class="n">sequence_index</span><span class="p">,</span> <span class="n">drop_sequence_index</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">segments</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">entity_columns</span><span class="p">):</span>
@@ -356,31 +389,11 @@
                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sequence</span><span class="p">[</span><span class="n">context_columns</span><span class="p">]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
                     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Context columns are not constant within each entity.&#39;</span><span class="p">)</span>
 
-            <span class="n">entity_segments</span> <span class="o">=</span> <span class="n">segment_sequence</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">segment_size</span><span class="p">,</span> <span class="n">sequence_index</span><span class="p">)</span>
+            <span class="n">entity_segments</span> <span class="o">=</span> <span class="n">segment_sequence</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">segment_size</span><span class="p">,</span>
+                                               <span class="n">sequence_index</span><span class="p">,</span> <span class="n">drop_sequence_index</span><span class="p">)</span>
             <span class="n">segments</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">entity_segments</span><span class="p">)</span>
 
-    <span class="n">sequences</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">segment</span> <span class="ow">in</span> <span class="n">segments</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">context_columns</span><span class="p">:</span>
-            <span class="n">context</span> <span class="o">=</span> <span class="n">segment</span><span class="p">[</span><span class="n">context_columns</span><span class="p">]</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Context columns are not constant within each segment.&#39;</span><span class="p">)</span>
-
-            <span class="n">context</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-            <span class="n">segment</span> <span class="o">=</span> <span class="n">segment</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">context_columns</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">context</span> <span class="o">=</span> <span class="p">[]</span>
-
-        <span class="n">lists</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="nb">list</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">segment</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-        <span class="p">]</span>
-        <span class="n">sequences</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-            <span class="s1">&#39;context&#39;</span><span class="p">:</span> <span class="n">context</span><span class="p">,</span>
-            <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="n">lists</span>
-        <span class="p">})</span>
-
-    <span class="k">return</span> <span class="n">sequences</span></div>
+    <span class="k">return</span> <span class="n">_convert_to_dicts</span><span class="p">(</span><span class="n">segments</span><span class="p">,</span> <span class="n">context_columns</span><span class="p">)</span></div>
 </pre></div>
 
            </div>
