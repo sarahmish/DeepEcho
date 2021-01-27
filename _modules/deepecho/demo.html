@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>deepecho.demo &mdash; DeepEcho 0.1.3 documentation</title>
+  <title>deepecho.demo &mdash; DeepEcho 0.1.4 documentation</title>
   
 
   
@@ -134,10 +134,11 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../history.html#id1">0.1.3 (2020-10-16)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../history.html#id2">0.1.2 (2020-09-15)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../history.html#id3">0.1.1 (2020-08-15)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../history.html#id4">0.1.0 (2020-08-11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id1">0.1.4 - 2020-10-16</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id2">0.1.3 - 2020-10-16</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id3">0.1.2 - 2020-09-15</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id4">0.1.1 - 2020-08-15</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id5">0.1.0 - 2020-08-11</a></li>
 </ul>
 </li>
 </ul>
@@ -214,7 +215,7 @@
 
 <div class="viewcode-block" id="load_demo"><a class="viewcode-back" href="../../api/deepecho.demo.html#deepecho.load_demo">[docs]</a><span class="k">def</span> <span class="nf">load_demo</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Load the demo DataFrame.&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_DATA_PATH</span><span class="p">,</span> <span class="s1">&#39;demo.csv&#39;</span><span class="p">))</span></div>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_DATA_PATH</span><span class="p">,</span> <span class="s1">&#39;demo.csv&#39;</span><span class="p">),</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span></div>
 </pre></div>
 
            </div>

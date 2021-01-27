@@ -1,7 +1,0 @@
-deepecho.benchmark.evaluation module
-====================================
-
-.. automodule:: deepecho.benchmark.evaluation
-   :members:
-   :undoc-members:
-   :show-inheritance:

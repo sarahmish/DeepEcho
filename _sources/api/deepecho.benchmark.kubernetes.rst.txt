@@ -1,7 +1,0 @@
-deepecho.benchmark.kubernetes module
-====================================
-
-.. automodule:: deepecho.benchmark.kubernetes
-   :members:
-   :undoc-members:
-   :show-inheritance:

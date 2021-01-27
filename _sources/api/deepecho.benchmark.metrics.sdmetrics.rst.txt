@@ -1,7 +1,0 @@
-deepecho.benchmark.metrics.sdmetrics module
-===========================================
-
-.. automodule:: deepecho.benchmark.metrics.sdmetrics
-   :members:
-   :undoc-members:
-   :show-inheritance:
